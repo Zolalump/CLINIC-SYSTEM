@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Clinic Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+          font-family: 'Poppins', sans-serif;
+      }
+
+      .container2 {
+        background: white;
+        width: 95vw;
+        height: 290vh;
+        border-radius: 10px;
+        transform: scale(0.90);
+        transform-origin: top center;
+        position: relative;
+      }
+
+      
+  </style>
+  </head>
+  <body class="bg-gray-100 mt-32">
+    <div class="flex">
+
+      <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/src/img/logo.jpg" class="h-12" alt="Logo">
+                <p style="color: rgb(4, 4, 155); font-size: larger; font-weight: bold; line-height: 1.2;">
+                    SMCTI <br>
+                    CLINIC
+                </p>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <button type="button" class="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-4 text-center">Account</button>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" 
+            id="navbar-sticky" 
+            style="background-color: #13398C; padding: 7px; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+           <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
+                      md:flex-row md:mt-0 md:border-0">
+               <li>
+                   <a href="../dashboard/dash.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Dashboard
+                   </a>
+               </li>
+               <li>
+                   <a href="../personal/index.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Student Info
+                   </a>
+               </li>
+               <li>
+                   <a href="../Stats/Stats.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Statistics
+                   </a>
+               </li>
+               <li>
+                   <a href="../History/History.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      History
+                   </a>
+               </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+      <div class="container2">
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-4 md:p-6 ">
+          <div class="max-w-7xl mx-auto space-y-6">
+            <div class="flex items-center justify-between">
+              <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+              <div class="flex space-x-2">
+              </div>
+            </div>
+
+            <!-- Metrics Overview Section -->
+            <div class="w-full p-4 rounded-lg">
+              <h2 class="text-lg font-semibold mb-4 text-gray-800">
+                Clinic Brief Reports
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Metric Card 1 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Total Patients
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">1,248</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-blue-800">↑ 12%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >All registered patients</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metric Card 2 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Today's Walk-ins
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-user-plus"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">42</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-blue-800">↑ 8%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >Unscheduled visits today</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metric Card 3 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Daily Average
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-chart-line"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">18.3</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-red-500">↓ 3%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >Patients per day</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metric Card 4 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Monthly Visits
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-calendar"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">356</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-blue-800">↑ 15%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >Total visits this month</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Statistics Charts Section -->
+            <div class="space-x-8 m-10" style="margin-top: 2%;">
+              <h3 class="ml-5 px-4 py-2 bg-[#13398C] text-white rounded" style="font-weight: bold; font-size: larger;">Total Patient</h3>
+              <div class="p-5">
+                  <div class="overflow-x-auto">
+                      <h3 id="statsTitle" class="text-center text-gray-700">Select a Section</h3>
+                      <canvas id="statsChart" class="w-32 h-28" style="max-height: 200px;"></canvas>
+              </div>
+          </div> 
+          
+          <div class="space-x-8 m-10" style="margin-top: 2%;">
+            <h3 class="ml-5 px-4 py-2 bg-[#13398C] text-white rounded" style="font-weight: bold; font-size: larger;">Total Appointments</h3>
+            <div class="p-5">
+                <div class="overflow-x-auto">
+                    <h3 id="statsTitle2" class="text-center text-gray-700">Select a Section</h3>
+                    <canvas id="statsChart2" class="w-32 h-28" style="max-height: 200px;"></canvas>
+            </div>
+        </div>  
+
+
+
+            <!-- Recent Patient History Section -->
+            <div class="rounded-lg border bg-white p-4 shadow-sm">
+              <div class="mb-4 flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-gray-800">
+                  Recent Patient History
+                </h2>
+              </div>
+
+              <div class="rounded-md border">
+                <table class="w-full divide-y divide-gray-200">
+                  <caption class="sr-only">
+                    List of recent patient visits
+                  </caption>
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Assigned Nurse
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Patient Name
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Date
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Illness
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Status
+                      </th>
+                      <th
+                        scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[50px]"
+                      >
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <!-- Row 1 -->
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">Jane Smith</td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">
+                        Michael Johnson
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">06/15/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">Fever</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span
+                          class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800"
+                          >Complete</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="p-1 rounded-full hover:bg-gray-100">
+                          <i
+                            class="fas fa-ellipsis-h h-4 w-4 text-gray-500"
+                          ></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">Robert Chen</td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">
+                        Emily Davis
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">06/14/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">Headache</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span
+                          class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800"
+                          >Pending</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="p-1 rounded-full hover:bg-gray-100">
+                          <i
+                            class="fas fa-ellipsis-h h-4 w-4 text-gray-500"
+                          ></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        Sarah Williams
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">
+                        David Wilson
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">06/14/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        Allergic Reaction
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span
+                          class="px-2 py-1 text-xs font-medium rounded-full bg-red-100 text-red-800"
+                          >Severe</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="p-1 rounded-full hover:bg-gray-100">
+                          <i
+                            class="fas fa-ellipsis-h h-4 w-4 text-gray-500"
+                          ></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">Jane Smith</td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">
+                        Sophia Martinez
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">06/13/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        Sprained Ankle
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span
+                          class="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800"
+                          >Pending</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="p-1 rounded-full hover:bg-gray-100">
+                          <i
+                            class="fas fa-ellipsis-h h-4 w-4 text-gray-500"
+                          ></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- Row 5 -->
+                    <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">Robert Chen</td>
+                      <td class="px-6 py-4 whitespace-nowrap font-medium">
+                        James Taylor
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">06/12/2023</td>
+                      <td class="px-6 py-4 whitespace-nowrap">Sore Throat</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span
+                          class="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800"
+                          >Complete</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="p-1 rounded-full hover:bg-gray-100">
+                          <i
+                            class="fas fa-ellipsis-h h-4 w-4 text-gray-500"
+                          ></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination -->
+              <div class="mt-4 flex items-center justify-end space-x-2">
+                <button
+                  class="px-2 py-1 border border-gray-200 rounded-md text-sm hover:bg-gray-50 disabled:opacity-50"
+                  disabled
+                >
+                  <i class="fas fa-chevron-left h-4 w-4"></i>
+                </button>
+                <span class="text-sm text-gray-600">Page 1 of 1</span>
+                <button
+                  class="px-2 py-1 border border-gray-200 rounded-md text-sm hover:bg-gray-50 disabled:opacity-50"
+                  disabled
+                >
+                  <i class="fas fa-chevron-right h-4 w-4"></i>
+                </button>
+              </div>
+            </div>
+
+              <!-- Upcoming Appointments -->
+              <div
+                class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mt-10"
+              >
+                <h3 class="text-lg font-semibold mb-4">
+                  Upcoming Appointments
+                </h3>
+                <div
+                  class="flex items-center justify-between py-3 border-b border-gray-100"
+                >
+                  <div class="flex items-center">
+                    <div
+                      class="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden"
+                    >
+                    </div>
+                    <div class="ml-3">
+                      <p class="font-medium">Emma Thompson</p>
+                      <p class="text-sm text-gray-500">Vaccination</p>
+                    </div>
+                  </div>
+                  <div class="text-sm text-gray-500">10:30 AM</div>
+                </div>
+                <div
+                  class="flex items-center justify-between py-3 border-b border-gray-100"
+                >
+                  <div class="flex items-center">
+                    <div
+                      class="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden"
+                    >
+                    </div>
+                    <div class="ml-3">
+                      <p class="font-medium">Michael Chen</p>
+                      <p class="text-sm text-gray-500">Follow-up</p>
+                    </div>
+                  </div>
+                  <div class="text-sm text-gray-500">1:15 PM</div>
+                </div>
+                <div class="flex items-center justify-between py-3">
+                  <div class="flex items-center">
+                    <div
+                      class="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden"
+                    >
+                    </div>
+                    <div class="ml-3">
+                      <p class="font-medium">Sophia Garcia</p>
+                      <p class="text-sm text-gray-500">Health Check</p>
+                    </div>
+                  </div>
+                  <div class="text-sm text-gray-500">3:00 PM</div>
+                </div>
+                <a
+                  href="#"
+                  class="text-sm text-blue-600 hover:text-blue-800 mt-3 inline-block"
+                  >View all appointments</a
+                >
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+    <script>
+                    
+      var statsCtx = document.getElementById("statsChart").getContext("2d");
+
+      var statsChart = new Chart(statsCtx, {
+          type: "bar",
+          data: {
+              labels: ["Clients", "Cases"],
+              datasets: [{
+                  label: "Statistics",
+                  data: [0, 0], 
+                  backgroundColor: ["#13398C", "#36A2EB"]
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                  y: { beginAtZero: true }
+              }
+          }
+      });
+
+      function updateChart(mode) {
+          let sections, statsData;
+
+           if (mode === "monthly") {
+              sections = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              statsData = [
+                  { clients: 300, cases: 200 },
+                  { clients: 280, cases: 150 },
+                  { clients: 350, cases: 250 },
+                  { clients: 400, cases: 300 },
+                  { clients: 420, cases: 320 },
+                  { clients: 450, cases: 350 },
+                  { clients: 480, cases: 370 },
+                  { clients: 500, cases: 400 },
+                  { clients: 550, cases: 450 },
+                  { clients: 600, cases: 500 },
+                  { clients: 620, cases: 520 },
+                  { clients: 650, cases: 550 }
+              ];
+          }
+
+          document.getElementById("statsTitle").innerText = mode.charAt(0).toUpperCase() + mode.slice(1) + " Statistics";
+          
+          statsChart.data.labels = sections;
+          statsChart.data.datasets[0].data = statsData.map(item => item.clients); // Clients data
+          statsChart.data.datasets[0].label = "Clients Statistics";
+          statsChart.update();
+      }
+
+      updateChart("monthly");
+
+      var statsCtx = document.getElementById("statsChart2").getContext("2d");
+
+      var statsChart = new Chart(statsCtx, {
+          type: "bar",
+          data: {
+              labels: ["Clients", "Cases"],
+              datasets: [{
+                  label: "Statistics",
+                  data: [0, 0], 
+                  backgroundColor: ["#13398C", "#36A2EB"]
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                  y: { beginAtZero: true }
+              }
+          }
+      });
+
+      function updateChart2(mode) {
+          let sections, statsData;
+
+           if (mode === "monthly") {
+              sections = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              statsData = [
+                  { clients: 300, cases: 200 },
+                  { clients: 280, cases: 150 },
+                  { clients: 350, cases: 250 },
+                  { clients: 400, cases: 300 },
+                  { clients: 420, cases: 320 },
+                  { clients: 450, cases: 350 },
+                  { clients: 480, cases: 370 },
+                  { clients: 500, cases: 400 },
+                  { clients: 550, cases: 450 },
+                  { clients: 600, cases: 500 },
+                  { clients: 620, cases: 520 },
+                  { clients: 650, cases: 550 }
+              ];
+          }
+
+          document.getElementById("statsTitle2").innerText = mode.charAt(0).toUpperCase() + mode.slice(1) + " Statistics";
+          
+          statsChart2.data.labels = sections;
+          statsChart2.data.datasets[0].data = statsData.map(item => item.clients); // Clients data
+          statsChart2.data.datasets[0].label = "Clients Statistics";
+          statsChart2.update();
+      }
+
+      updateChart("monthly");
+  </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding-left: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}   
+
+body {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url(img.jpg);
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #03009c;
+    opacity: 70%;
+
+}
+
+.img {
+    width: 400px ;
+    height: 300px;
+    align-items: left;
+    margin-right: 100%;
+}
+
+.wrapper {
+    width: 500px;
+    height: 650px;
+    background: white;
+    color: #000000;
+    padding: 130px 40px;
+    min-height: 100vh;
+}
+
+.wrapper h1 {
+    font-size: 26px;
+    text-align: center;
+    margin-top: 5px;;
+}
+
+.logo {
+    margin-left: 110px;
+    margin-top: -30px;
+
+}
+
+.description {
+    align-items: center;
+    margin-left: 14px
+}
+
+.Nurse {
+    color: #03009c;
+}
+
+.wrapper .input-box {
+    position: relative;
+    justify-content: center;
+    width: 340px;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #03009c;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #000000;
+    padding: 20px 50px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #000000;
+}
+
+.input-box i {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    transform: translate(-50%);
+    font-size: 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+    margin-top: 10px;
+}
+
+.remember-forgot label input {
+    accent-color: #03009c;
+    text-decoration: none;
+}
+
+.remember-forgot a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+    color: rgb(79, 79, 252);
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #03009c;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, -1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+}
+.remember-forgot label {
+    color: #000000;
+}
+
+.input-box ::placeholder {
+    opacity: 50%;
+}

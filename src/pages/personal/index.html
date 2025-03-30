@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Navbar</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/src/img/logo.jpg" class="h-12" alt="Logo">
+                <p style="color: rgb(4, 4, 155); font-size: larger; font-weight: bold; line-height: 1.2;">
+                    SMCTI <br>
+                    CLINIC
+                </p>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <button type="button" class="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-4 text-center">Account</button>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" 
+            id="navbar-sticky" 
+            style="background-color: #13398C; padding: 7px; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+           <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
+                      md:flex-row md:mt-0 md:border-0">
+               <li>
+                   <a href="../dashboard/dash.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Dashboard
+                   </a>
+               </li>
+               <li>
+                   <a href="../personal/index.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Student Info
+                   </a>
+               </li>
+               <li>
+                   <a href="../Stats/Stats.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Statistics
+                   </a>
+               </li>
+               <li>
+                   <a href="../History/History.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      History
+                   </a>
+               </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="https://via.placeholder.com/120" alt="Profile Picture">
+            <h3 id="profile-name">Student, User</h3>
+            <div class="menu">
+                <a href="#"><i class='bx bx-user'></i> My Profile</a>
+                <a href="#"><i class='bx bx-calendar'></i> Appointments</a>
+                <a href="#"><i class='bx bx-capsule'></i> Medications</a>
+                <a href="#" id="settings-btn"><i class='bx bx-cog'></i> Settings</a>
+            </div>
+        </div>
+
+        
+        <main>
+            <div class="section">
+                <div class="tabs">
+                    <button class="tab active" data-target="walk-ins">Walk Ins</button>
+                    <button class="tab" data-target="past">Past Appointments</button>
+                    <button class="tab" data-target="records">Medical Records</button>
+                </div>
+                <div id="walk-ins" class="slider-content active">
+                    <h3>Upcoming Walk-Ins</h3>
+                    <button onclick="showAddWalkInPopup()"><i class='bx bx-plus'></i> Add Walk-In</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="walk-ins-body">
+                            <!-- Walk-ins will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="past" class="slider-content">
+                    <h3>Past Appointments</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="past-body">
+                            <!-- Past appointments will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="records" class="slider-content">
+                    <h3>Medical Records</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records-body">
+                            <!-- Medical records will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Top Right: Chief Complaints -->
+            <div class="chief-complaints">
+                <h4>Chief Complaints <button id="edit-complaints"><i class='bx bx-edit'></i> Edit</button></h4>
+                <ul class="complaints-list">
+                    <!-- Chief complaints will be added here -->
+                </ul>
+            </div>
+
+            <!-- Bottom Left: Medications -->
+            <div class="section">
+                <h4>Medications <button id="edit-medications"><i class='bx bx-edit'></i> Edit</button></h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>Assigned by</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="medications-body">
+                        <!-- Medications will be added here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Bottom Right: Notes -->
+            <div class="section">
+                <h4>Notes</h4>
+                <input type="text" id="title-input" placeholder="Title" />
+                <textarea id="note-input" rows="4" placeholder="Type your note here..."></textarea>
+                <button id="add-note"><i class='bx bx-plus'></i> Add Note</button>
+                <button id="view-notes"><i class='bx bx-note'></i> View Notes</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Popup for Adding Walk-Ins -->
+    <div id="add-walkin-popup" class="overlay">
+        <div class="popup-form">
+            <span id="close-add-walkin" onclick="closeAddWalkInPopup()">&times;</span>
+            <h4>Add Walk-In</h4>
+            <form id="add-walkin-form">
+                <input type="text" id="patient-name" placeholder="Patient Name" required>
+                <input type="date" id="walkin-date" required>
+                <input type="time" id="walkin-time" required>
+                <select id="walkin-reason" required>
+                    <option value="">Select Reason</option>
+                    <option value="Other">Other (Specify)</option>
+                </select>
+                <input type="text" id="other-reason" placeholder="Specify Reason" style="display: none;">
+                <select id="walkin-status" required>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <button type="submit"><i class='bx bx-save'></i> Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup for Editing Medications -->
+    <div id="medication-popup-overlay" class="overlay">
+        <div class="popup-form">
+            <span id="close-medication-popup">&times;</span>
+            <h4>Edit Medication</h4>
+            <div id="medication-form-content">
+                <label for="med-name">Name:</label>
+                <input type="text" id="med-name" placeholder="Medication Name" required>
+                <label for="med-date">Start Date:</label>
+                <input type="date" id="med-date" required>
+                <label for="med-status">Status:</label>
+                <select id="med-status" required>
+                    <option value="Process">Process</option>
+                    <option value="Complete">Complete</option>
+                </select>
+            </div>
+            <button id="submit-medication">Submit</button>
+        </div>
+    </div>
+
+    <!-- Popup for Editing Complaints -->
+    <div id="complaint-popup-overlay" class="overlay">
+        <div class="popup-form">
+            <span id="close-complaint-popup">&times;</span>
+            <h4>Edit Complaint</h4>
+            <div id="complaint-form-content">
+                <label for="complaint-name">Name:</label>
+                <input type="text" id="complaint-name" placeholder="Complaint Name" required>
+                <label for="complaint-severity">Severity:</label>
+                <select id="complaint-severity" required>
+                    <option value="Mild">Mild</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Severe">Severe</option>
+                </select>
+            </div>
+            <button id="submit-complaint">Submit</button>
+        </div>
+    </div>
+
+    <!-- Popup for Notes -->
+    <div id="notes-popup" class="overlay">
+        <div class="popup-form notes-popup">
+            <span id="close-notes-popup">&times;</span>
+            <h4>Notes</h4>
+            <div id="notes-list"></div>
+            <div class="note-content" id="note-content">Select a note to view details</div>
+            <div class="bottom-buttons">
+                <button id="prev-note"><i class='bx bx-chevron-left'></i> Previous</button>
+                <button id="next-note">Next <i class='bx bx-chevron-right'></i></button>
+                <button id="delete-note"><i class='bx bx-trash'></i> Delete</button>
+                <button id="restore-note"><i class='bx bx-undo'></i> Restore</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup for Settings -->
+    <div id="settings-popup" class="overlay">
+        <div class="popup-form">
+            <span id="close-settings-popup">&times;</span>
+            <h4>Settings</h4>
+            <div class="settings-content">
+                <label for="dark-mode-toggle">Dark Mode:</label>
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <label for="profile-name-input">Change Name:</label>
+                <input type="text" id="profile-name-input" placeholder="Enter new name">
+                <button id="save-profile-name"><i class='bx bx-save'></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup for Walk-In Details -->
+    <div id="detail-popup" class="overlay">
+        <div class="popup-form">
+            <span id="close-detail-popup">&times;</span>
+            <h4>Walk-In Details</h4>
+            <div class="detail-content">
+                <p><strong>Patient Name:</strong> <span id="detail-patient-name"></span></p>
+                <p><strong>Date:</strong> <span id="detail-date"></span></p>
+                <p><strong>Time:</strong> <span id="detail-time"></span></p>
+                <p><strong>Reason:</strong> <span id="detail-reason"></span></p>
+                <p><strong>Status:</strong> <span id="detail-status"></span></p>
+                <h5>Chief Complaints</h5>
+                <ul id="detail-complaints"></ul>
+                <h5>Medications</h5>
+                <ul id="detail-medications"></ul>
+                <h5>Notes</h5>
+                <div id="detail-notes"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
