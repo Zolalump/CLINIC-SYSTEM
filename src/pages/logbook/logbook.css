@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: rgb(238, 237, 237);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+h2 {
+    color: #03009c;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: fixed;
+}
+
+th {
+    background-color: #03009c;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #03009c;
+}
+
+.logo h1 {
+    padding-left: 10px;
+    line-height: 1;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 40px;
+}
+
+.nested-dropdown {
+    display: none;
+    margin-top: 5px;
+}
+
+/* For when dropdowns are shown */
+.nested-dropdown.active {
+    display: block;
+}
+
+/* Column widths */
+th:nth-child(1), td:nth-child(1) { width: 12%; } /* NAME */
+th:nth-child(2), td:nth-child(2) { width: 5%; }  /* AGE */
+th:nth-child(3), td:nth-child(3) { width: 7%; }  /* GENDER */
+th:nth-child(4), td:nth-child(4) { width: 12%; } /* DEPARTMENT */
+th:nth-child(5), td:nth-child(5) { width: 8%; }  /* GRADE/YEAR */
+th:nth-child(6), td:nth-child(6) { width: 8%; }  /* SECTION */
+th:nth-child(7), td:nth-child(7) { width: 8%; }  /* DATE */
+th:nth-child(8), td:nth-child(8) { width: 7%; }  /* TIME */
+th:nth-child(9), td:nth-child(9) { width: 12%; } /* COMPLAINTS */
+th:nth-child(10), td:nth-child(10) { width: 12%; } /* INTERVENTION */
+th:nth-child(11), td:nth-child(11) { width: 9%; } /* SIGNATURE */
