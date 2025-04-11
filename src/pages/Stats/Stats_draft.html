@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Chart Display</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="record.css">
+    <style>
+        .container2 {
+            background: white;
+            width: 95vw;
+            height: 130vh;
+            border-radius: 10px;
+            transform: scale(0.90);
+            transform-origin: top center;   
+            position: relative;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-4" style="margin-top: 100px;">
+    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/src/img/logo.jpg" class="h-12 w-12" alt="Logo">
+                <p style="color: rgb(4, 4, 155); font-size: larger; font-weight: bold; line-height: 1.2;">
+                    SMCTI <br>
+                    CLINIC
+                </p>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <button type="button" class="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-4 text-center">Account</button>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" 
+            id="navbar-sticky" 
+            style="background-color: #13398C; padding: 7px; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+           <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
+                      md:flex-row md:mt-0 md:border-0">
+               <li>
+                   <a href="../dashboard/dash.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Dashboard
+                   </a>
+               </li>
+               <li>
+                   <a href="../personal/index.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Student Info
+                   </a>
+               </li>
+               <li>
+                   <a href="../Stats/Stats.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Statistics
+                   </a>
+               </li>
+               <li>
+                   <a href="../History/History.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      History
+                   </a>
+               </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+        
+        <div class="container2" style="position: relative;">
+
+            <div class="upperreportswrapper" style="position: relative;">
+                            
+                            <!-- Vertical dividers -->
+                            <div class="v1"></div>
+                            <div class="v2"></div>
+                            
+                            <!-- Statistics section -->
+
+                            <section class="statistics">
+                                <!-- Weekly stats -->
+                                <div class="stat-group-weekly1">
+                                    <div class="newbox"></div>
+                                    <div class="newbox1"></div>
+                                    <div class="box2">
+                                        <p>Weekly</p>
+                                    </div>
+                                    <div class="stat-numbers">
+                                        <div class="percent">5%</div>
+                                        <div class="percent1">3%</div>
+                                    </div>
+                                    <div class="stat-texts">
+                                        <div class="text3">Asthma has the most cases for the week</div>
+                                        <div class="text4">
+                                            <p>Diarrhea has the least cases for the week</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Weekly stats 2 -->
+                                <div class="stat-group-monthly">
+                                    <div class="newbox2"></div>
+                                    <div class="newbox3"></div>
+                                    <div class="box3">
+                                        <p>Monthly</p>
+                                    </div>
+                                    <div class="stat-numbers">
+                                        <div class="percent2">5%</div>
+                                        <div class="percent3">3%</div>
+                                    </div>
+                                    <div class="stat-texts">
+                                        <div class="text5">Asthma has the most cases for the month</div>
+                                        <div class="text6">
+                                            <p>Diarrhea has the least cases for the month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- year level indicator -->
+                                <div class="stat-group yearly flex" style="font-size: small;">
+                                    <ul>
+                                        <a href="BED(GS).html">
+                                          <li><span style="text-decoration: none; display: inline-block; width: 10px; height: 10px; background-color: #107ADA; border-radius: 50%; margin-right: 8px;"></span>BED (GRADE SCHOOL)</li>
+                                        </a>
+                                        <a href="BED(HS).html">
+                                          <li><span style="display: inline-block; width: 10px; height: 10px; background-color: #107ADA; border-radius: 50%; margin-right: 8px;"></span>BED (HIGH SCHOOL)</li>
+                                        </a>
+                                        <a href="BED(SH).html">
+                                          <li><span style="display: inline-block; width: 10px; height: 10px; background-color: #107ADA; border-radius: 50%; margin-right: 8px;"></span>BED (SENIOR HIGH SCHOOL)</li>
+                                        </a>
+                                        <a href="TEP.html">
+                                          <li><span style="display: inline-block; width: 10px; height: 10px; background-color: #107ADA; border-radius: 50%; margin-right: 8px;"></span>TEP</li>
+                                        </a>
+                                        <a href="PERSONEL.html">
+                                          <li><span style="display: inline-block; width: 10px; height: 10px; background-color: #107ADA; border-radius: 50%; margin-right: 8px;"></span>PERSONNEL</li>
+                                        </a>
+                                    </ul>
+                                    <ul class="ml-5" style="font-size: small;">
+                                        <li><span style="text-decoration: none; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px;"></span>TOTAL NUMBER OF STUDENTS - 1234</li>
+                                        <li><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px;"></span>TOTAL NUMBER OF CLIENTS - 1234</li>
+                                        <li><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px;"></span>TOP CASES</li>
+                                        <li><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px;"></span>1. Abdominal</li>
+                                        <li><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px;"></span>2. BP Monitoring</li>
+                                  </ul>    
+                                </div>
+                                
+                            </section>
+
+                            <hr style="width: 95%; border: #000000; height: 3px; background-color: #ddd; margin: 0px ; top: 215px;">
+                        </div>
+                    
+                        <div class="space-x-8 m-10" style="margin-top: 16%;">
+                            <h3 class="ml-5 px-4 py-2 bg-[#13398C] text-white rounded" style="font-weight: bold; font-size: larger;">Client</h3>
+                            <div class="p-5">
+                                <div class="overflow-x-auto">
+                                    <h3 id="statsTitle" class="text-center text-gray-700">Select a Section</h3>
+                                    <canvas id="statsChart" class="w-32 h-28" style="max-height: 200px;"></canvas>
+                                </div>
+                                <div class="flex justify-center space-x-4 mt-4">
+                                    <button stonclick="updateChart('weekly')" class="px-4 py-2 bg-[#13398C] text-white rounded hover:bg-blue-600">Weekly</button>
+                                    <button onclick="updateChart('monthly')" class="px-4 py-2 bg-[#13398C]  text-white rounded hover:bg-blue-600">Monthly</button>
+                                    <button onclick="updateChart('yearly')" class="px-4 py-2 bg-[#13398C]  text-white rounded hover:bg-blue-600">Yearly</button>
+                                </div>
+                            </div>
+                        </div>  
+
+                        <div class="space-x-8 m-10">
+                            <h3 class="ml-5 text-gray-700 px-4 py-2 bg-[#13398C] text-white rounded" style="font-weight: bold; font-size: larger;">Cases</h3>
+                            <div class="p-5">
+                                <div class="overflow-x-auto">
+                                    <h3 id="statsTitle2" class="text-center text-gray-700">Select a Section</h3>
+                                    <canvas id="statsChart2" class="w-32 h-28" style="max-height: 200px;"></canvas>
+                                </div>
+                                <div class="flex justify-center space-x-4 mt-4">
+                                    <button onclick="updateChart2('weekly')" class="px-4 py-2 bg-[#13398C] text-white rounded hover:bg-blue-600">Weekly</button>
+                                    <button onclick="updateChart2('monthly')" class="px-4 py-2 bg-[#13398C]  text-white rounded hover:bg-blue-600">Monthly</button>
+                                    <button onclick="updateChart2('yearly')" class="px-4 py-2 bg-[#13398C]  text-white rounded hover:bg-blue-600">Yearly</button>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <script>
+                    
+                            var statsCtx = document.getElementById("statsChart").getContext("2d");
+
+                            var statsChart = new Chart(statsCtx, {
+                                type: "bar",
+                                data: {
+                                    labels: ["Clients", "Cases"],
+                                    datasets: [{
+                                        label: "Statistics",
+                                        data: [0, 0], 
+                                        backgroundColor: ["#13398C", "#36A2EB"]
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    scales: {
+                                        y: { beginAtZero: true }
+                                    }
+                                }
+                            });
+
+                            function updateChart(mode) {
+                                let sections, statsData;
+
+                                if (mode === "weekly") {
+                                    sections = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                                    statsData = [
+                                        { clients: 50, cases: 30 },
+                                        { clients: 70, cases: 40 },
+                                        { clients: 40, cases: 20 },
+                                        { clients: 50, cases: 30 },
+                                        { clients: 70, cases: 40 },
+                                        { clients: 80, cases: 45 }
+                                    ];
+                                } else if (mode === "monthly") {
+                                    sections = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                    statsData = [
+                                        { clients: 300, cases: 200 },
+                                        { clients: 280, cases: 150 },
+                                        { clients: 350, cases: 250 },
+                                        { clients: 400, cases: 300 },
+                                        { clients: 420, cases: 320 },
+                                        { clients: 450, cases: 350 },
+                                        { clients: 480, cases: 370 },
+                                        { clients: 500, cases: 400 },
+                                        { clients: 550, cases: 450 },
+                                        { clients: 600, cases: 500 },
+                                        { clients: 620, cases: 520 },
+                                        { clients: 650, cases: 550 }
+                                    ];
+                                } else if (mode === "yearly") {
+                                    sections = ["2020", "2021", "2022", "2023", "2024"];
+                                    statsData = [
+                                        { clients: 2000, cases: 1500 },
+                                        { clients: 2200, cases: 1700 },
+                                        { clients: 2500, cases: 2000 },
+                                        { clients: 2700, cases: 2200 },
+                                        { clients: 3000, cases: 2500 }
+                                    ];
+                                }
+
+                                document.getElementById("statsTitle").innerText = mode.charAt(0).toUpperCase() + mode.slice(1) + " Statistics";
+                                
+                                statsChart.data.labels = sections;
+                                statsChart.data.datasets[0].data = statsData.map(item => item.clients); // Clients data
+                                statsChart.data.datasets[0].label = "Clients Statistics";
+                                statsChart.update();
+                            }
+
+                            updateChart("weekly");
+
+                            var statsCtx2 = document.getElementById("statsChart2").getContext("2d");
+
+                            var statsChart2 = new Chart(statsCtx2, {
+                                type: "bar",
+                                data: {
+                                    labels: ["Cases", "Category B"],
+                                    datasets: [{
+                                        label: "Statistics",
+                                        data: [0, 0], 
+                                        backgroundColor: ["#13398C", "#4BC0C0"]
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    scales: {
+                                        y: { beginAtZero: true }
+                                    }
+                                }
+                            });
+
+                            function updateChart2(mode) {
+                                let sections, statsData;
+
+                                if (mode === "weekly") {
+                                    sections = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                                    statsData = [
+                                        { categoryA: 30, categoryB: 20 },
+                                        { categoryA: 50, categoryB: 40 },
+                                        { categoryA: 40, categoryB: 30 },
+                                        { categoryA: 60, categoryB: 50 },
+                                        { categoryA: 80, categoryB: 60 },
+                                        { categoryA: 70, categoryB: 50 },
+                                        { categoryA: 90, categoryB: 70 }
+                                    ];
+                                } else if (mode === "monthly") {
+                                    sections = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                    statsData = [
+                                        { categoryA: 200, categoryB: 150 },
+                                        { categoryA: 220, categoryB: 170 },
+                                        { categoryA: 250, categoryB: 200 },
+                                        { categoryA: 270, categoryB: 220 },
+                                        { categoryA: 300, categoryB: 250 },
+                                        { categoryA: 320, categoryB: 270 },
+                                        { categoryA: 350, categoryB: 300 },
+                                        { categoryA: 370, categoryB: 320 },
+                                        { categoryA: 400, categoryB: 350 },
+                                        { categoryA: 420, categoryB: 370 },
+                                        { categoryA: 450, categoryB: 400 },
+                                        { categoryA: 470, categoryB: 420 }
+                                    ];
+                                } else if (mode === "yearly") {
+                                    sections = ["2019", "2020", "2021", "2022", "2023", "2024"];
+                                    statsData = [
+                                        { categoryA: 1000, categoryB: 900 },
+                                        { categoryA: 1200, categoryB: 1100 },
+                                        { categoryA: 1400, categoryB: 1300 },
+                                        { categoryA: 1600, categoryB: 1500 },
+                                        { categoryA: 1800, categoryB: 1700 },
+                                        { categoryA: 2000, categoryB: 1900 }
+                                    ];
+                                }
+
+                                document.getElementById("statsTitle2").innerText = mode.charAt(0).toUpperCase() + mode.slice(1) + " Statistics";
+
+                                statsChart2.data.labels = sections;
+                                statsChart2.data.datasets[0].data = statsData.map(item => item.categoryA);
+                                statsChart2.data.datasets[0].label = "Cases Statistics";
+                                statsChart2.update();
+                            }
+
+                            // Load weekly by default
+                            updateChart2("weekly");
+                    
+                        </script>
+</body>
+</html>

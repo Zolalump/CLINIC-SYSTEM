@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dynamic Chart Display</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,10 +17,11 @@
         .container2 {
             background: white;
             width: 95vw;
-            height: 90vh;
+            min-height: 170vh; 
             border-radius: 10px;
-            transform: scale(0.90);
-            transform-origin: top center;   
+            margin: 0 auto;
+            padding: 1rem;
+            box-sizing: border-box;
             position: relative;
         }
     </style>
@@ -239,7 +240,89 @@
                                     </div>
                             </div>
                             </div>
+
+                            <div class="overflow-x-auto mt-6">
+                                <h2 class="text-lg font-semibold mb-2 px-4" style="background-color: #13398C; color: white; max-width:200px; border-radius: 10px;">Cases Statistics</h2>
+                                <div class="flex space-x-4 min-w-max px-4 pb-4">
+    
+                                    <div class="w-96 flex-shrink-0">
+                                        <div class="bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 rounded-xl shadow-lg p-6 duration-300 text-white">
+                                          <p class="text-lg mb-4 font-bold">Monday</p>
+                                          <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-lg">
+                                            <div>Fever:</div> <div class="text-right font-semibold">12</div>
+                                            <div>Asthma:</div> <div class="text-right font-semibold">8</div>
+                                            <div>Tooth Problem:</div> <div class="text-right font-semibold">5</div>
+                                            <div>Vomiting:</div> <div class="text-right font-semibold">7</div>
+                                            <div>Blunt Trauma:</div> <div class="text-right font-semibold">3</div>
+                                            <div>Abdominal Pain:</div> <div class="text-right font-semibold">6</div>
+                                            <div>Wound:</div> <div class="text-right font-semibold">4</div>
+                                            <div>Nose Bleeding:</div> <div class="text-right font-semibold">2</div>
+                                            <div>Headache:</div> <div class="text-right font-semibold">9</div>
+                                            <div>Leg Pain:</div> <div class="text-right font-semibold">3</div>
+                                            <div>Bee Sting:</div> <div class="text-right font-semibold">1</div>
+                                            <div>Nasal Congestion:</div> <div class="text-right font-semibold">5</div>
+                                            <div>Eye Irritation:</div> <div class="text-right font-semibold">2</div>
+                                            <div>Nebulization:</div> <div class="text-right font-semibold">6</div>
+                                            <div>Allergy:</div> <div class="text-right font-semibold">4</div>
+                                            <div style="font-weight: bolder;">Total Cases:</div> <div class="text-right font-semibold">4</div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+    
+                                    <div class="w-64 flex-shrink-0">
+                                        <div class="bg-gradient-to-br from-purple-600 via-blue-500 to-blue-700 rounded-xl shadow-lg p-6 duration-300">
+                                            <p class="text-white text-lg mb-2 mt-2" style="font-weight: bolder;">Tuesday</p>
+                                            <p class="text-white text-lg mb-2">Client</p>
+                                            <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                            <p class="text-white text-lgmb-2 mt-2">Cases</p>
+                                            <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                        </div>
+                                        </div>
+    
+                                        <div class="w-64 flex-shrink-0">
+                                            <div class="bg-gradient-to-br from-purple-600 via-blue-500 to-blue-700 rounded-xl shadow-lg p-6 duration-300">
+                                                <p class="text-white text-lg mb-2 mt-2" style="font-weight: bolder;">Wednesday</p>
+                                                <p class="text-white text-lg mb-2">Client</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                                <p class="text-white text-lgmb-2 mt-2">Cases</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                            </div>
+                                            </div>
+    
+                                        <div class="w-64 flex-shrink-0">
+                                            <div class="bg-gradient-to-br from-purple-600 via-blue-500 to-blue-700 rounded-xl shadow-lg p-6 duration-300">
+                                                <p class="text-white text-lg mb-2 mt-2" style="font-weight: bolder;">Thursday</p>
+                                                <p class="text-white text-lg mb-2">Client</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                                <p class="text-white text-lgmb-2 mt-2">Cases</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                            </div>
+                                        </div>
+    
+                                        <div class="w-64 flex-shrink-0">
+                                            <div class="bg-gradient-to-br from-purple-600 via-blue-500 to-blue-700 rounded-xl shadow-lg p-6 duration-300">
+                                                <p class="text-white text-lg mb-2 mt-2" style="font-weight: bolder;">Friday</p>
+                                                <p class="text-white text-lg mb-2">Client</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                                <p class="text-white text-lgmb-2 mt-2">Cases</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="w-64 flex-shrink-0">
+                                            <div class="bg-gradient-to-br from-purple-600 via-blue-500 to-blue-700 rounded-xl shadow-lg p-6 duration-300">
+                                                <p class="text-white text-lg mb-2 mt-2" style="font-weight: bolder;">Saturday</p>
+                                                <p class="text-white text-lg mb-2">Client</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                                <p class="text-white text-lgmb-2 mt-2">Cases</p>
+                                                <h1 class="text-3xl font-bold text-white">42.34%</h1>
+                                            </div>
+                                        </div>
+                                </div>
+                                </div>
                         </div>
+
 
                         <!-- Monthly Cards: Scrollable from Mon to Sat -->
                         <div id="monthly" class="tab-content block hidden"> 
@@ -438,8 +521,8 @@
                                 </div>
                                 </div>
                             </div>
-                        
 
+                    
                             <script>
                                 const tabButtons = document.querySelectorAll(".tab-btn");
                                 const tabContents = document.querySelectorAll(".tab-content");
