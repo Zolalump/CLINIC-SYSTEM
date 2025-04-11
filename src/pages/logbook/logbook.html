@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMCTI Clinic Records</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="logbook.css">
+    <script src="logbook.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <h1>SMCTI CLINIC RECORDS</h1>
+            </div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>AGE</th>
+                    <th>GENDER</th>
+                    <th>DEPARTMENT</th>
+                    <th>GRADE/YEAR</th>
+                    <th>SECTION</th>
+                    <th>DATE</th>
+                    <th>TIME</th>
+                    <th>COMPLAINTS</th>
+                    <th>INTERVENTION</th>
+                    <th>SIGNATURE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="number" min="1" max="100"></td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="department-select-1" onchange="updateDepartmentOptions(1)">
+                            <option value="">Select Department</option>
+                            <option value="Basic Education Department">Basic Education Department</option>
+                            <option value="Tertiary Education Programs">Tertiary Education Programs</option>
+                            <option value="Personnel">Personnel</option>
+                        </select>
+                        
+                        <!-- Basic Education Department Options -->
+                        <div id="basic-education-1" class="nested-dropdown">
+                            <select id="basic-education-select-1" onchange="updateEducationLevelOptions(1)">
+                                <option value="">Select Level</option>
+                                <option value="Grade School">Grade School</option>
+                                <option value="High School">High School</option>
+                                <option value="Senior High School">Senior High School</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Tertiary Education Programs Options -->
+                        <div id="tertiary-education-1" class="nested-dropdown">
+                            <select id="program-select-1">
+                                <option value="">Select Program</option>
+                                <option value="ABPsych">Bachelor of Arts in Psychology (ABPsych)</option>
+                                <option value="BSBA-FM">Bachelor of Science in Business Administration - Financial Management</option>
+                                <option value="BSBA-HRDM">Bachelor of Science in Business Administration - Human Resource Development Management</option>
+                                <option value="BEED">Bachelor in Elementary Education (BEED)</option>
+                                <option value="BSED-Filipino">Bachelor in Secondary Education - Filipino</option>
+                                <option value="BSED-Mathematics">Bachelor in Secondary Education - Mathematics</option>
+                                <option value="BSED-English">Bachelor in Secondary Education - English</option>
+                                <option value="BSED-BioScience">Bachelor in Secondary Education - Biological Science</option>
+                                <option value="BSCE">Bachelor of Science in Civil Engineering (BSCE)</option>
+                                <option value="BSN">Bachelor of Science in Nursing (BSN)</option>
+                                <option value="BSHM-HRM">Bachelor of Science in Hospitality Management - Hotel and Restaurant Management</option>
+                                <option value="BSTM">Bachelor of Science in Tourism Management (BSTM)</option>
+                                <option value="BSCS">Bachelor of Science in Computer Science (BSCS)</option>
+                                <option value="BSCrim">Bachelor of Science in Criminology (BSCrim)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- SHS Tracks -->
+                        <div id="shs-track-1" class="nested-dropdown">
+                            <select id="shs-track-select-1" onchange="updateSHSTrackOptions(1)">
+                                <option value="">Select Track</option>
+                                <option value="STEM">STEM</option>
+                                <option value="HUMSS">HUMSS</option>
+                                <option value="GAS">GAS</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <!-- Grade/Year Selection - Will be dynamically updated -->
+                        <select id="grade-year-select-1" onchange="updateSectionOptions(1)">
+                            <option value="">Select Grade/Year</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </td>
+                    <td>
+                        <!-- Section Selection - Will be dynamically updated -->
+                        <select id="section-select-1">
+                            <option value="">Select Section</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </td>
+                    <td><input type="date"></td>
+                    <td><input type="time"></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td></td>
+                </tr>
+                
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="number" min="1" max="100"></td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="department-select-2" onchange="updateDepartmentOptions(2)">
+                            <option value="">Select Department</option>
+                            <option value="Basic Education Department">Basic Education Department</option>
+                            <option value="Tertiary Education Programs">Tertiary Education Programs</option>
+                            <option value="Personnel">Personnel</option>
+                        </select>
+                        
+                        <!-- Basic Education Department Options -->
+                        <div id="basic-education-2" class="nested-dropdown">
+                            <select id="basic-education-select-2" onchange="updateEducationLevelOptions(2)">
+                                <option value="">Select Level</option>
+                                <option value="Grade School">Grade School</option>
+                                <option value="High School">High School</option>
+                                <option value="Senior High School">Senior High School</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Tertiary Education Programs Options -->
+                        <div id="tertiary-education-2" class="nested-dropdown">
+                            <select id="program-select-2">
+                                <option value="">Select Program</option>
+                                <option value="ABPsych">Bachelor of Arts in Psychology (ABPsych)</option>
+                                <option value="BSBA-FM">Bachelor of Science in Business Administration - Financial Management</option>
+                                <option value="BSBA-HRDM">Bachelor of Science in Business Administration - Human Resource Development Management</option>
+                                <option value="BEED">Bachelor in Elementary Education (BEED)</option>
+                                <option value="BSED-Filipino">Bachelor in Secondary Education - Filipino</option>
+                                <option value="BSED-Mathematics">Bachelor in Secondary Education - Mathematics</option>
+                                <option value="BSED-English">Bachelor in Secondary Education - English</option>
+                                <option value="BSED-BioScience">Bachelor in Secondary Education - Biological Science</option>
+                                <option value="BSCE">Bachelor of Science in Civil Engineering (BSCE)</option>
+                                <option value="BSN">Bachelor of Science in Nursing (BSN)</option>
+                                <option value="BSHM-HRM">Bachelor of Science in Hospitality Management - Hotel and Restaurant Management</option>
+                                <option value="BSTM">Bachelor of Science in Tourism Management (BSTM)</option>
+                                <option value="BSCS">Bachelor of Science in Computer Science (BSCS)</option>
+                                <option value="BSCrim">Bachelor of Science in Criminology (BSCrim)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- SHS Tracks -->
+                        <div id="shs-track-2" class="nested-dropdown">
+                            <select id="shs-track-select-2" onchange="updateSHSTrackOptions(2)">
+                                <option value="">Select Track</option>
+                                <option value="STEM">STEM</option>
+                                <option value="HUMSS">HUMSS</option>
+                                <option value="GAS">GAS</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <!-- Grade/Year Selection -->
+                        <select id="grade-year-select-2" onchange="updateSectionOptions(2)">
+                            <option value="">Select Grade/Year</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </td>
+                    <td>
+                        <!-- Section Selection -->
+                        <select id="section-select-2">
+                            <option value="">Select Section</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </td>
+                    <td><input type="date"></td>
+                    <td><input type="time"></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Additional rows -->
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="number" min="1" max="100"></td>
+                    <td>
+                        <select>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="department-select-3" onchange="updateDepartmentOptions(3)">
+                            <option value="">Select Department</option>
+                            <option value="Basic Education Department">Basic Education Department</option>
+                            <option value="Tertiary Education Programs">Tertiary Education Programs</option>
+                            <option value="Personnel">Personnel</option>
+                        </select>
+                        
+                        <!-- Basic Education Department Options -->
+                        <div id="basic-education-3" class="nested-dropdown">
+                            <select id="basic-education-select-3" onchange="updateEducationLevelOptions(3)">
+                                <option value="">Select Level</option>
+                                <option value="Grade School">Grade School</option>
+                                <option value="High School">High School</option>
+                                <option value="Senior High School">Senior High School</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Tertiary Education Programs Options -->
+                        <div id="tertiary-education-3" class="nested-dropdown">
+                            <select id="program-select-3">
+                                <option value="">Select Program</option>
+                                <option value="ABPsych">Bachelor of Arts in Psychology (ABPsych)</option>
+                                <option value="BSBA-FM">Bachelor of Science in Business Administration - Financial Management</option>
+                                <option value="BSBA-HRDM">Bachelor of Science in Business Administration - Human Resource Development Management</option>
+                                <option value="BEED">Bachelor in Elementary Education (BEED)</option>
+                                <option value="BSED-Filipino">Bachelor in Secondary Education - Filipino</option>
+                                <option value="BSED-Mathematics">Bachelor in Secondary Education - Mathematics</option>
+                                <option value="BSED-English">Bachelor in Secondary Education - English</option>
+                                <option value="BSED-BioScience">Bachelor in Secondary Education - Biological Science</option>
+                                <option value="BSCE">Bachelor of Science in Civil Engineering (BSCE)</option>
+                                <option value="BSN">Bachelor of Science in Nursing (BSN)</option>
+                                <option value="BSHM-HRM">Bachelor of Science in Hospitality Management - Hotel and Restaurant Management</option>
+                                <option value="BSTM">Bachelor of Science in Tourism Management (BSTM)</option>
+                                <option value="BSCS">Bachelor of Science in Computer Science (BSCS)</option>
+                                <option value="BSCrim">Bachelor of Science in Criminology (BSCrim)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- SHS Tracks -->
+                        <div id="shs-track-3" class="nested-dropdown">
+                            <select id="shs-track-select-3" onchange="updateSHSTrackOptions(3)">
+                                <option value="">Select Track</option>
+                                <option value="STEM">STEM</option>
+                                <option value="HUMSS">HUMSS</option>
+                                <option value="GAS">GAS</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <!-- Grade/Year Selection -->
+                        <select id="grade-year-select-3" onchange="updateSectionOptions(3)">
+                            <option value="">Select Grade/Year</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </td>
+                    <td>
+                        <!-- Section Selection -->
+                        <select id="section-select-3">
+                            <option value="">Select Section</option>
+                            <!-- Will be populated by JavaScript -->
+                        </select>
+                    </td>
+                    <td><input type="date"></td>
+                    <td><input type="time"></td>
+                    <td><textarea></textarea></td>
+                    <td><textarea></textarea></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
