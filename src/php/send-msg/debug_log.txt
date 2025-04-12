@@ -1,0 +1,259 @@
+Array
+(
+    [recipient_id] => 18
+    [message] => dasdasd
+)
+Array
+(
+    [message] => dasdasd
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+Array
+(
+    [recipient_id] => 18
+    [message] => dasdasd
+)
+Array
+(
+    [message] => dasdasd
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+Array
+(
+    [recipient_id] => 
+    [message] => sdasda
+)
+Array
+(
+    [recipient_id] => 18
+    [message] => sdasda
+)
+Array
+(
+    [message] => sdasda
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+Raw Data: 
+Decoded Data: 
+Raw Data: {"message":"sadassad","send_to_all":false,"recipient_id":18}
+Decoded Data: Array
+(
+    [message] => sadassad
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+
+Array
+(
+    [message] => sadassad
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+Raw Data: {"message":"sadassad","send_to_all":false,"recipient_id":18}
+Decoded Data: Array
+(
+    [message] => sadassad
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+
+Array
+(
+    [message] => sadassad
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+Raw Data: 
+Decoded Data: 
+Raw Data: 
+Decoded Data: 
+Raw Data: 
+Decoded Data: 
+Raw Data: {"message":"fasfas","send_to_all":false,"recipient_id":18}
+Decoded Data: Array
+(
+    [message] => fasfas
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+
+Array
+(
+    [message] => fasfas
+    [send_to_all] => 
+    [recipient_id] => 18
+)
+Raw Data: {"message":"fasfasasdsa","send_to_all":true,"recipient_id":0}
+Decoded Data: Array
+(
+    [message] => fasfasasdsa
+    [send_to_all] => 1
+    [recipient_id] => 0
+)
+
+Array
+(
+    [message] => fasfasasdsa
+    [send_to_all] => 1
+    [recipient_id] => 0
+)
+Raw Data: 
+Decoded Data: 
+Raw Data: 
+Decoded Data: 
+Raw Data: 
+Decoded Data: 
+Raw Data: {"recipient_id":0,"message":"dasdas"}
+Decoded Data: Array
+(
+    [recipient_id] => 0
+    [message] => dasdas
+)
+
+Array
+(
+    [recipient_id] => 0
+    [message] => dasdas
+)
+Raw Data: {"message":"dasdas","send_to_all":true,"recipient_id":0}
+Decoded Data: Array
+(
+    [message] => dasdas
+    [send_to_all] => 1
+    [recipient_id] => 0
+)
+
+Array
+(
+    [message] => dasdas
+    [send_to_all] => 1
+    [recipient_id] => 0
+)
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: {"recipient_id":0,"message":"dsadsad"}
+Recipient ID: 0
+Raw Data: {"message":"dsadsad","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Raw Data: {"message":"dasdsad","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Raw Data: {"recipient_id":0,"message":"dasdsad"}
+Recipient ID: 0
+Raw Data: {"message":"dsadasd","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Raw Data: {"recipient_id":0,"message":"dsadasd"}
+Recipient ID: 0
+Raw Data: 
+Received Data: 
+Raw Data: 
+Received Data: 
+Raw Data: 
+Received Data: 
+Raw Data: 
+Received Data: {"recipient_id":0,"message":"dsda"}
+Raw Data: {"recipient_id":0,"message":"dsda"}
+Recipient ID: 0
+Received Data: {"message":"dsda","send_to_all":true,"recipient_id":0}
+Raw Data: {"message":"dsda","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: 
+Raw Data: 
+Received Data: {"recipient_id":0,"message":{},"send_to_all":true}
+Raw Data: {"recipient_id":0,"message":{},"send_to_all":true}
+Received Data: {"message":"dsadsa","send_to_all":true,"recipient_id":0}
+Raw Data: {"message":"dsadsa","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: 
+Raw Data: 
+Received Data: 
+Raw Data: 
+Received Data: {"recipient_id":0,"message":"sadsa","send_to_all":true}
+Received Data: {"message":"sadsa","send_to_all":true,"recipient_id":0}
+Raw Data: {"recipient_id":0,"message":"sadsa","send_to_all":true}
+Recipient ID: 0
+Raw Data: {"message":"sadsa","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: {"recipient_id":0,"message":"asd","send_to_all":true}
+Raw Data: {"message":"asd","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Raw Data: {"recipient_id":0,"message":"asd","send_to_all":true}
+Recipient ID: 0
+Received Data: {"recipient_id":0,"message":"afas","send_to_all":true}
+Received Data: {"message":"afas","send_to_all":true,"recipient_id":0}
+Raw Data: {"recipient_id":0,"message":"afas","send_to_all":true}
+Recipient ID: 0
+Raw Data: {"message":"afas","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: {"message":"asdas","send_to_all":true,"recipient_id":0}
+Raw Data: {"recipient_id":0,"message":"asdas","send_to_all":true}
+Recipient ID: 0
+Raw Data: {"message":"asdas","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: {"recipient_id":0,"message":"dasdsa","send_to_all":true}
+Received Data: {"message":"dasdsa","send_to_all":true,"recipient_id":0}
+Raw Data: {"recipient_id":0,"message":"dasdsa","send_to_all":true}
+Recipient ID: 0
+Raw Data: {"message":"dasdsa","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: {"recipient_id":0,"message":"dsa","send_to_all":true}
+Received Data: {"message":"dsa","send_to_all":true,"recipient_id":0}
+Raw Data: {"recipient_id":0,"message":"dsa","send_to_all":true}
+Recipient ID: 0
+Raw Data: {"message":"dsa","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: {"recipient_id":0,"message":"asdas","send_to_all":true}
+Received Data: {"message":"asdas","send_to_all":true,"recipient_id":0}
+Raw Data: {"recipient_id":0,"message":"asdas","send_to_all":true}
+Recipient ID: 0
+Raw Data: {"message":"asdas","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: {"message":"dassa","send_to_all":true,"recipient_id":0}
+Received Data: {"recipient_id":0,"message":"dassa","send_to_all":true}
+Raw Data: {"message":"dassa","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Raw Data: {"recipient_id":0,"message":"dassa","send_to_all":true}
+Recipient ID: 0
+Received Data: {"message":"dsaa","send_to_all":true,"recipient_id":0}
+Received Data: {"recipient_id":0,"message":"dsaa","send_to_all":true}
+Raw Data: {"message":"dsaa","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Raw Data: {"recipient_id":0,"message":"dsaa","send_to_all":true}
+Recipient ID: 0
+Received Data: {"recipient_id":0,"message":"asdsaa","send_to_all":true}
+Raw Data: {"recipient_id":0,"message":"asdsaa","send_to_all":true}
+Recipient ID: 0
+Received Data: {"message":"asdsaa","send_to_all":true,"recipient_id":0}
+Raw Data: {"message":"asdsaa","send_to_all":true,"recipient_id":0}
+Recipient ID: 0
+Received Data: 
+Raw Data: 
+Received Data: 
+Raw Data: 
+Received Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: {"message":"dadas","send_to_all":true,"recipient_id":0}
+Array
+(
+    [message] => dadas
+    [send_to_all] => 1
+    [recipient_id] => 0
+)
+
+Raw Data: 
+Raw Data: 
+Raw Data: 
+Raw Data: 

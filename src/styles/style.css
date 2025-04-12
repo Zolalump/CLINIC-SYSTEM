@@ -1,0 +1,41 @@
+body>div {overflow-x:hidden;}
+
+details[open] summary img {
+    transform: rotate(180deg);
+}
+
+img {
+    transition: transform 0.3s ease;
+}
+
+.card {
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 100%;
+    grid-template-rows: 30px 80px 140px auto;
+    grid-template-areas: 
+    "title"
+    "text"
+    "price"
+    "benefits";
+}
+
+.tablePlans td {
+    width: 100%;
+}
+
+td {
+    padding: 0.3rem;
+}
+
+tr td:not(:first-child) {
+    text-align: center;
+}
+
+.show .info-content {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+.show .info-line {
+    transform: scaleY(1) !important;
+}

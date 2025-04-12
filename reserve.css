@@ -1,0 +1,689 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.app-container {
+    background: #f3f3ff;
+    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.circle {
+    width: 80vw;
+    height: 80vh;
+    background: linear-gradient(to bottom, #1f0faf 40%, #1805c4 50%);
+    filter: blur(120px);
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.red {
+    background: #fe624d;
+    border: 2px solid #ee5e4b;
+}
+
+.yellow {
+    background: #FFC432;
+    border: 2px solid #F2BD3A;
+}
+
+.green {
+    background: #5BDE47;
+    border: 2px solid #5FC651;
+}
+
+.app-color-yellow {
+    color: #FFA41D;
+}
+
+.app-color-black {
+    color: var(--primary-blue);
+}
+
+.app-color-gray {
+    color: #6b61d8;
+}
+
+.app-color-lavendar {
+    color: #4636c7;
+}
+
+.app-color-pink {
+    color: #FB28CD;
+}
+
+.app-bg-lavendar {
+    background: var(--light-blue);
+}
+
+.app-bg-light-white {
+    background: var(--white-blue);
+}
+
+.app-bg-light-white-2 {
+    background: #e3e5f3;
+}
+
+.app-shadow {
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
+}
+
+.app-title {
+    background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue));
+    color: #4636c7;
+    -webkit-background-clip: text;
+}
+
+span.active {
+    position: relative;
+    color: #292b48;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+span.active::after {
+    content: '';
+    width: 200%;
+    height: 2px;
+    background: #292b48;
+    position: absolute;
+    bottom: -20px;
+}
+
+.switch-checkbox {
+    display: none;
+}
+
+.switch {
+    position: relative;
+}
+
+.switch-bg {
+    height: 24px;
+    width: 44px;
+    background: #1f0faf;
+    border-radius: 15px;
+}
+
+.switch-indicator {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background: #1f0faf;
+    border: 5px solid white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: .2s ease-out;
+}
+
+.switch-checkbox:checked~.switch-indicator {
+    transform: translateX(100%);
+    background: #1805c4;
+}
+
+.switch-checkbox:checked~.switch-bg {
+    background: #1805c4;
+}
+
+.app-container::before {
+    background: rgba(31, 15, 175, 0.7);
+}
+
+.bg-white/50 {
+    background: rgba(245, 246, 250, 0.9);
+}
+
+.option-tab.active {
+    color: var(--primary-blue);
+}
+
+.option-tab.active::after {
+    background-color: var(--primary-blue);
+}
+
+.reservation-input {
+    border-color: var(--accent-blue);
+}
+
+.reservation-input:focus {
+    border-color: var(--primary-blue);
+
+    box-shadow: 0 0 0 2px rgba(31, 15, 175, 0.2);
+}
+
+.select2-container--default .select2-selection--single {
+    color: var(--primary-blue);
+}
+
+/* Add these styles for simplified inputs and dropdowns */
+.reservation-input,
+.location-select,
+select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #000000;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: rgb(0, 0, 0);
+    color: #333;
+    transition: border-color 0.2s ease;
+}
+
+.reservation-input:focus,
+.location-select:focus,
+select:focus {
+    border-color: var(--primary-blue);
+
+}
+
+/* Style for select dropdowns */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+    padding-right: 32px;
+}
+
+/* Number input specific styles */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Date input specific styles */
+input[type="date"] {
+    padding-right: 8px;
+}
+
+/* Placeholder color */
+::placeholder {
+    color: #999;
+}
+
+/* Select2 override for simpler design */
+.select2-container--default .select2-selection--single {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 6px !important;
+    height: 38px !important;
+    padding: 5px 12px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 36px !important;
+    right: 8px !important;
+}
+
+.select2-dropdown {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--primary-blue) !important;
+}
+
+/* Spacing between form elements */
+.reservation-details > * {
+    margin-bottom: 12px;
+}
+
+.reservation-details > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Additional styles for Select2 simplification */
+.simplified-dropdown {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 6px !important;
+    margin-top: 4px !important;
+}
+
+.select2-container--default .select2-results__group {
+    padding: 8px 12px !important;
+    font-weight: 600 !important;
+    color: var(--primary-blue) !important;
+    background-color: #f8f9fa !important;
+}
+
+.select2-container--default .select2-results__option[role="option"] {
+    padding: 8px 24px !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--light-blue) !important;
+    color: var(--primary-blue) !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: var(--primary-blue) !important;
+    color: white !important;
+}
+
+/* Remove unnecessary padding and margins */
+.select2-results__option {
+    margin: 0 !important;
+}
+
+/* Consistent font sizes */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    font-size: 14px !important;
+    line-height: 24px !important;
+}
+
+/* Content container */
+.content-container {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .app-container {
+        overflow-y: auto;
+        height: auto;
+    }
+
+    .content-container {
+        min-height: 100vh;
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .circle {
+        position: fixed;
+    }
+}
+
+/* Additional mobile adjustments for smaller screens */
+@media screen and (max-width: 480px) {
+    .circle {
+        width: 90vw;
+    }
+}
+
+.option-tab {
+    pointer-events: auto;
+    position: relative;
+    transition: all 0.3s ease;
+    transform-origin: center;
+    display: inline-block;
+    padding: 0 8px;
+    text-align: center;
+    min-width: 60px;
+}
+
+.option-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.option-tab:hover {
+    transform: scale(1.1);
+    color: #000;
+}
+
+.option-tab.active {
+    color: #000;
+}
+
+.option-tab.active::after {
+    width: 100%;
+}
+
+/* Add animation keyframes */
+@keyframes scaleText {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.passenger-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.passenger-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.passenger-input {
+    width: 60px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Select2 customization */
+.select2-container--default .select2-selection--single {
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #000;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .option-tab {
+        min-width: auto;
+        padding: 0 4px;
+    }
+}
+
+.reservation-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 4px;
+    background: transparent;
+}
+
+.reservation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Add these styles to your CSS */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #1f0faf;
+}
+
+.account-dropdown {
+    transform-origin: top right;
+    transition: all 0.2s ease;
+}
+
+/* Add these styles to ensure proper dropdown positioning */
+.relative {
+    position: relative;
+}
+
+.account-dropdown,
+
+.submenu {
+    transition: all 0.3s ease;
+}
+
+/* Container styles */
+.account-dropdown {
+    max-height: 80vh; /* Maximum height of 80% of viewport height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #cbd5e0 #f7fafc; /* Firefox */
+}
+
+/* Webkit scrollbar styles (Chrome, Safari, Edge) */
+.account-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.account-dropdown::-webkit-scrollbar-track {
+    background: #f7fafc;
+    border-radius: 3px;
+}
+
+.account-dropdown::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 3px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .account-dropdown,
+    .notifications-panel {
+        max-height: 70vh;
+        width: 90vw;
+        max-width: 360px;
+        margin-right: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .account-dropdow
+}
+
+/* Maintain submenu styles */
+.submenu {
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f7fafc;
+}
+
+.submenu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.submenu::-webkit-scrollbar-track {
+    background: #f7fafc;
+}
+
+.submenu::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 2px;
+}
+
+/* Keep dropdown items visible */
+.dropdown-item {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure modals stay on top */
+.modal {
+    z-index: 60;
+}
+
+/* Reset and base styles */
+.account-dropdown {
+    position: absolute !important;
+    top: calc(100% + 0.5rem) !important;
+    right: 0 !important;
+    width: 320px !important;
+    background: white !important;
+    border-radius: 0.375rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Desktop styles */
+@media screen and (min-width: 769px) {
+    .account-dropdown {
+        height: 400px !important;
+        overflow-y: auto !important;
+    }
+
+    .account-dropdown-content {
+        padding-bottom: 16px !important;
+    }
+
+    /* Scrollbar styles */
+    .account-dropdown::-webkit-scrollbar {
+        width: 6px !important;
+        display: block !important;
+    }
+
+    .account-dropdown::-webkit-scrollbar-track {
+        background: #f1f1f1 !important;
+        border-radius: 4px !important;
+    }
+
+    .account-dropdown::-webkit-scrollbar-thumb {
+        background: #888 !important;
+        border-radius: 4px !important;
+    }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .account-dropdown {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
+
+/* Overlay for background */
+.dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 49;
+    display: none;
+}
+
+.dropdown-overlay.active {
+    display: block;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Add these styles */
+#accountDropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+}
+
+.relative {
+    position: relative;
+}
+
+/* Additional styles for the expanded dropdown */
+#accountDropdown {
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+#accountDropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+#accountDropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#accountDropdown::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+#accountDropdown::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Smooth transitions */
+.fa-chevron-down {
+    transition: transform 0.2s ease-in-out;
+}
+
+#accountDropdown {
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+#accountDropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+#accountDropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#accountDropdown::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.group {
+    transition: all 0.2s ease;
+}
+
+/* Smooth transitions for dropdowns */
+#history-content,
+#pending-content,
+#active-content {
+    transition: all 0.2s ease-in-out;
+}
+
+#accountMenu {
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.fa-angle-down {
+    transition: transform 0.2s ease;
+}
+
+#accountMenu {
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.fa-angle-down {
+    transition: transform 0.2s ease;
+}

@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'SuisseIntl';
+    src: url('SuisseIntl-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SuisseIntl';
+    src: url('SuisseIntl-Bold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+* {
+    font-family: 'SuisseIntl';
+}

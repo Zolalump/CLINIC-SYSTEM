@@ -1,0 +1,20 @@
+{
+    "name": "webdavinci/package",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Webdavinci\\Package\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Elliee13",
+            "email": "austria.john@smctagum.edu.ph"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
