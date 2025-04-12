@@ -1,0 +1,139 @@
+/* Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: rgb(238, 237, 237);
+}
+
+/* Header and Navigation Styles */
+nav {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-badge {
+    z-index: 30;
+}
+
+/* Form Styles */
+label {
+    font-weight: 500;
+}
+
+textarea {
+    resize: none;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #03009c;
+    box-shadow: 0 0 0 2px rgba(3, 0, 156, 0.2);
+}
+
+/* Student Search Results */
+#studentResults {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.student-result-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.student-result-item:hover {
+    background-color: #f3f4f6;
+}
+
+.student-result-item:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table Styles */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+tbody tr:hover {
+    background-color: rgba(3, 0, 156, 0.05);
+}
+
+/* Delete Button Styles */
+.delete-button {
+    transition: background-color 0.2s ease;
+}
+
+.delete-options {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.delete-reason {
+    transition: background-color 0.2s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Success Message Styles */
+.success-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #10b981;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.success-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding-top: 5rem;
+    }
+    
+    th, td {
+        padding: 8px;
+    }
+    
+    .delete-options {
+        right: auto;
+        left: 0;
+    }
+}

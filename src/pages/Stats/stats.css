@@ -1,0 +1,151 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: rgb(238, 237, 237);
+}
+
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+
+table tbody tr:hover {
+    background-color: rgba(243, 244, 246, 0.7);
+}
+
+
+input[type="date"],
+input[type="week"],
+input[type="month"] {
+    font-family: "Poppins", sans-serif;
+}
+
+
+button#generateReport {
+    background-color: #03009c;
+}
+
+button#generateReport:hover {
+    background-color: #02007d;
+}
+
+#totalVisits, #avgDailyVisits, #commonComplaint {
+    color: #03009c;
+}
+
+
+header h1 {
+    color: #03009c;
+    position: relative;
+    display: inline-block;
+}
+
+header h1:after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background-color: #03009c;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+
+.navbar-sticky a.active {
+    color: #03009c;
+    font-weight: bold;
+    border-bottom: 2px solid #03009c;
+}
+
+
+@media print {
+    body {
+        background-color: white;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    button, nav {
+        display: none;
+    }
+    
+    .bg-white {
+        box-shadow: none !important;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .chart-container {
+        page-break-inside: avoid;
+    }
+    
+    footer {
+        margin-top: 2rem;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+    }
+    
+    .overflow-x-auto {
+        margin: 0 -1rem;
+    }
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.chart-container canvas {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#totalVisits, #avgDailyVisits {
+    margin-top: 0.5rem;
+}
+
+#commonComplaint {
+    margin-top: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#deptBreakdown {
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Extra styling for buttons */
+button {
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}

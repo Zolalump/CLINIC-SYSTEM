@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Clinic Statistics</title>
+    
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    
+    <link rel="stylesheet" href="./stats.css">
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/src/img/logo.jpg" class="h-12" alt="Logo">
+                <p style="color: rgb(4, 4, 155); font-size: larger; font-weight: bold; line-height: 1.2;">
+                    SMCTI <br>
+                    CLINIC
+                </p>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <button type="button" class="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-4 text-center">Account</button>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" 
+            id="navbar-sticky" 
+            style="background-color: #13398C; padding: 7px; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+           <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
+                      md:flex-row md:mt-0 md:border-0">
+               <li>
+                   <a href="../dashboard/dash.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Dashboard
+                   </a>
+               </li>
+               <li>
+                   <a href="../personal/index.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Student Info
+                   </a>
+               </li>
+               <li>
+                   <a href="../Stats/Stats.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Statistics
+                   </a>
+               </li>
+               <li>
+                   <a href="../History/logbook.html" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Log Book
+                   </a>
+               </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto px-4 py-8 mt-24">
+   
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-center text-blue-900">Clinic Statistics</h1>
+            <p class="text-center text-gray-600">School Clinic Visitor Analysis Dashboard</p>
+        </header>
+        
+    
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="dateRange" class="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
+                    <select id="dateRange" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="semester">By Semester</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                
+                <div id="dateSelector">
+                
+                </div>
+                
+                <div>
+                    <label for="filterDepartment" class="block text-sm font-medium text-gray-700 mb-1">Filter by Department</label>
+                    <select id="filterDepartment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option value="all" selected>All Departments</option>
+                        <option value="basic-education">Basic Education</option>
+                        <option value="tertiary">Tertiary</option>
+                        <option value="personnel">Personnel</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-6 gap-4">
+                <button id="generateReport" class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Generate Report
+                </button>
+                <button id="exportStats" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    Export to Excel
+                </button>
+            </div>
+        </div>
+        
+  
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Visits</h3>
+                <p id="totalVisits" class="text-3xl font-bold text-blue-900">0</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Common Complaint</h3>
+                <p id="commonComplaint" class="text-xl font-medium text-blue-900">-</p>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Department Breakdown</h3>
+                <div id="deptBreakdown" class="text-sm text-gray-700">
+                    <div>Basic Education: <span class="font-bold">0</span></div>
+                    <div>Tertiary: <span class="font-bold">0</span></div>
+                    <div>Personnel: <span class="font-bold">0</span></div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Avg. Daily Visits</h3>
+                <p id="avgDailyVisits" class="text-3xl font-bold text-blue-900">0</p>
+            </div>
+        </div>
+        
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Visits by Day of Week</h3>
+                <div class="chart-container">
+                    <canvas id="visitsByDayChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Department Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="deptDistChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-4 lg:col-span-2">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">Common Complaints</h3>
+                <div class="chart-container">
+                    <canvas id="complaintsChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="bg-white rounded-lg shadow-md p-4 mb-8">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Detailed Statistics by Classification</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Classification</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visits</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Common Complaint</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statsTableBody" class="bg-white divide-y divide-gray-200">
+   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <footer class="text-center text-gray-500 text-sm">
+            <p>&copy; 2025 School Clinic Management System</p>
+        </footer>
+    </div>
+    
+    <script src="./stats.js"></script>
+</body>
+</html>
