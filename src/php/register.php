@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require '/xampp/htdocs/CLINIC-SYSTEM/vendor/autoload.php'; 
+require '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/vendor/autoload.php'; 
 
 if (isset($_POST['signUp'])) {
     $firstName = $_POST['fName'] ?? '';
@@ -19,20 +19,20 @@ if (isset($_POST['signUp'])) {
     if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword)) {
         $_SESSION['message'] = 'All fields are required!';
         $_SESSION['message_type'] = 'error';
-        header("Location: /CLINIC-SYSTEM/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     }
 
     if (!validateEmail($email)) {
         $_SESSION['message'] = "Invalid email and gmail domain!";
         $_SESSION['message_type'] = 'error';
-        header("Location: /CLINIC-SYSTEM/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     }
 
     if ($password !== $confirmPassword) {
         $_SESSION['message'] = 'Passwords do not match!';        $_SESSION['message_type'] = 'error';
-        header("Location: /CLINIC-SYSTEM/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     }
 
@@ -64,8 +64,8 @@ if (isset($_POST['signUp'])) {
     } else {
         $uniqueToken = md5(uniqid(rand(), true));
         $trackingUrl = ($_SERVER['SERVER_NAME'] == 'localhost') ?
-                        "http://localhost/CLINIC-SYSTEM/src/php/track2.php?token=$uniqueToken" :
-                        "http://localhost/CLINIC-SYSTEM/src/php/verify2.php?token=$uniqueToken";
+                        "http://localhost/WebDa/CLINIC-SYSTEM-3/src/php/track2.php?token=$uniqueToken" :
+                        "http://localhost/WebDa/CLINIC-SYSTEM-3/src/php/verify2.php?token=$uniqueToken";
 
         $insertQuery = "INSERT INTO users (firstName, lastName, email, password, tracking_url) 
                         VALUES ('$firstName', '$lastName', '$email', '$hashedPassword', '$trackingUrl')";
@@ -80,7 +80,7 @@ if (isset($_POST['signUp'])) {
         }
 
         $verificationToken = md5(uniqid(rand(), true));
-        $verificationUrl = "http://localhost/WebDa/booking/src/php/verify2.php?token=$verificationToken"; 
+        $verificationUrl = "http://localhost/WebDa/CLINIC-SYSTEM-3/src/php/verify2.php?token=$verificationToken"; 
 
         $mail = new PHPMailer(true);
 
@@ -94,7 +94,7 @@ if (isset($_POST['signUp'])) {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = '587';
 
-            $mail->setFrom('johnaustria013@gmail.com', 'Clinic');
+            $mail->setFrom('johnaustria013@gmail.com', 'InnovaRes');
             $mail->addAddress($email);
 
             $mail->isHTML(true);
@@ -113,7 +113,7 @@ if (isset($_POST['signUp'])) {
         }
     }
 
-    header("Location:  /CLINIC-SYSTEM/index.php");
+    header("Location:  /WebDa/CLINIC-SYSTEM-3/index.php");
     exit;
 }
 
@@ -124,7 +124,7 @@ if (isset($_POST['signIn'])) {
     if (empty($email) || empty($password)) {
         $_SESSION['message'] = 'All fields are required!';
         $_SESSION['message_type'] = 'error';
-        header("Location: /CLINIC-SYSTEM/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     }
 
@@ -141,25 +141,25 @@ if (isset($_POST['signIn'])) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id']; 
                 $_SESSION['email'] = $email;
-                header("Location: reserve.php");
+                header("Location: /WebDa/CLINIC-SYSTEM-3/src/pages/dashboard/dash.html");
                 exit;
             } else {
                 $_SESSION['message'] = 'Invalid email or password!';
                 $_SESSION['message_type'] = 'error';
-                header("Location:/CLINIC-SYSTEM/index.php");
+                header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
                 exit;
             }
         } else {
             $_SESSION['message'] = 'Please verify your email before logging in.';
             $_SESSION['message_type'] = 'error';
-            header("Location: /CLINIC-SYSTEM/index.php");
+            header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
             exit;
         }
     } else {
         error_log("User not found: " . $email); 
         $_SESSION['message'] = 'Invalid email or password!';
         $_SESSION['message_type'] = 'error';
-        header("Location: /CLINIC-SYSTEM/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     }
 }

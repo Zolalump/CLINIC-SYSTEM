@@ -36,7 +36,6 @@ include 'db.php';
 
     $cookieData = $_COOKIE['user_session'] ?? '';  
 
-    // var_dump($_COOKIE); 
 
     if ($userId !== null) {
         $stmt = $conn->prepare("INSERT INTO tracking_data (user_id, visit_time, ip_address, user_agent, referer, page_url, method, session_id, load_time, cookies) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");

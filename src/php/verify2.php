@@ -7,7 +7,7 @@ $token = $_GET['token'] ?? '';
 if (empty($token)) {
     $_SESSION['message'] = 'Invalid or expired verification link.';
     $_SESSION['message_type'] = 'error';
-    header("Location: /WebDa/booking/index.php");
+    header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
     exit;
 }
 
@@ -24,19 +24,19 @@ if (empty($token)) {
         if ($updateStmt->execute()) {
             $_SESSION['message'] = 'Email verified successfully! You can now log in.';
             $_SESSION['message_type'] = 'success';
-            header("Location: /WebDa/booking/index.php");
+            header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
             exit;
         } else {
             error_log("Error updating email_verified for user: " . $user['id']);
             $_SESSION['message'] = 'There was an error verifying your email. Please try again.';
             $_SESSION['message_type'] = 'error';
-            header("Location: /WebDa/booking/index.php");
+            header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
             exit;
         }
     } else {
         $_SESSION['message'] = 'Invalid or expired verification link.';
         $_SESSION['message_type'] = 'error';
-        header("Location: /WebDa/booking/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     }
 
@@ -44,13 +44,13 @@ if (empty($token)) {
         error_log("Email verification successful for user ID: " . $user['id']);
         $_SESSION['message'] = 'Email verified successfully! You can now log in.';
         $_SESSION['message_type'] = 'success';
-        header("Location: /WebDa/booking/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     } else {
         error_log("Error updating email_verified for user: " . $user['id']);
         $_SESSION['message'] = 'There was an error verifying your email. Please try again.';
         $_SESSION['message_type'] = 'error';
-        header("Location: /WebDa/booking/index.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/index.php");
         exit;
     }
 ?>
