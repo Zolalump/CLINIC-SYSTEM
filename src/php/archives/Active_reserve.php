@@ -49,7 +49,7 @@ $result = $conn->query($sql);
 </style>
 
 <body>
-    <div class="app-container flex justify-center items-end">
+    <div class="app-container flex justify-center items-end" style>
     <img 
         class="absolute z-0 bg-no-repeat w-full h-full
            hidden sm:block sm:object-fill sm:h-[100vh] 

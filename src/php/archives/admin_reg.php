@@ -3,7 +3,7 @@ session_start();
 $message = $_SESSION['message'] ?? '';
 $messageType = $_SESSION['message_type'] ?? '';
 unset($_SESSION['message'], $_SESSION['message_type']);
-include '/xampp/htdocs/WebDa/booking/db.php';
+include '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/db.php';
 ?>
 
 <!DOCTYPE html>

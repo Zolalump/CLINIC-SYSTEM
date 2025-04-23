@@ -160,24 +160,24 @@
                         </div>
                         <div>
                             <p id="user-name" class="font-semibold text-sm">Loading...</p>
-                            <p class="text-xs text-gray-500">Student ID: <span id="student_id_display">-</span></p>
+                            <p class="text-xs text-gray-500">Admin ID: <span id="student_id_display">-</span></p>
                         </div>
                     </div>
                 </div>
                 
             <div class="space-y-2">
                 <label for="studentId" class="text-sm font-medium leading-none">
-                    Student ID
+                    Admin ID
                 </label>
                 <input
                     type="text"
                     id="studentId"
                     name="studentId"
                     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                    placeholder="Enter your student ID"
+                    placeholder="Enter your Admin ID"
                 />
                 <p class="text-sm text-muted-foreground">
-                    Your unique student identification number.
+                    Your unique Admin identification number.
                 </p>
             </div>
 

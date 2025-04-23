@@ -1,22 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Medical Clinic Dashboard</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMCTI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./img/logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      * {
-          font-family: 'Poppins', sans-serif;
-      }
+    <link rel="stylesheet" href="/WebDa/booking/reserve.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.mins"></script>
+    <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/font/Suisse/stylesheet.css">
 
-      .container2 {
+    <style>
+
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; visibility: hidden; }
+    }
+
+    
+    .container2 {
         background: white;
         width: 95vw;
         height: 100vh;
@@ -26,13 +34,84 @@
         position: relative;
       }
 
-      
-  </style>
-  </head>
-  <body class="bg-gray-100 mt-32" style="">
-    <div class="flex">
+    
+    body {
+        font-family: 'Suisse', sans-serif;
+        font-weight: 400 !important;
+    }
 
-      <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+    #loading-area {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        position: fixed;
+        left: 0;
+        top: 0;
+        opacity: 1;
+        z-index: 999999999;
+        background-image: url(../../img/logo.jpg);
+        background-repeat: no-repeat;
+        background-size: 50px;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeOut 1s ease-out 1s forwards; 
+    }
+
+    #notificationBadge {
+        position: absolute;
+        top: -5px;  
+        right: -5px; 
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custom-notification {
+    position: fixed;
+    top: 20px;
+    left: 40%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1000;
+    width: 90%; 
+    max-width: 300px; 
+    text-align: center;
+    }
+
+    .custom-notification.success {
+        background-color: #1E3A8A; 
+    }
+
+    .custom-notification.error {
+        background-color: #f44336;
+    }
+
+    .fade-out {
+        opacity: 0;
+    }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<div id="loading-area"></div>
+
+<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../../img/logo.jpg" class="h-12" alt="Logo">
@@ -45,7 +124,7 @@
               <div class="flex items-center w-full justify-end pr-8">
                 <div class="relative flex items-center space-x-4">
                 <div class="relative">
-                    <button id="notificationButton" class="flex items-center justify-center w-10 h-10 bg-white rounded-full app-shadow">
+                <button id="notificationButton" class="flex items-center justify-center w-10 h-10 bg-white rounded-full app-shadow">
                         <i class="fa-regular fa-bell app-color-black"></i>
                         <span id="notificationBadge" class="hidden bg-red-500 text-white text-xs rounded-full px-2 py-1 ml-1"></span>
                     </button>
@@ -63,7 +142,6 @@
                     <span class="font-bold app-color-black text-xs">Account</span>
                     <div class="w-px app-bg-light-white-2 mx-4"></div>
                     <i class="fa-regular fa-user mr-2 app-color-black"></i>
-                    <i id="accountArrow" class="fa-solid fa-angle-down text-xs app-color-black"></i>
                 </button>
                     <div
                         id="accountDropdown"
@@ -77,18 +155,13 @@
                         </div>
                         <div>
                             <p id="user-name" class="font-semibold text-sm">Loading...</p>
-                            <p class="text-xs text-gray-500">Student ID: <span id="student_id_display">-</span></p>
+                            <p class="text-xs text-gray-500">Admin ID: <span id="student_id_display">-</span></p>
                         </div>
                     </div>
                 </div>
-
-
                     <div class="py-2">
-                            <a href="/WebDa/booking/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
-                                <i class="fa-solid fa-chart-line mr-3"></i> Dashboard
-                            </a>
-                            <a href="/WebDa/booking/src/php/Settings/approve_books.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
-                                <i class="fa-solid fa-calendar-xmark mr-3"></i> Unavailable Facilities
+                            <a href="/WebDa/CLINIC-SYSTEM-3/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                                <i class="fa-solid fa-chart-line mr-3"></i> Users
                             </a>
                             <a href=" Settings/Profile.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-gear mr-3"></i> Settings
@@ -113,25 +186,25 @@
            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
                       md:flex-row md:mt-0 md:border-0">
                <li>
-                   <a href="../dashboard/dash.html" 
+                   <a href=".././php/reserve.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Dashboard
                    </a>
                </li>
                <li>
-                   <a href="../personal/index.html" 
+                   <a href=".././pages/personal/index.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Student Info
                    </a>
                </li>
                <li>
-                   <a href="../Stats/stats2.html" 
+                   <a href=".././pages/Stats/stats2.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Statistics
                    </a>
                </li>
                <li>
-                   <a href="../History/logbook.html" 
+                   <a href=".././pages/History/logbook.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Log Book
                    </a>
@@ -141,7 +214,7 @@
         </div>
     </nav>
 
-      <div class="container2">
+    <div class="container2 mt-28">
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto p-4 md:p-6 ">
           <div class="max-w-7xl mx-auto space-y-6">
@@ -295,131 +368,212 @@
       </div>
     </div>
   </div>
-
+            
     <script>
-
     document.addEventListener("DOMContentLoaded", function () {
-        const accountButton = document.getElementById("accountButton");
-        const accountDropdown = document.getElementById("accountDropdown")
+    const accountButton = document.getElementById("accountButton");
+    const accountDropdown = document.getElementById("accountDropdown")
 
-        if (accountButton) {
-            accountButton.addEventListener("click", (e) => {
-                e.stopPropagation();
-                accountDropdown.classList.toggle("hidden");
-                notificationDropdown.classList.add("hidden");
-            });
+    if (accountButton) {
+        accountButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            accountDropdown.classList.toggle("hidden");
+            notificationDropdown.classList.add("hidden");
+        });
+    }
+
+    document.addEventListener("click", () => {
+        accountDropdown?.classList.add("hidden");
+    });
+
+        const tabs = document.querySelectorAll(".option-tab");
+        const selects = {
+        academic: document.getElementById("academic-select"),
+        sports: document.getElementById("sports-select"),
+        events: document.getElementById("events-select"),
+    };
+
+    let activeTab = "academic";
+
+tabs.forEach((tab) => {
+    tab.addEventListener("click", function () {
+        tabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
+
+        Object.values(selects).forEach((select) => (select.style.display = "none"));
+
+        activeTab = this.textContent.toLowerCase();
+        if (selects[activeTab]) {
+            selects[activeTab].style.display = "block";
+        }
+    });
+});
+
+function showNotification(message, type = "success") {
+    const notification = document.createElement("div");
+    notification.className = `custom-notification ${type}`;
+    notification.innerText = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.add("fade-out");
+        setTimeout(() => notification.remove(), 500);
+    }, 3000);
+}
+
+const bookButton = document.querySelector(".book-now-btn");
+
+if (bookButton) {
+    bookButton.addEventListener("click", function () {
+        let activeTab = document.querySelector(".option-tab.font-semibold")?.innerText.toLowerCase() || "academic";
+
+        const facilityDropdown = document.querySelector(`select#${activeTab}-select`);
+        const dateInput = document.getElementById("date-select");
+        const timeSlotInput = document.getElementById("time-slot");
+        const purposeInput = document.getElementById("purpose");
+        const attendeesInput = document.getElementById("attendees");
+
+        if (!facilityDropdown || !dateInput.value || !timeSlotInput.value || !purposeInput.value || isNaN(parseInt(attendeesInput.value))) {
+            showNotification("Fill in all fields before booking.", "error");
+            return;
         }
 
-        document.addEventListener("click", () => {
-            accountDropdown?.classList.add("hidden");
+        const requestData = {
+            facility: facilityDropdown.value,
+            date: dateInput.value,
+            timeSlot: timeSlotInput.options[timeSlotInput.selectedIndex].text.trim()
+        };
+
+        console.log("Checking availability...", requestData);
+
+        fetch("/WebDa/booking/src/php/check_availability.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(requestData).toString()
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Availability Response:", data);
+            if (data.status === "error") {
+                showNotification(data.message, "error");
+                return Promise.reject("Facility already booked.");
+            } else {
+                return fetch("/WebDa/booking/src/php/book.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        facility: requestData.facility,
+                        date: requestData.date,
+                        timeSlot: requestData.timeSlot,
+                        purpose: purposeInput.value.trim(),
+                        attendees: parseInt(attendeesInput.value, 10),
+                    })
+                });
+            }
+        })
+        .then(response => response ? response.json() : null)
+        .then(data => {
+            if (data && data.success) {
+                showNotification("Booking successful!", "success");
+            } else if (data) {
+                showNotification(data.error || "Error occurred!", "error");
+            }
+        })
+        .catch(error => {
+            console.error("Fetch Error:", error);
         });
+    });
+}
+
 
     });
-                    
-      var statsCtx = document.getElementById("statsChart").getContext("2d");
+    document.addEventListener("DOMContentLoaded", function () {
+    const notificationButton = document.getElementById("notificationButton");
+    const notificationDropdown = document.getElementById("notificationDropdown");
+    const notificationBadge = document.getElementById("notificationBadge"); 
+    const notificationList = document.getElementById("notificationList"); 
 
-      var statsChart = new Chart(statsCtx, {
-          type: "bar",
-          data: {
-              labels: ["Clients", "Cases"],
-              datasets: [{
-                  label: "Statistics",
-                  data: [0, 0], 
-                  backgroundColor: ["#13398C", "#36A2EB"]
-              }]
-          },
-          options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                  y: { beginAtZero: true }
-              }
-          }
-      });
+    function fetchNotifications() {
+        fetch("/WebDa/booking/src/php/send-msg/get_messages.php")
+            .then(response => {
+                console.log("Response Status:", response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Fetched notifications data:", data); 
 
-      function updateChart(mode) {
-          let sections, statsData;
+                if (!notificationBadge || !notificationList) {
+                    console.error("Error: Notification elements not found in the DOM.");
+                    return;
+                }
 
-           if (mode === "monthly") {
-              sections = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-              statsData = [
-                  { clients: 300, cases: 200 },
-                  { clients: 280, cases: 150 },
-                  { clients: 350, cases: 250 },
-                  { clients: 400, cases: 300 },
-                  { clients: 420, cases: 320 },
-                  { clients: 450, cases: 350 },
-                  { clients: 480, cases: 370 },
-                  { clients: 500, cases: 400 },
-                  { clients: 550, cases: 450 },
-                  { clients: 600, cases: 500 },
-                  { clients: 620, cases: 520 },
-                  { clients: 650, cases: 550 }
-              ];
-          }
+                if (data.success && data.messages.length > 0) {
+                    notificationBadge.textContent = data.messages.length;
+                    notificationBadge.classList.remove("hidden");
 
-          document.getElementById("statsTitle").innerText = mode.charAt(0).toUpperCase() + mode.slice(1) + " Statistics";
-          
-          statsChart.data.labels = sections;
-          statsChart.data.datasets[0].data = statsData.map(item => item.clients); // Clients data
-          statsChart.data.datasets[0].label = "Clients Statistics";
-          statsChart.update();
-      }
+                    notificationList.innerHTML = data.messages.map(msg => 
+                        `<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                            <strong>Admin:</strong> ${msg.message}
+                            <small class="block text-gray-500">${msg.sent_at}</small>
+                        </a>`
+                    ).join("");
+                } else {
+                    notificationBadge.classList.add("hidden");
+                    notificationList.innerHTML = `<p class="text-gray-500 px-4 py-2 text-sm">No new notifications</p>`;
+                }
+            })
+            .catch(error => console.error("Error fetching notifications:", error));
+            }
 
-      updateChart("monthly");
+            if (notificationButton) {
+                notificationButton.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    notificationDropdown.classList.toggle("hidden");
+                    fetchNotifications();
+                });
+            }
 
-      var statsCtx = document.getElementById("statsChart2").getContext("2d");
+            document.addEventListener("click", function (e) {
+                if (!notificationDropdown.contains(e.target) && !notificationButton.contains(e.target)) {
+                    notificationDropdown.classList.add("hidden");
+                }
+            });
 
-      var statsChart = new Chart(statsCtx, {
-          type: "bar",
-          data: {
-              labels: ["Clients", "Cases"],
-              datasets: [{
-                  label: "Statistics",
-                  data: [0, 0], 
-                  backgroundColor: ["#13398C", "#36A2EB"]
-              }]
-          },
-          options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                  y: { beginAtZero: true }
-              }
-          }
-      });
+            setInterval(fetchNotifications, 30000);
+            fetchNotifications
+        });
 
-      function updateChart2(mode) {
-          let sections, statsData;
+    document.querySelector("#notificationBadge").addEventListener("click", () => {
+            fetch("/WebDa/booking/src/php/send-msg/mark_notif.php", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("Notifications marked as read");
+                        notificationBadge.classList.add("hidden"); 
+                    } else {
+                        console.error("Error marking notifications as read:", data.error);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
 
-           if (mode === "monthly") {
-              sections = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-              statsData = [
-                  { clients: 300, cases: 200 },
-                  { clients: 280, cases: 150 },
-                  { clients: 350, cases: 250 },
-                  { clients: 400, cases: 300 },
-                  { clients: 420, cases: 320 },
-                  { clients: 450, cases: 350 },
-                  { clients: 480, cases: 370 },
-                  { clients: 500, cases: 400 },
-                  { clients: 550, cases: 450 },
-                  { clients: 600, cases: 500 },
-                  { clients: 620, cases: 520 },
-                  { clients: 650, cases: 550 }
-              ];
-          }
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/WebDa/booking/src/php/Settings/fetch_user.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        document.getElementById("user-name").innerText = `${data.firstname} ${data.lastname}`;
+                        
+                        document.getElementById("student_id_display").innerText = data.student_id ? data.student_id : "Not Set";
+                    }
+                })
+                .catch(error => console.error("Error fetching user data:", error));
+        });
 
-          document.getElementById("statsTitle2").innerText = mode.charAt(0).toUpperCase() + mode.slice(1) + " Statistics";
-          
-          statsChart2.data.labels = sections;
-          statsChart2.data.datasets[0].data = statsData.map(item => item.clients); // Clients data
-          statsChart2.data.datasets[0].label = "Clients Statistics";
-          statsChart2.update();
-      }
+</script>
 
-      updateChart("monthly");
-  </script>
-  </body>
+
+</body>
+
 </html>
-

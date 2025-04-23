@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.mins"></script>
-    <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css">
+    <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/font/Suisse/stylesheet.css">
 
     <style>
 
@@ -22,11 +22,22 @@
         0% { opacity: 1; }
         100% { opacity: 0; visibility: hidden; }
     }
+
+    
+    .container2 {
+        background: white;
+        width: 95vw;
+        height: 100vh;
+        border-radius: 10px;
+        transform: scale(0.90);
+        transform-origin: top center;
+        position: relative;
+      }
+
     
     body {
         font-family: 'Suisse', sans-serif;
         font-weight: 400 !important;
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
     }
 
     #loading-area {
@@ -100,21 +111,20 @@
 
 <div id="loading-area"></div>
 
-    <div class="app-container flex justify-center items-end">
-    <img 
-        class="absolute z-0 bg-no-repeat w-full h-full
-           hidden sm:block sm:object-fill sm:h-[100vh] 
-           hidden md:block md:object-cover md:h-[100vh] 
-           lg:object-cover lg:h-[100vh]"
-        src="/WebDa/booking/img/StdRoom.png" 
-        alt="image1" 
-        style="object-fit: fill; opacity: 0.9;">
-        <div class="circle rounded-full"></div>
-        <div class="absolute top-11 flex flex-col w-full items-center px-4 md:px-0">
-            <div class="flex items-center w-full justify-end pr-8">
+<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="../../img/logo.jpg" class="h-12" alt="Logo">
+                <p style="color: rgb(4, 4, 155); font-size: larger; font-weight: bold; line-height: 1.2;">
+                    SMCTI <br>
+                    CLINIC
+                </p>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+              <div class="flex items-center w-full justify-end pr-8">
                 <div class="relative flex items-center space-x-4">
                 <div class="relative">
-                    <button id="notificationButton" class="flex items-center justify-center w-10 h-10 bg-white rounded-full app-shadow">
+                <button id="notificationButton" class="flex items-center justify-center w-10 h-10 bg-white rounded-full app-shadow">
                         <i class="fa-regular fa-bell app-color-black"></i>
                         <span id="notificationBadge" class="hidden bg-red-500 text-white text-xs rounded-full px-2 py-1 ml-1"></span>
                     </button>
@@ -128,11 +138,10 @@
                     </div>
                 </div>
                 <div class="relative">
-                <button id="accountButton" class="flex bg-white px-6 py-4 app-shadow rounded-md cursor-pointer items-center">
+                <button id="accountButton" class="flex bg-blue-900 px-6 py-4 app-shadow rounded-md cursor-pointer items-center" style="color: white;">
                     <span class="font-bold app-color-black text-xs">Account</span>
                     <div class="w-px app-bg-light-white-2 mx-4"></div>
                     <i class="fa-regular fa-user mr-2 app-color-black"></i>
-                    <i id="accountArrow" class="fa-solid fa-angle-down text-xs app-color-black"></i>
                 </button>
                     <div
                         id="accountDropdown"
@@ -150,13 +159,11 @@
                         </div>
                     </div>
                 </div>
-
-
                     <div class="py-2">
-                            <a href="/WebDa/booking/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                            <a href="/WebDa/CLINIC-SYSTEM-3/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-chart-line mr-3"></i> Dashboard
                             </a>
-                            <a href="/WebDa/booking/src/php/Settings/approve_books.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                            <a href="/WebDa/CLINIC-SYSTEM-3/src/php/Settings/approve_books.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-calendar-xmark mr-3"></i> Unavailable Facilities
                             </a>
                             <a href=" Settings/Profile.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
@@ -164,7 +171,7 @@
                             </a>
                             <div class="border-t mt-2">
                                 <a
-                                    href="/WebDa/booking/index.php"
+                                    href="/WebDa/CLINIC-SYSTEM-3/index.php"
                                     class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                                 >
                                     <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
@@ -175,103 +182,196 @@
                 </div>
                 </div>
             </div>
-            <div class="position-absolute">
-                <img src="/WebDa/booking/img/logo.jpg" alt="SMCTI Logo" class="w-24 h-24">
             </div>
-            <div class="flex flex-col text-center my-8">
-                <span class="font-semibold text-2xl sm:text-4xl mb-4 app-title" style="color: white;">Which facility would you like to reserve?</span>
-                <span class="app-color-black font-semibold text-sm sm:text-base" style="color: white;">Book your school facilities here!</span>
-            </div>
-            <div class=" sm:w-11/12 md:w-10/12 px-4 sm:px-6 pt-8 sm:pt-10 pb-12 sm:pb-16 app-shadow rounded-xl backdrop-blur-[200px]">
-            <div class="flex flex-wrap sm:flex-nowrap pr-0 sm:pr-6 rounded-lg">
-                    <div style="color: white;" class="flex justify-between items-center w-full">
-                        <div class="ml-4 flex space-x-5 sm:space-x-8 bg-gray-100 p-3 rounded-xl ">
-                            <a class="option-tab font-semibold text-sm app-color-gray">Academic</a>
-                            <a href="sports.php" class="option-tab font-semibold text-sm app-color-gray">Sports</a>
-                            <a href="events.php" class="option-tab font-semibold text-sm app-color-gray">Events</a>
-                        </div>
-                        <div id="academic-select" style="display: none;"></div>
-                        <div id="sports-select" style="display: none;"></div>
-                        <div id="events-select" style="display: none;"></div>
-                        <div class="flex items-center space-x-6">
-                            <button style="background-color: white; color: blue;" class="book-now-btn px-6 py-2 rounded-md font-semibold text-sm; color: white;">
-                                Book Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row mt-8 sm:mt-16 space-y-4 sm:space-y-0">
-                    <div class="bg-white/80 sm:mx-6 flex flex-col w-full sm:w-1/3 p-6 rounded-xl border-2 border-white">
-                        <span class="font-semibold text-xs app-color-lavendar">Select Facility</span>
-
-                        <select class="reservation-input" id="academic-select">
-                            <option value="">Select Academic Facility</option>
-                            <option value="Comlab">Computer Laboratories</option>
-                            <option value="Library Study Rooms">Library Study Rooms</option>
-                        </select>
-
-                        <select class="reservation-input" id="sports-select" style="display: none;">
-                            <option value="">Select Sports Facility</option>
-                            <option value="Gym">Gymnasium</option>
-                            <option value="Volleyball">Volleyball Courts</option>
-                        </select>
-
-                        <select class="reservation-input" id="events-select" style="display: none;">
-                            <option value="">Select Event Facility</option>
-                            <option value="Function-halls">Function Halls</option>
-                            <option value="Marian-hotel">Marian Hotel</option>
-                            <option value="Hud">HUD Facilities</option>
-                        </select>
-                    </div>
-                    <div class="bg-white/80 sm:mx-6 flex flex-col w-full sm:w-1/3 p-6 rounded-xl border-2 border-white">
-                        <span class="font-semibold text-xs app-color-lavendar">Date & Time</span>
-                        <div class="flex flex-col space-y-4">
-                            <input type="date" class="reservation-input" id="date-select">
-                            <select class="reservation-input" id="time-slot">
-                                <option value="">Select time slot</option>
-                                <option value="Morning (8:00 AM - 12:00 PM)">Morning (8:00 AM - 12:00 PM)</option>
-                                <option value="Afternoon (1:00 PM - 5:00 PM)">Afternoon (1:00 PM - 5:00 PM)</option>
-                                <option value="Evening (6:00 PM - 9:00 PM)">Evening (6:00 PM - 9:00 PM)</option>
-                                <option value="Full-day (8:00 AM - 5:00 PM)">Full Day (8:00 AM - 5:00 PM)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="bg-white/80 sm:mx-6 flex flex-col w-full sm:w-1/3 p-6 rounded-xl border-2 border-white">
-                        <span class="font-semibold text-xs app-color-lavendar">Purpose & Attendees</span>
-                        <div class="reservation-details">
-                            <select class="reservation-input mb-1" id="purpose">
-                                <option value="">Select purpose</option>
-                                <option value="Class">Class Activity</option>
-                                <option value="Meeting">Organization Meeting</option>
-                                <option value="Event">School Event</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            <input type="number" 
-                                   class="reservation-input" 
-                                   placeholder="Number of Attendees"
-                                   min="1" 
-                                   max="500" 
-                                   id="attendees">
-                        </div>
-                    </div>
-                </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" 
+            id="navbar-sticky" 
+            style="background-color: #13398C; padding: 7px; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-left: 70px;">
+           <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
+                      md:flex-row md:mt-0 md:border-0">
+               <li>
+                   <a href=".././php/reserve.php" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Dashboard
+                   </a>
+               </li>
+               <li>
+                   <a href=".././pages/personal/index.php" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Student Info
+                   </a>
+               </li>
+               <li>
+                   <a href=".././pages/Stats/stats2.php" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Statistics
+                   </a>
+               </li>
+               <li>
+                   <a href=".././pages/History/logbook.php" 
+                      class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
+                      Log Book
+                   </a>
+               </li>
+                </ul>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <div id="cancelBookingModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
-        <div class="bg-white rounded-lg w-96 mx-auto mt-20 p-6">
-            <h3 class="text-lg font-semibold mb-4">Cancel Booking</h3>
-            <p class="text-gray-600 mb-4">Are you sure you want to cancel your booking for Computer Lab 3?</p>
-            <div class="flex justify-end space-x-3">
-                <button class="px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded" onclick="closeModal('cancelBookingModal')">No, Keep it</button>
-                <button class="px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 rounded" onclick="cancelBooking()">Yes, Cancel</button>
+    <div class="container2 mt-28">
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-4 md:p-6 ">
+          <div class="max-w-7xl mx-auto space-y-6">
+            <div class="flex items-center justify-between">
+              <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+              <div class="flex space-x-2">
+              </div>
             </div>
-        </div>
+
+            <!-- Metrics Overview Section -->
+            <div class="w-full p-4 rounded-lg">
+              <h2 class="text-lg font-semibold mb-4 text-gray-800">
+                Clinic Brief Reports
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Metric Card 1 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Total Patients
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">1,248</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-blue-800">↑ 12%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >All registered patients</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metric Card 2 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Today's Walk-ins
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-user-plus"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">42</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-blue-800">↑ 8%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >Unscheduled visits today</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metric Card 3 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Daily Average
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-chart-line"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">18.3</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-red-500">↓ 3%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >Patients per day</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Metric Card 4 -->
+                <div class="bg-white rounded-lg shadow-lg">
+                  <div
+                    class="flex flex-row items-center justify-between p-4 pb-2"
+                  >
+                    <p class="text-sm font-medium text-gray-500">
+                      Monthly Visits
+                    </p>
+                    <div
+                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
+                    >
+                      <i class="fas fa-calendar"></i>
+                    </div>
+                  </div>
+                  <div class="p-4 pt-0">
+                    <div class="text-2xl font-bold">356</div>
+                    <div class="flex items-center mt-1">
+                      <span class="text-xs text-blue-800">↑ 15%</span>
+                      <span class="text-xs text-gray-500 ml-1"
+                        >Total visits this month</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
+
+              <!-- Upcoming Appointments -->
+              <div
+                class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mt-10"
+              >
+                <!-- Recent Entries Section -->
+                <div class="mt-8">
+                  <h2 class="text-xl font-semibold text-blue-900 mb-4">Recent Entries</h2>
+                  <div class="overflow-x-auto">
+                      <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                          <thead class="bg-blue-900 text-white">
+                              <tr>
+                                  <th class="py-3 px-4 text-left">Name</th>
+                                  <th class="py-3 px-4 text-left">Department</th>
+                                  <th class="py-3 px-4 text-left">Classification</th>
+                                  <th class="py-3 px-4 text-left">Date & Time</th>
+                                  <th class="py-3 px-4 text-left">Complaints</th>
+                                  <th class="py-3 px-4 text-left">Intervention</th>
+                              </tr>
+                          </thead>
+                          <tbody id="recentEntries">
+                              <!-- Entries will be populated by JavaScript -->
+                              <tr class="border-b">
+                                  <td colspan="6" class="py-4 px-4 text-center text-gray-500">No recent entries</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
-
-    <div class="dropdown-overlay" id="dropdownOverlay"></div>
-
+  </div>
+            
     <script>
     document.addEventListener("DOMContentLoaded", function () {
     const accountButton = document.getElementById("accountButton");

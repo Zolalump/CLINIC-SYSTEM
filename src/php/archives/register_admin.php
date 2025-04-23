@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require '/xampp/htdocs/WebDa/booking/vendor/autoload.php'; 
+require '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/vendor/autoload.php'; 
 
 if (isset($_POST['signUp'])) {
     $firstName = $_POST['fName'] ?? '';
@@ -19,20 +19,20 @@ if (isset($_POST['signUp'])) {
     if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword)) {
         $_SESSION['message'] = 'All fields are required!';
         $_SESSION['message_type'] = 'error';
-        header("Location: /WebDa/booking/admin_reg.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
         exit;
     }
 
     if (!validateEmail($email)) {
         $_SESSION['message'] = "Invalid email and gmail domain!";
         $_SESSION['message_type'] = 'error';
-        header("Location: /WebDa/booking/admin_reg.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
         exit;
     }
 
     if ($password !== $confirmPassword) {
         $_SESSION['message'] = 'Passwords do not match!';        $_SESSION['message_type'] = 'error';
-        header("Location: /WebDa/booking/admin_reg.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
         exit;
     }
 
@@ -64,8 +64,8 @@ if (isset($_POST['signUp'])) {
     } else {
         $uniqueToken = md5(uniqid(rand(), true));
         $trackingUrl = ($_SERVER['SERVER_NAME'] == 'localhost') ?
-                        "http://localhost/WebDa/booking/src/php/track_admin.php?token=$uniqueToken" :
-                        "http://localhost/WebDa/booking/src/php/verify_admin.php?token=$uniqueToken";
+                        "http://localhost/WebDa/CLINIC-SYSTEM-3/src/php/track_admin.php?token=$uniqueToken" :
+                        "http://localhost/WebDa/CLINIC-SYSTEM-3/src/php/verify_admin.php?token=$uniqueToken";
 
         $insertQuery = "INSERT INTO admin_users (firstName, lastName, email, password, tracking_url) 
                         VALUES ('$firstName', '$lastName', '$email', '$hashedPassword', '$trackingUrl')";
@@ -80,7 +80,7 @@ if (isset($_POST['signUp'])) {
         }
 
         $verificationToken = md5(uniqid(rand(), true));
-        $verificationUrl = "http://localhost/WebDa/booking/src/php/verify_admin.php?token=$verificationToken"; 
+        $verificationUrl = "http://localhost/WebDa/CLINIC-SYSTEM-3/src/php/verify_admin.php?token=$verificationToken"; 
 
         $mail = new PHPMailer(true);
 
@@ -113,7 +113,7 @@ if (isset($_POST['signUp'])) {
         }
     }
 
-    header("Location:  /WebDa/booking/admin_reg.php");
+    header("Location:  /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
     exit;
 }
 
@@ -124,7 +124,7 @@ if (isset($_POST['signIn'])) {
     if (empty($email) || empty($password)) {
         $_SESSION['message'] = 'All fields are required!';
         $_SESSION['message_type'] = 'error';
-        header("Location: /WebDa/booking/admin_reg.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
         exit;
     }
 
@@ -141,25 +141,25 @@ if (isset($_POST['signIn'])) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id']; 
                 $_SESSION['email'] = $email;
-                header("Location: admin-panel.php");
+                header("Location: /WebDa/CLINIC-SYSTEM-3/src/php/admin-panel.php");
                 exit;
             } else {
                 $_SESSION['message'] = 'Invalid email or password!';
                 $_SESSION['message_type'] = 'error';
-                header("Location: /WebDa/booking/admin_reg.php");
+                header("Location: /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
                 exit;
             }
         } else {
             $_SESSION['message'] = 'Please verify your email before logging in.';
             $_SESSION['message_type'] = 'error';
-            header("Location: /WebDa/booking/admin_reg.php");
+            header("Location: /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
             exit;
         }
     } else {
         error_log("User not found: " . $email); 
         $_SESSION['message'] = 'Invalid email or password!';
         $_SESSION['message_type'] = 'error';
-        header("Location: /WebDa/booking/admin_reg.php");
+        header("Location: /WebDa/CLINIC-SYSTEM-3/admin_reg.php");
         exit;
     }
 }

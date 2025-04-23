@@ -80,10 +80,7 @@ body.dark-mode .sidebar .menu a {
     background-color: #1f4068;
 }
 
-.sidebar .menu a:hover {
-    background-color: #3498db;
-    transform: scale(1.05);
-}
+
 
 /* Main Content */
 main {
@@ -194,11 +191,6 @@ button, .delete-btn {
 button {
     background-color: #3498db;
     color: white;
-}
-
-button:hover {
-    background-color: #2980b9;
-    transform: scale(1.05);
 }
 
 .delete-btn {

@@ -46,7 +46,7 @@ if (isset($_POST['signUp'])) {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['email'] = $email;
-        header("Location: reserve.php");
+        header("Location: dashboard.php");
         exit;
     } else {
         echo "Invalid email or password.";
@@ -141,7 +141,7 @@ if (isset($_POST['signIn'])) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id']; 
                 $_SESSION['email'] = $email;
-                header("Location: /WebDa/CLINIC-SYSTEM-3/src/pages/dashboard/dash.html");
+                header("Location:/WebDa/CLINIC-SYSTEM-3/src/php/dashboard.php ");
                 exit;
             } else {
                 $_SESSION['message'] = 'Invalid email or password!';

@@ -15,10 +15,56 @@
         * {
             font-family: 'Poppins', sans-serif;
         }
+
+        #notificationBadge {
+            position: absolute;
+            top: -5px;  
+            right: -5px; 
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-notification {
+            position: fixed;
+            top: 20px;
+            left: 40%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1000;
+            width: 90%; 
+            max-width: 300px; 
+            text-align: center;
+            }
+
+        .custom-notification.success {
+            background-color: #1E3A8A; 
+        }
+
+        .custom-notification.error {
+            background-color: #f44336;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
-    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../../img/logo.jpg" class="h-12" alt="Logo">
@@ -31,7 +77,7 @@
               <div class="flex items-center w-full justify-end pr-8">
                 <div class="relative flex items-center space-x-4">
                 <div class="relative">
-                    <button id="notificationButton" class="flex items-center justify-center w-10 h-10 bg-white rounded-full app-shadow">
+                <button id="notificationButton" class="flex items-center justify-center w-10 h-10 bg-white rounded-full app-shadow">
                         <i class="fa-regular fa-bell app-color-black"></i>
                         <span id="notificationBadge" class="hidden bg-red-500 text-white text-xs rounded-full px-2 py-1 ml-1"></span>
                     </button>
@@ -63,18 +109,13 @@
                         </div>
                         <div>
                             <p id="user-name" class="font-semibold text-sm">Loading...</p>
-                            <p class="text-xs text-gray-500">Student ID: <span id="student_id_display">-</span></p>
+                            <p class="text-xs text-gray-500">Admin ID: <span id="student_id_display">-</span></p>
                         </div>
                     </div>
                 </div>
-
-
                     <div class="py-2">
-                            <a href="/WebDa/booking/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
-                                <i class="fa-solid fa-chart-line mr-3"></i> Dashboard
-                            </a>
-                            <a href="/WebDa/booking/src/php/Settings/approve_books.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
-                                <i class="fa-solid fa-calendar-xmark mr-3"></i> Unavailable Facilities
+                            <a href="/WebDa/CLINIC-SYSTEM-3/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                                <i class="fa-solid fa-chart-line mr-3"></i> Users
                             </a>
                             <a href=" Settings/Profile.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-gear mr-3"></i> Settings
@@ -95,29 +136,29 @@
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" 
             id="navbar-sticky" 
-            style="background-color: #13398C; padding: 7px; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-left: 80px;">
+            style="background-color: #13398C; padding: 7px; border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-left: 70px;">
            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
                       md:flex-row md:mt-0 md:border-0">
                <li>
-                   <a href="../dashboard/dash.html" 
+                   <a href="../../php/dashboard.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Dashboard
                    </a>
                </li>
                <li>
-                   <a href="../personal/index.html" 
+                   <a href="../../pages/personal/index.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Student Info
                    </a>
                </li>
                <li>
-                   <a href="../Stats/stats2.html" 
+                   <a href="../../pages/Stats/stats2.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Statistics
                    </a>
                </li>
                <li>
-                   <a href="../History/logbook.html" 
+                   <a href="../../pages/History/logbook.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Log Book
                    </a>
@@ -125,7 +166,7 @@
                 </ul>
             </div>
         </div>
-    </nav>  
+    </nav>
 
     <div class="container">
         <!-- Sidebar -->
@@ -363,23 +404,206 @@
 
     <script src="script.js"></script>
     <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const accountButton = document.getElementById("accountButton");
-                const accountDropdown = document.getElementById("accountDropdown")
+          document.addEventListener("DOMContentLoaded", function () {
+    const accountButton = document.getElementById("accountButton");
+    const accountDropdown = document.getElementById("accountDropdown")
 
-                if (accountButton) {
-                    accountButton.addEventListener("click", (e) => {
-                        e.stopPropagation();
-                        accountDropdown.classList.toggle("hidden");
-                        notificationDropdown.classList.add("hidden");
-                    });
+    if (accountButton) {
+        accountButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            accountDropdown.classList.toggle("hidden");
+            notificationDropdown.classList.add("hidden");
+        });
+    }
+
+    document.addEventListener("click", () => {
+        accountDropdown?.classList.add("hidden");
+    });
+
+        const tabs = document.querySelectorAll(".option-tab");
+        const selects = {
+        academic: document.getElementById("academic-select"),
+        sports: document.getElementById("sports-select"),
+        events: document.getElementById("events-select"),
+    };
+
+    let activeTab = "academic";
+
+tabs.forEach((tab) => {
+    tab.addEventListener("click", function () {
+        tabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
+
+        Object.values(selects).forEach((select) => (select.style.display = "none"));
+
+        activeTab = this.textContent.toLowerCase();
+        if (selects[activeTab]) {
+            selects[activeTab].style.display = "block";
+        }
+    });
+});
+
+function showNotification(message, type = "success") {
+    const notification = document.createElement("div");
+    notification.className = `custom-notification ${type}`;
+    notification.innerText = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.add("fade-out");
+        setTimeout(() => notification.remove(), 500);
+    }, 3000);
+}
+
+const bookButton = document.querySelector(".book-now-btn");
+
+if (bookButton) {
+    bookButton.addEventListener("click", function () {
+        let activeTab = document.querySelector(".option-tab.font-semibold")?.innerText.toLowerCase() || "academic";
+
+        const facilityDropdown = document.querySelector(`select#${activeTab}-select`);
+        const dateInput = document.getElementById("date-select");
+        const timeSlotInput = document.getElementById("time-slot");
+        const purposeInput = document.getElementById("purpose");
+        const attendeesInput = document.getElementById("attendees");
+
+        if (!facilityDropdown || !dateInput.value || !timeSlotInput.value || !purposeInput.value || isNaN(parseInt(attendeesInput.value))) {
+            showNotification("Fill in all fields before CLINIC-SYSTEM-3.", "error");
+            return;
+        }
+
+        const requestData = {
+            facility: facilityDropdown.value,
+            date: dateInput.value,
+            timeSlot: timeSlotInput.options[timeSlotInput.selectedIndex].text.trim()
+        };
+
+        console.log("Checking availability...", requestData);
+
+        fetch("/WebDa/CLINIC-SYSTEM-3/src/php/check_availability.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(requestData).toString()
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Availability Response:", data);
+            if (data.status === "error") {
+                showNotification(data.message, "error");
+                return Promise.reject("Facility already booked.");
+            } else {
+                return fetch("/WebDa/CLINIC-SYSTEM-3/src/php/book.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        facility: requestData.facility,
+                        date: requestData.date,
+                        timeSlot: requestData.timeSlot,
+                        purpose: purposeInput.value.trim(),
+                        attendees: parseInt(attendeesInput.value, 10),
+                    })
+                });
+            }
+        })
+        .then(response => response ? response.json() : null)
+        .then(data => {
+            if (data && data.success) {
+                showNotification("CLINIC-SYSTEM-3 successful!", "success");
+            } else if (data) {
+                showNotification(data.error || "Error occurred!", "error");
+            }
+        })
+        .catch(error => {
+            console.error("Fetch Error:", error);
+        });
+    });
+}
+
+
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+    const notificationButton = document.getElementById("notificationButton");
+    const notificationDropdown = document.getElementById("notificationDropdown");
+    const notificationBadge = document.getElementById("notificationBadge"); 
+    const notificationList = document.getElementById("notificationList"); 
+
+    function fetchNotifications() {
+        fetch("/WebDa/CLINIC-SYSTEM-3/src/php/send-msg/get_messages.php")
+            .then(response => {
+                console.log("Response Status:", response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Fetched notifications data:", data); 
+
+                if (!notificationBadge || !notificationList) {
+                    console.error("Error: Notification elements not found in the DOM.");
+                    return;
                 }
 
-                document.addEventListener("click", () => {
-                    accountDropdown?.classList.add("hidden");
-                });
+                if (data.success && data.messages.length > 0) {
+                    notificationBadge.textContent = data.messages.length;
+                    notificationBadge.classList.remove("hidden");
 
+                    notificationList.innerHTML = data.messages.map(msg => 
+                        `<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                            <strong>Admin:</strong> ${msg.message}
+                            <small class="block text-gray-500">${msg.sent_at}</small>
+                        </a>`
+                    ).join("");
+                } else {
+                    notificationBadge.classList.add("hidden");
+                    notificationList.innerHTML = `<p class="text-gray-500 px-4 py-2 text-sm">No new notifications</p>`;
+                }
+            })
+            .catch(error => console.error("Error fetching notifications:", error));
+            }
+
+            if (notificationButton) {
+                notificationButton.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    notificationDropdown.classList.toggle("hidden");
+                    fetchNotifications();
+                });
+            }
+
+            document.addEventListener("click", function (e) {
+                if (!notificationDropdown.contains(e.target) && !notificationButton.contains(e.target)) {
+                    notificationDropdown.classList.add("hidden");
+                }
             });
+
+            setInterval(fetchNotifications, 30000);
+            fetchNotifications
+        });
+
+    document.querySelector("#notificationBadge").addEventListener("click", () => {
+            fetch("/WebDa/CLINIC-SYSTEM-3/src/php/send-msg/mark_notif.php", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log("Notifications marked as read");
+                        notificationBadge.classList.add("hidden"); 
+                    } else {
+                        console.error("Error marking notifications as read:", data.error);
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/WebDa/CLINIC-SYSTEM-3/src/php/Settings/fetch_user.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        document.getElementById("user-name").innerText = `${data.firstname} ${data.lastname}`;
+                        
+                        document.getElementById("student_id_display").innerText = data.student_id ? data.student_id : "Not Set";
+                    }
+                })
+                .catch(error => console.error("Error fetching user data:", error));
+        });
     </script>
     
 </body>
