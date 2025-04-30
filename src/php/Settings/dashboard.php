@@ -19,30 +19,6 @@
             font-weight: 400 !important;
         }
 
-        .no-reservations {
-        text-align: center;
-        font-size: 18px;
-        color: #555; 
-        padding: 15px;
-        margin-top: 20px;
-        }
-
-        .no-pending {
-          text-align: center;
-          font-size: 18px;
-          color: #555; 
-          padding: 15px;
-          margin-top: 20px;
-        }
-
-        .no-history {
-          text-align: center;
-          font-size: 18px;
-          color: #555; 
-          padding: 15px;
-          margin-top: 20px;
-        }
-        
         @media (max-width: 480px) {
             .no-reservations
             .no-pending
@@ -52,93 +28,9 @@
             }
         }
 
-      .approved-bookings-section {
-          width: 100%;
-          margin: auto;
-          border: 1px solid #e5e7eb;
-      }
-
-      #approved-booking-list {
-          max-height: 350px;
-          overflow-y: auto;
-          padding-right: 10px;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar {
-          width: 8px;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: linear-gradient(135deg, #1E3A8A, #3B82F6); 
-          border-radius: 10px;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar-track {
-          background: #E0E7FF; 
-      }
-
-      .custom-scrollbar {
-          scrollbar-width: thin;
-          scrollbar-color: #1E3A8A #E0E7FF; 
-      }
-
-
-      .booking-item {
-          background: white;
-          border-left: 5px solid #4CAF50;
-          padding: 12px;
-          margin-bottom: 8px;
-          border-radius: 6px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .booking-item p {
-          margin: 4px 0;
-          color: #374151;
-      }
-
-      .booking-item strong {
-          color: #111827;
-      }
-
-      .status-badge {
-          display: inline-block;
-          padding: 5px 5px;
-          border-radius: 5px;
-         font-weight: 700;
-          color: white;
-          text-transform: uppercase;
-          font-size: 12px;
-      }
-
-      .approved {
-          background-color: #1E3A8A; 
-      }
-
-      .disapproved {
-          background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
-      }
-
-      .canceled {
-          background-color: #6c757d; 
-      }
-
-      .pending {
-          background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));; 
-          color: #333; 
-      }
-
-
-
     </style>
   </head>
   <body class=" bg-gray-50" style="margin: 30px;">
-
-    <div id="toast-container" class="custom-notification fixed bottom-5 right-5 hidden">
-      <div id="toast-message" class="bg-blue-900 text-white px-4 py-2 rounded-md shadow-md">
-          Profile updated successfully!
-      </div>
-    </div>
   
   <main>
     <div class="min-h-screen p-4 md:p-8">
@@ -146,7 +38,7 @@
       <div class="flex items-center justify-between mb-6">
             <div>
                 <h1 class="text-3xl font-bold text-gray-900">
-                    Dashboard
+                    Users Registered
                     <div class="text-lg font-light text-gray-600">Approved Bookings Below</div>
                 </h1>
             </div>
@@ -162,7 +54,7 @@
                 </ul>
             </nav>
 
-            <a href="../reserve.php" 
+            <a href="../dashboard.php" 
             class="ml-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-500 transition-all duration-300 ease-in-out flex items-center">
                 ← Go Back
             </a>

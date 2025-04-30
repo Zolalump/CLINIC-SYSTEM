@@ -26,6 +26,7 @@ include '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/db.php';
     </style>
 </head>
 <body>
+
     <img class="absolute z-0 bg-contain bg-center bg-no-repeat w-full h-full sm:block hidden " src="./img/bg.jpg" alt="image1" style="opacity: 0.8">
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
 

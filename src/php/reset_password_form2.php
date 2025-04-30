@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($newPassword !== $confirmPassword) {
         $errors[] = "Passwords do not match";
     } else {
-        header('Location: /WebDa/booking/index.php');
+        header('Location: /WebDa/CLINIC-SYSTEM-3/index.php');
     }
 
     $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../font/Suisse/stylesheet.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/WebDa/booking/src/output.css">
-    <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css">
+    <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/src/output.css">
+    <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/font/Suisse/stylesheet.css">
     <title>Reset Password</title>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">

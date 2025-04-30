@@ -136,7 +136,7 @@
                 User Settings
                 <div class="text-lg font-light text-gray-600">Approved Bookings Below</div>
             </h1>
-            <a href="../reserve.php" 
+            <a href="../dashboard.php" 
               class="ml-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-500 transition-all duration-300 ease-in-out flex items-center">
                 ← Go Back
             </a>

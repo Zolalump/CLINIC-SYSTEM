@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mock student/personnel database - in a real application, this would come from a server
     const database = [
-        { id: 1, name: "John Smith", department: "basic-education", classification: "shs-11-stem", section: "Section A", age: 16 },
+        { id: 1, name: "John Smith", department: "basic-education", classification: "shs-11-stem", section: "Section A", age: 16, year: "3rd Year", position: "Student" },
         { id: 2, name: "Maria Santos", department: "basic-education", classification: "shs-11-gas", section: "Section B", age: 17 },
-        { id: 3, name: "Alex Johnson", department: "basic-education", classification: "jhs", section: "Grade 9-A", age: 15 },
+        { id: 3, name: "Alex Johnson", department: "basic-education", classification: "jhs-7", section: "Grade 9-A", age: 15 },
         { id: 4, name: "Sofia Reyes", department: "basic-education", classification: "shs-12-stem", section: "Section C", age: 18 },
         { id: 5, name: "David Kim", department: "tertiary", classification: "bscs", year: "2nd Year", age: 20 },
         { id: 6, name: "Emma Wilson", department: "basic-education", classification: "grade-school", section: "Grade 6-B", age: 12 },
@@ -186,7 +186,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Select person function
     function selectPerson(person) {
         studentNameInput.value = person.name;
         
@@ -209,10 +208,19 @@ document.addEventListener('DOMContentLoaded', function() {
         let infoText = '';
         if (person.department === 'basic-education') {
             infoText = `${person.section} | Age: ${person.age}`;
+            logEntryForm.dataset.section = person.section || ''; // Ensure section is set
+            logEntryForm.dataset.year = '';  // Clear year for basic-education
+            logEntryForm.dataset.position = '';  // Clear position for basic-education
         } else if (person.department === 'tertiary') {
             infoText = `${person.year} | Age: ${person.age}`;
+            logEntryForm.dataset.year = person.year || ''; // Ensure year is set
+            logEntryForm.dataset.section = '';  // Clear section for tertiary
+            logEntryForm.dataset.position = '';  // Clear position for tertiary
         } else if (person.department === 'personnel') {
             infoText = `${person.position} | Age: ${person.age}`;
+            logEntryForm.dataset.position = person.position || ''; // Ensure position is set
+            logEntryForm.dataset.year = '';  // Clear year for personnel
+            logEntryForm.dataset.section = '';  // Clear section for personnel
         }
         
         studentInfoEl.textContent = infoText;
@@ -223,15 +231,10 @@ document.addEventListener('DOMContentLoaded', function() {
         logEntryForm.dataset.department = person.department;
         logEntryForm.dataset.classification = person.classification;
         logEntryForm.dataset.additionalInfo = infoText;
-        
-        // Get the department and classification labels
-        const departmentLabel = departmentSelect.options[departmentSelect.selectedIndex].text;
-        const classificationLabel = classificationSelect.options[classificationSelect.selectedIndex].text;
-        
-        logEntryForm.dataset.departmentLabel = departmentLabel;
-        logEntryForm.dataset.classificationLabel = classificationLabel;
+        logEntryForm.dataset.age = person.age || '';  // Ensure age is set
     }
-
+    
+    
     // Clear form function
     function clearForm() {
         studentNameInput.value = '';
@@ -254,58 +257,92 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear button event
     clearButton.addEventListener('click', clearForm);
 
-    // Form submission
     logEntryForm.addEventListener('submit', function(event) {
         event.preventDefault();
         
-        // Validate form
         if (!logEntryForm.dataset.id) {
             showToast('Please select a student/personnel first', 'error');
             return;
         }
-        
+    
         if (!complaintsInput.value.trim()) {
             showToast('Please enter the complaints', 'error');
             complaintsInput.focus();
             return;
         }
-        
+    
         if (!interventionInput.value.trim()) {
             showToast('Please enter the intervention provided', 'error');
             interventionInput.focus();
             return;
         }
-        
-        // Create log entry
-        const now = new Date();
-        const logEntry = {
-            id: Date.now(),
-            personId: Number(logEntryForm.dataset.id),
+    
+        const payload = {
+            student_id: Number(logEntryForm.dataset.id),
             name: logEntryForm.dataset.name,
             department: logEntryForm.dataset.department,
-            departmentLabel: logEntryForm.dataset.departmentLabel,
             classification: logEntryForm.dataset.classification,
-            classificationLabel: logEntryForm.dataset.classificationLabel,
-            additionalInfo: logEntryForm.dataset.additionalInfo,
-            date: now.toLocaleDateString('en-GB'),
-            time: now.toLocaleTimeString('en-US'),
+            section: logEntryForm.dataset.section || null,
+            year: logEntryForm.dataset.year || null,
+            position: logEntryForm.dataset.position || null,
+            age: Number(logEntryForm.dataset.age) || null,
             complaints: complaintsInput.value.trim(),
             intervention: interventionInput.value.trim()
         };
-        
-        // Add to log entries
-        logEntries.unshift(logEntry); // Add to beginning of array
-        
-        // Save to local storage (in a real app, this would be sent to a server)
-        saveLogEntries();
-        
-        // Update UI
-        updateRecentEntries();
-        clearForm();
-        
-        // Show success message
-        showToast('Log entry added successfully!', 'success');
+
+    
+        // Extract section, year, position, and age from dataset.additionalInfo if available
+        const info = logEntryForm.dataset.additionalInfo;
+        if (info) {
+            // crude example, you might want to enhance this
+            const ageMatch = info.match(/Age: (\d+)/);
+            if (ageMatch) payload.age = Number(ageMatch[1]);
+    
+            const sectionMatch = info.match(/Section: ([\w\s-]+)/);
+            if (sectionMatch) payload.section = sectionMatch[1];
+    
+            const yearMatch = info.match(/Year: ([\w\s-]+)/);
+            if (yearMatch) payload.year = yearMatch[1];
+    
+            const positionMatch = info.match(/Position: ([\w\s-]+)/);
+            if (positionMatch) payload.position = positionMatch[1];
+        }
+    
+        // Send data to PHP
+        fetch('/WebDa/CLINIC-SYSTEM-3/src/php/save_entry.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.status === 'success') {
+                // Add to local view
+                const now = new Date();
+                const logEntry = {
+                    id: Date.now(),
+                    ...payload,
+                    departmentLabel: logEntryForm.dataset.departmentLabel,
+                    classificationLabel: logEntryForm.dataset.classificationLabel,
+                    additionalInfo: info,
+                    date: now.toLocaleDateString('en-GB'),
+                    time: now.toLocaleTimeString('en-US')
+                };
+                logEntries.unshift(logEntry);
+                saveLogEntries();
+                updateRecentEntries();
+                clearForm();
+                showToast('Log entry added successfully!', 'success');
+            } else {
+                showToast('Failed to save entry: ' + response.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            showToast('An error occurred. Please try again.', 'error');
+        });
     });
+    
 
     // Load log entries from local storage
     function loadLogEntries() {

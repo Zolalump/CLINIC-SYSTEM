@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMCTI</title>
+    <title>SMCTI CLINIC</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -38,25 +38,6 @@
     body {
         font-family: 'Suisse', sans-serif;
         font-weight: 400 !important;
-    }
-
-    #loading-area {
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        position: fixed;
-        left: 0;
-        top: 0;
-        opacity: 1;
-        z-index: 999999999;
-        background-image: url(../../img/logo.jpg);
-        background-repeat: no-repeat;
-        background-size: 50px;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        animation: fadeOut 1s ease-out 1s forwards; 
     }
 
     #notificationBadge {
@@ -108,8 +89,6 @@
     </style>
 </head>
 <body class="bg-gray-100">
-
-<div id="loading-area"></div>
 
 <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -186,7 +165,7 @@
            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:space-x-8 rtl:space-x-reverse 
                       md:flex-row md:mt-0 md:border-0">
                <li>
-                   <a href=".././php/reserve.php" 
+                   <a href=".././php/dashboard.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Dashboard
                    </a>

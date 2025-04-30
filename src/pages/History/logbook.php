@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMCTI Clinic Log Book</title>
+    <title>SMCTI CLINIC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -111,7 +111,7 @@
                             <a href="/WebDa/CLINIC-SYSTEM-3/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-chart-line mr-3"></i> Users
                             </a>
-                            <a href=" Settings/Profile.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                            <a href=" /WebDa/CLINIC-SYSTEM-3/src/php/Settings/Profile.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-gear mr-3"></i> Settings
                             </a>
                             <div class="border-t mt-2">
@@ -288,105 +288,19 @@
         accountDropdown?.classList.add("hidden");
     });
 
-        const tabs = document.querySelectorAll(".option-tab");
-        const selects = {
-        academic: document.getElementById("academic-select"),
-        sports: document.getElementById("sports-select"),
-        events: document.getElementById("events-select"),
-    };
 
-    let activeTab = "academic";
+    function showNotification(message, type = "success") {
+        const notification = document.createElement("div");
+        notification.className = `custom-notification ${type}`;
+        notification.innerText = message;
 
-tabs.forEach((tab) => {
-    tab.addEventListener("click", function () {
-        tabs.forEach((t) => t.classList.remove("active"));
-        this.classList.add("active");
+        document.body.appendChild(notification);
 
-        Object.values(selects).forEach((select) => (select.style.display = "none"));
-
-        activeTab = this.textContent.toLowerCase();
-        if (selects[activeTab]) {
-            selects[activeTab].style.display = "block";
-        }
-    });
-});
-
-function showNotification(message, type = "success") {
-    const notification = document.createElement("div");
-    notification.className = `custom-notification ${type}`;
-    notification.innerText = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add("fade-out");
-        setTimeout(() => notification.remove(), 500);
-    }, 3000);
-}
-
-const bookButton = document.querySelector(".book-now-btn");
-
-if (bookButton) {
-    bookButton.addEventListener("click", function () {
-        let activeTab = document.querySelector(".option-tab.font-semibold")?.innerText.toLowerCase() || "academic";
-
-        const facilityDropdown = document.querySelector(`select#${activeTab}-select`);
-        const dateInput = document.getElementById("date-select");
-        const timeSlotInput = document.getElementById("time-slot");
-        const purposeInput = document.getElementById("purpose");
-        const attendeesInput = document.getElementById("attendees");
-
-        if (!facilityDropdown || !dateInput.value || !timeSlotInput.value || !purposeInput.value || isNaN(parseInt(attendeesInput.value))) {
-            showNotification("Fill in all fields before CLINIC-SYSTEM-3.", "error");
-            return;
-        }
-
-        const requestData = {
-            facility: facilityDropdown.value,
-            date: dateInput.value,
-            timeSlot: timeSlotInput.options[timeSlotInput.selectedIndex].text.trim()
-        };
-
-        console.log("Checking availability...", requestData);
-
-        fetch("/WebDa/CLINIC-SYSTEM-3/src/php/check_availability.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(requestData).toString()
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Availability Response:", data);
-            if (data.status === "error") {
-                showNotification(data.message, "error");
-                return Promise.reject("Facility already booked.");
-            } else {
-                return fetch("/WebDa/CLINIC-SYSTEM-3/src/php/book.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        facility: requestData.facility,
-                        date: requestData.date,
-                        timeSlot: requestData.timeSlot,
-                        purpose: purposeInput.value.trim(),
-                        attendees: parseInt(attendeesInput.value, 10),
-                    })
-                });
-            }
-        })
-        .then(response => response ? response.json() : null)
-        .then(data => {
-            if (data && data.success) {
-                showNotification("CLINIC-SYSTEM-3 successful!", "success");
-            } else if (data) {
-                showNotification(data.error || "Error occurred!", "error");
-            }
-        })
-        .catch(error => {
-            console.error("Fetch Error:", error);
-        });
-    });
-}
+        setTimeout(() => {
+            notification.classList.add("fade-out");
+            setTimeout(() => notification.remove(), 500);
+        }, 3000);
+    }
 
 
     });
