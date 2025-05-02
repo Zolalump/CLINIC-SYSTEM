@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../font/Suisse/stylesheet.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="../img/logo sa smc.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/src/output.css">
     <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/font/Suisse/stylesheet.css">

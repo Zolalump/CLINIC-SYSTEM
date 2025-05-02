@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SMCTI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/img/logo.jpg">
+    <link rel="icon" href="../../img/logo sa smc.png">
     <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css">
     <style>
 
@@ -68,17 +68,6 @@
         text-align: center;
       }
 
-      .approved-bookings-section {
-          width: 100%;
-          margin: auto;
-          border: 1px solid #e5e7eb;
-      }
-
-      #approved-booking-list {
-          max-height: 350px;
-          overflow-y: auto;
-          padding-right: 10px;
-      }
 
       .custom-scrollbar::-webkit-scrollbar {
           width: 8px;
@@ -99,25 +88,6 @@
       }
 
 
-      .booking-item {
-          background: white;
-          border-left: 5px solid #4CAF50;
-          padding: 12px;
-          margin-bottom: 8px;
-          border-radius: 6px;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .booking-item p {
-          margin: 4px 0;
-          color: #374151;
-      }
-
-      .booking-item strong {
-          color: #111827;
-      }
-
-
     </style>
   </head>
   <body class=" bg-gray-50" style="margin: 30px;">
@@ -133,8 +103,7 @@
       <div class="max-w-7xl mx-auto">
         <div class="flex items-center mb-6">
             <h1 class="text-3xl font-bold text-gray-900">
-                User Settings
-                <div class="text-lg font-light text-gray-600">Approved Bookings Below</div>
+                Admin Settings
             </h1>
             <a href="../dashboard.php" 
               class="ml-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-500 transition-all duration-300 ease-in-out flex items-center">

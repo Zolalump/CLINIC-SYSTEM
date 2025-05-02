@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SMCTI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/img/logo.jpg">
+    <link rel="icon" href="../../img/logo sa smc.png">
     <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css">
     <style>
 
@@ -38,21 +38,11 @@
       <div class="flex items-center justify-between mb-6">
             <div>
                 <h1 class="text-3xl font-bold text-gray-900">
-                    Users Registered
-                    <div class="text-lg font-light text-gray-600">Approved Bookings Below</div>
+                    Dashboard
+                    <div class="text-lg font-light text-gray-600">Registered Users below</div>
                 </h1>
             </div>
             
-            <nav class="flex-1 flex justify-center">
-                <ul class="flex space-x-6 bg-white shadow-md rounded-lg px-6 py-2">
-                    <li>
-                        <a href="#" class="text-gray-700 font-medium hover:text-blue-600 transition">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="approve_books.php" class="text-gray-700 font-medium hover:text-blue-600 transition">Unavailable Facilities</a>
-                    </li>
-                </ul>
-            </nav>
 
             <a href="../dashboard.php" 
             class="ml-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-500 transition-all duration-300 ease-in-out flex items-center">
@@ -63,7 +53,7 @@
 
           <div style="width: 100%;">
             <div class="w-full bg-blue-800 p-4 rounded-lg shadow-sm">
-              <h2 class="text-2xl font-semibold mb-4" style="color: white;">Your Bookings</h2>
+              <h2 class="text-2xl font-semibold mb-4" style="color: white;">Users</h2>
 
               <div class="mb-4" style="width: 100%;">
                 <div class="flex w-full rounded-md border border-input p-1">
@@ -71,19 +61,19 @@
                     class="tab-button flex-1 justify-center rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-background text-foreground shadow-sm"
                     data-tab="active"
                   style="color: white;">
-                    Active Bookings
+                    Students
                   </button>
                   <button
                     class="tab-button flex-1 justify-center rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                     data-tab="pending"
                     style="color: white;">
-                    Pending Bookings
+                    Faculty Members
                   </button>
                   <button
                     class="tab-button flex-1 justify-center rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                     data-tab="history"
                     style="color: white;">
-                    Booking History
+                    Personels
                   </button>
                 </div>
               </div>

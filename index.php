@@ -39,7 +39,7 @@ include '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/db.php';
             </div>
           <?php endif; ?>
           <span style="text-align: center;"  class="mb-3 text-4xl font-bold text-blue-800">Login</span>
-          <span style="text-align: center;"  class="font-light text-gray-400 mb-8">Welcome Marians!</span>
+          <span style="text-align: center;"  class="font-light text-gray-400 mb-8">Welcome Admin!</span>
           <form action="/WebDa/CLINIC-SYSTEM-3/src/php/register.php" method="POST">
             <section class="py-4">
               <label class="mb-2 text-md">Email</label>

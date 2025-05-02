@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMCTI CLINIC</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="../../img/logo sa smc.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="logbook.css">
@@ -244,29 +245,30 @@
             </form>
 
             <!-- Recent Entries Section -->
-            <div class="mt-8">
-                <h2 class="text-xl font-semibold text-blue-900 mb-4">Recent Entries</h2>
-                <div class="overflow-x-auto overflow-y-auto">
-                    <table class="min-w-full bg-white rounded-lg">
-                        <thead class="bg-blue-900 text-white">
-                            <tr>
-                                <th class="py-3 px-4 text-left">Name</th>
-                                <th class="py-3 px-4 text-left">Department</th>
-                                <th class="py-3 px-4 text-left">Classification</th>
-                                <th class="py-3 px-4 text-left">Date & Time</th>
-                                <th class="py-3 px-4 text-left">Complaints</th>
-                                <th class="py-3 px-4 text-left">Intervention</th>
-                            </tr>
-                        </thead>
-                        <tbody id="recentEntries">
-                            <!-- Entries will be populated by JavaScript -->
-                            <tr class="border-b">
-                                <td colspan="6" class="py-4 px-4 text-center text-gray-500">No recent entries</td>
-                            </tr>
-                        </tbody>
+                <div class="mt-10">
+                <h2 class="text-2xl font-bold text-blue-800 mb-6">Recent Entries</h2>
+                <div class="overflow-x-auto bg-white shadow-md rounded-xl">
+                    <table class="min-w-full text-sm text-left text-gray-700">
+                    <thead class="bg-blue-900 text-white">
+                        <tr>
+                        <th class="py-4 px-6 rounded-tl-xl">Name</th>
+                        <th class="py-4 px-6">Department</th>
+                        <th class="py-4 px-6">Classification</th>
+                        <th class="py-4 px-6">Date & Time</th>
+                        <th class="py-4 px-6">Complaints</th>
+                        <th class="py-4 px-6">Intervention</th>
+                        <th class="py-4 px-6"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentEntries" class="divide-y divide-gray-200">
+                        <!-- Sample Empty Row -->
+                        <tr class="bg-gray-50 hover:bg-gray-100 transition">
+                        <td colspan="6" class="py-5 px-6 text-center text-gray-500">No recent entries</td>
+                        </tr>
+                    </tbody>
                     </table>
                 </div>
-            </div>
+                </div>
         </div>
     </main>
 
@@ -373,7 +375,6 @@
                 })
                 .catch(error => console.error("Error:", error));
         });
-
         document.addEventListener("DOMContentLoaded", function () {
             fetch("/WebDa/CLINIC-SYSTEM-3/src/php/Settings/fetch_user.php")
                 .then(response => response.json())
@@ -386,6 +387,7 @@
                 })
                 .catch(error => console.error("Error fetching user data:", error));
         });
+
     </script>
 </body>
 </html>

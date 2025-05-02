@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMCTI CLINIC</title>
+    <link rel="icon" href="../img/logo sa smc.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="./img/logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/WebDa/booking/reserve.css">
+    <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/reserve.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.mins"></script>
@@ -414,7 +414,7 @@ if (bookButton) {
         const attendeesInput = document.getElementById("attendees");
 
         if (!facilityDropdown || !dateInput.value || !timeSlotInput.value || !purposeInput.value || isNaN(parseInt(attendeesInput.value))) {
-            showNotification("Fill in all fields before booking.", "error");
+            showNotification("Fill in all fields before CLINIC-SYSTEM-3.", "error");
             return;
         }
 
@@ -426,7 +426,7 @@ if (bookButton) {
 
         console.log("Checking availability...", requestData);
 
-        fetch("/WebDa/booking/src/php/check_availability.php", {
+        fetch("/WebDa/CLINIC-SYSTEM-3/src/php/check_availability.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams(requestData).toString()
@@ -438,7 +438,7 @@ if (bookButton) {
                 showNotification(data.message, "error");
                 return Promise.reject("Facility already booked.");
             } else {
-                return fetch("/WebDa/booking/src/php/book.php", {
+                return fetch("/WebDa/CLINIC-SYSTEM-3/src/php/book.php", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -454,7 +454,7 @@ if (bookButton) {
         .then(response => response ? response.json() : null)
         .then(data => {
             if (data && data.success) {
-                showNotification("Booking successful!", "success");
+                showNotification("CLINIC-SYSTEM-3 successful!", "success");
             } else if (data) {
                 showNotification(data.error || "Error occurred!", "error");
             }
@@ -474,7 +474,7 @@ if (bookButton) {
     const notificationList = document.getElementById("notificationList"); 
 
     function fetchNotifications() {
-        fetch("/WebDa/booking/src/php/send-msg/get_messages.php")
+        fetch("/WebDa/CLINIC-SYSTEM-3/src/php/send-msg/get_messages.php")
             .then(response => {
                 console.log("Response Status:", response.status);
                 return response.json();
@@ -524,7 +524,7 @@ if (bookButton) {
         });
 
     document.querySelector("#notificationBadge").addEventListener("click", () => {
-            fetch("/WebDa/booking/src/php/send-msg/mark_notif.php", { method: "POST" })
+            fetch("/WebDa/CLINIC-SYSTEM-3/src/php/send-msg/mark_notif.php", { method: "POST" })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -538,7 +538,7 @@ if (bookButton) {
         });
 
         document.addEventListener("DOMContentLoaded", function () {
-            fetch("/WebDa/booking/src/php/Settings/fetch_user.php")
+            fetch("/WebDa/CLINIC-SYSTEM-3/src/php/Settings/fetch_user.php")
                 .then(response => response.json())
                 .then(data => {
                     if (data) {

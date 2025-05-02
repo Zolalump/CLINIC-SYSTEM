@@ -52,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
+    <title>SMCTI CLINIC</title>
+    <link rel="icon" href="../img/logo sa smc.png">ss
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/WebDa/booking/src/output.css">
     <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css">
