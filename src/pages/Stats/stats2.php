@@ -551,6 +551,26 @@
                 .catch(error => console.error('Error loading stats:', error));
         });
 
+
+        // Generate Report
+        document.getElementById('generateReport').addEventListener('click', () => {
+            window.print();
+        });
+
+        // Excel Report
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('exportStats').addEventListener('click', () => {
+                const table = document.querySelector('table'); // Adjust if needed
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.table_to_sheet(table);
+                XLSX.utils.book_append_sheet(wb, ws, "Statistics");
+                XLSX.writeFile(wb, "statistics_report.xlsx");
+            });
+        });
+
+
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
 </body>
 </html>
