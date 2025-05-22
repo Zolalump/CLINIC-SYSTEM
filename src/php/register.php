@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/vendor/autoload.php'; 
+require '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/src/vendor/autoload.php'; 
 
 if (isset($_POST['signUp'])) {
     $firstName = $_POST['fName'] ?? '';

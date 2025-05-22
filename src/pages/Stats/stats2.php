@@ -256,13 +256,6 @@
                     <canvas id="deptDistChart"></canvas>
                 </div>
             </div>
-            
-            <div class="bg-white rounded-lg shadow-md p-4 lg:col-span-2">
-                <h3 class="text-lg font-semibold text-gray-700 mb-4">Common Complaints</h3>
-                <div class="chart-container">
-                    <canvas id="complaintsChart"></canvas>
-                </div>
-            </div>
         </div>
         
 
@@ -300,111 +293,34 @@
         });
     }
 
-    document.addEventListener("click", () => {
-        accountDropdown?.classList.add("hidden");
-    });
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+            tabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
 
-        const tabs = document.querySelectorAll(".option-tab");
-        const selects = {
-        academic: document.getElementById("academic-select"),
-        sports: document.getElementById("sports-select"),
-        events: document.getElementById("events-select"),
-    };
+            Object.values(selects).forEach((select) => (select.style.display = "none"));
 
-    let activeTab = "academic";
-
-tabs.forEach((tab) => {
-    tab.addEventListener("click", function () {
-        tabs.forEach((t) => t.classList.remove("active"));
-        this.classList.add("active");
-
-        Object.values(selects).forEach((select) => (select.style.display = "none"));
-
-        activeTab = this.textContent.toLowerCase();
-        if (selects[activeTab]) {
-            selects[activeTab].style.display = "block";
-        }
-    });
-});
-
-function showNotification(message, type = "success") {
-    const notification = document.createElement("div");
-    notification.className = `custom-notification ${type}`;
-    notification.innerText = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add("fade-out");
-        setTimeout(() => notification.remove(), 500);
-    }, 3000);
-}
-
-const bookButton = document.querySelector(".book-now-btn");
-
-if (bookButton) {
-    bookButton.addEventListener("click", function () {
-        let activeTab = document.querySelector(".option-tab.font-semibold")?.innerText.toLowerCase() || "academic";
-
-        const facilityDropdown = document.querySelector(`select#${activeTab}-select`);
-        const dateInput = document.getElementById("date-select");
-        const timeSlotInput = document.getElementById("time-slot");
-        const purposeInput = document.getElementById("purpose");
-        const attendeesInput = document.getElementById("attendees");
-
-        if (!facilityDropdown || !dateInput.value || !timeSlotInput.value || !purposeInput.value || isNaN(parseInt(attendeesInput.value))) {
-            showNotification("Fill in all fields before CLINIC-SYSTEM-3.", "error");
-            return;
-        }
-
-        const requestData = {
-            facility: facilityDropdown.value,
-            date: dateInput.value,
-            timeSlot: timeSlotInput.options[timeSlotInput.selectedIndex].text.trim()
-        };
-
-        console.log("Checking availability...", requestData);
-
-        fetch("/WebDa/CLINIC-SYSTEM-3/src/php/check_availability.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(requestData).toString()
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Availability Response:", data);
-            if (data.status === "error") {
-                showNotification(data.message, "error");
-                return Promise.reject("Facility already booked.");
-            } else {
-                return fetch("/WebDa/CLINIC-SYSTEM-3/src/php/book.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        facility: requestData.facility,
-                        date: requestData.date,
-                        timeSlot: requestData.timeSlot,
-                        purpose: purposeInput.value.trim(),
-                        attendees: parseInt(attendeesInput.value, 10),
-                    })
-                });
+            activeTab = this.textContent.toLowerCase();
+            if (selects[activeTab]) {
+                selects[activeTab].style.display = "block";
             }
-        })
-        .then(response => response ? response.json() : null)
-        .then(data => {
-            if (data && data.success) {
-                showNotification("CLINIC-SYSTEM-3 successful!", "success");
-            } else if (data) {
-                showNotification(data.error || "Error occurred!", "error");
-            }
-        })
-        .catch(error => {
-            console.error("Fetch Error:", error);
         });
     });
-}
 
+    function showNotification(message, type = "success") {
+        const notification = document.createElement("div");
+        notification.className = `custom-notification ${type}`;
+        notification.innerText = message;
 
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.add("fade-out");
+            setTimeout(() => notification.remove(), 500);
+        }, 3000);
+    }
+
+       
     });
     document.addEventListener("DOMContentLoaded", function () {
     const notificationButton = document.getElementById("notificationButton");
@@ -488,6 +404,153 @@ if (bookButton) {
                 })
                 .catch(error => console.error("Error fetching user data:", error));
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('../../pages/Stats/get_stats.php') // adjust this path if needed
+                .then(res => res.json())
+                .then(data => {
+                    // Update simple text stats if you have these elements
+                    const totalVisitsElem = document.getElementById('totalVisits');
+                    if (totalVisitsElem) totalVisitsElem.textContent = data.totalVisits;
+
+                    const commonComplaintElem = document.getElementById('commonComplaint');
+                    if (commonComplaintElem) commonComplaintElem.textContent = data.commonComplaint;
+
+                    const avgDailyVisitsElem = document.getElementById('avgDailyVisits');
+                    if (avgDailyVisitsElem) avgDailyVisitsElem.textContent = data.avgDailyVisits;
+
+                    // Update department breakdown if element exists
+                    const deptBreakdownElem = document.querySelector('#deptBreakdown');
+                    if (deptBreakdownElem) {
+                        const breakdown = data.departments;
+                        deptBreakdownElem.innerHTML = `
+                            <div>Basic Education: <span class="font-bold">${breakdown['basic-education']}</span></div>
+                            <div>Tertiary: <span class="font-bold">${breakdown['tertiary']}</span></div>
+                            <div>Personnel: <span class="font-bold">${breakdown['personnel']}</span></div>
+                        `;
+                    }
+
+                    // Render charts and tables
+                    renderDeptDistChart(data.departments);
+                    renderVisitsByDayChart(data.visitsByDay);
+                    renderComplaintsChart(data.complaints);
+                    renderClassificationTable(data.classificationStats);
+                })
+                .catch(error => console.error('Error loading stats:', error));
+        });
+
+        function renderDeptDistChart(deptData) {
+            const ctx = document.getElementById('deptDistChart')?.getContext('2d');
+            if (!ctx) return;
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Basic Education', 'Tertiary', 'Personnel'],
+                    datasets: [{
+                        label: 'Department Visits',
+                        data: [
+                            deptData['basic-education'] || 0,
+                            deptData['tertiary'] || 0,
+                            deptData['personnel'] || 0
+                        ],
+                        backgroundColor: ['#1E3A8A', '#3B82F6', '#93C5FD']
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        }
+
+        function renderVisitsByDayChart(dayData) {
+            const ctx = document.getElementById('visitsByDayChart')?.getContext('2d');
+            if (!ctx) return;
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            // Convert array of {day, count} into an object for quick lookup
+            const dayCounts = {};
+            dayData.forEach(item => {
+                dayCounts[item.day] = item.count;
+            });
+
+            // Prepare data array matching the days order, defaulting to 0 if missing
+            const data = days.map(day => dayCounts[day] || 0);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: days,
+                    datasets: [{
+                        label: 'Visits',
+                        data: data,
+                        backgroundColor: '#60A5FA'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            precision: 0
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderComplaintsChart(complaints) {
+            const ctx = document.getElementById('complaintsChart')?.getContext('2d');
+            if (!ctx) return;
+
+            const labels = complaints.map(c => c.complaint);
+            const data = complaints.map(c => c.count);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Frequency',
+                        data: data,
+                        backgroundColor: '#34D399'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            precision: 0
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('../../pages/Stats/get_stats.php')
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.getElementById('statsTableBody');
+                    tbody.innerHTML = ''; // clear table body
+
+                    data.classificationStats.forEach(stat => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td class="px-4 py-3 whitespace-nowrap">${stat.classification}</td>
+                            <td class="px-4 py-3 whitespace-nowrap">${stat.visits}</td>
+                            <td class="px-4 py-3 whitespace-nowrap">${stat.commonComplaint || 'None'}</td>
+                            <td class="px-4 py-3 whitespace-nowrap">${stat.percent.toFixed(2)}%</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error loading stats:', error));
+        });
+
     </script>
 </body>
 </html>

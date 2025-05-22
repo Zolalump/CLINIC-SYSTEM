@@ -17,24 +17,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const departmentOptions = {
         "basic-education": [
             { value: "grade-school", label: "Grade School (Kinder to Grade 6)" },
-            { value: "jhs", label: "Junior High School (Grade 7 to 10)" },
-            { value: "shs-11-stem", label: "SHS Grade 11 - STEM" },
-            { value: "shs-11-gas", label: "SHS Grade 11 - GAS" },
-            { value: "shs-11-humss", label: "SHS Grade 11 - HUMSS" },
-            { value: "shs-12-stem", label: "SHS Grade 12 - STEM" },
-            { value: "shs-12-gas", label: "SHS Grade 12 - GAS" },
-            { value: "shs-12-humss", label: "SHS Grade 12 - HUMSS" }
+            { value: "JHS", label: "Junior High School (Grade 7 to 10)" },
+            { value: "SHS-11-stem", label: "SHS Grade 11 - STEM" },
+            { value: "SHS-11-gas", label: "SHS Grade 11 - GAS" },
+            { value: "SHS-11-humss", label: "SHS Grade 11 - HUMSS" },
+            { value: "SHS-12-stem", label: "SHS Grade 12 - STEM" },
+            { value: "SHS-12-gas", label: "SHS Grade 12 - GAS" },
+            { value: "SHS-12-humss", label: "SHS Grade 12 - HUMSS" }
         ],
         "tertiary": [
             { value: "abpsych", label: "Bachelor of Arts in Psychology (ABPsych.)" },
-            { value: "bsba", label: "Bachelor of Science in Business Administration (BSBA)" },
+            { value: "BSBA", label: "Bachelor of Science in Business Administration (BSBA)" },
             { value: "beed", label: "Bachelor in Elementary Education (BEED)" },
             { value: "bsed", label: "Bachelor in Secondary Education (BSED)" },
             { value: "bsce", label: "Bachelor of Science in Civil Engineering (BSCE)" },
-            { value: "bsn", label: "Bachelor of Science in Nursing (BSN)" },
+            { value: "BSN", label: "Bachelor of Science in Nursing (BSN)" },
             { value: "bshm", label: "Bachelor of Science in Hospitality Management" },
             { value: "bstm", label: "Bachelor of Science in Tourism Management (BSTM)" },
-            { value: "bscs", label: "Bachelor of Science in Computer Science (BSCS)" },
+            { value: "BSCS", label: "Bachelor of Science in Computer Science (BSCS)" },
             { value: "bscrim", label: "Bachelor of Science in Criminology (BSCrim.)" },
             { value: "graduate", label: "Graduate Education Program" },
             { value: "juris-doctor", label: "Juris Doctor Program" }
@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
             { value: "hed-admin", label: "HED Middle Level Administrator and Faculty" },
             { value: "bed-admin", label: "BED Middle Level Administrator and Faculty" },
             { value: "gs-faculty", label: "Grade School Faculty" },
-            { value: "jhs-faculty", label: "JHS Faculty" },
-            { value: "shs-faculty", label: "SHS Faculty" },
+            { value: "JHS-faculty", label: "JHS Faculty" },
+            { value: "SHS-faculty", label: "SHS Faculty" },
             { value: "finance", label: "Finance Personnel" },
             { value: "registrar", label: "Registrar's Office" },
             { value: "ict", label: "ICT Personnel" },
@@ -67,18 +67,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mock student/personnel database - in a real application, this would come from a server
     const database = [
-        { id: 1, name: "John Smith", department: "basic-education", classification: "shs-11-stem", section: "Section A", age: 16, year: "3rd Year", position: "Student" },
-        { id: 2, name: "Maria Santos", department: "basic-education", classification: "shs-11-gas", section: "Section B", age: 17 },
-        { id: 3, name: "Alex Johnson", department: "basic-education", classification: "jhs-7", section: "Grade 9-A", age: 15 },
-        { id: 4, name: "Sofia Reyes", department: "basic-education", classification: "shs-12-stem", section: "Section C", age: 18 },
-        { id: 5, name: "David Kim", department: "tertiary", classification: "bscs", year: "2nd Year", age: 20 },
-        { id: 6, name: "Emma Wilson", department: "basic-education", classification: "grade-school", section: "Grade 6-B", age: 12 },
-        { id: 7, name: "James Rodriguez", department: "tertiary", classification: "bsba", year: "3rd Year", age: 21 },
-        { id: 8, name: "Olivia Chen", department: "tertiary", classification: "bsn", year: "4th Year", age: 22 },
-        { id: 9, name: "Dr. Robert Garcia", department: "personnel", classification: "clinic", position: "School Physician", age: 45 },
-        { id: 10, name: "Ms. Patricia Lee", department: "personnel", classification: "guidance", position: "Guidance Counselor", age: 38 },
-        { id: 11, name: "Prof. Michael Brown", department: "personnel", classification: "hed-admin", position: "Department Chair", age: 50 },
-        { id: 12, name: "Mrs. Jennifer Cruz", department: "personnel", classification: "gs-faculty", position: "Grade 4 Teacher", age: 32 }
+        { id: 1, name: "John Smith", department: "basic-education", classification: "SHS-11-STEM (BED)", section: "Section A", age: 16, year: "3rd Year", position: "Student" },
+        { id: 2, name: "Maria Santos", department: "basic-education", classification: "SHS-11-GAS (BED)", section: "Section B", age: 17 },
+        { id: 3, name: "Alex Johnson", department: "basic-education", classification: "JHS-7 (BED)", section: "Grade 9-A", age: 15 },
+        { id: 4, name: "Sofia Reyes", department: "basic-education", classification: "SHS-12-STEM (BED)", section: "Section C", age: 18 },
+        { id: 5, name: "David Kim", department: "tertiary", classification: "BSCS (TEP)", year: "2nd Year", age: 20 },
+        { id: 6, name: "Emma Wilson", department: "basic-education", classification: "Grade-school (BED)", section: "Grade 6-B", age: 12 },
+        { id: 7, name: "James Rodriguez", department: "tertiary", classification: "BSBA (TEP)", year: "3rd Year", age: 21 },
+        { id: 8, name: "Olivia Chen", department: "tertiary", classification: "BSN (TEP)", year: "4th Year", age: 22 },
+        { id: 9, name: "Dr. Robert Garcia", department: "personnel", classification: "Clinic", position: "School Physician", age: 45 },
+        { id: 10, name: "Ms. Patricia Lee", department: "personnel", classification: "Guidance", position: "Guidance Counselor", age: 38 },
+        { id: 11, name: "Prof. Michael Brown", department: "personnel", classification: "Hed-admin", position: "Department Chair", age: 50 },
+        { id: 12, name: "Mrs. Jennifer Cruz", department: "personnel", classification: "Gs-faculty", position: "Grade 4 Teacher", age: 32 }
     ];
 
     // Log entries array
