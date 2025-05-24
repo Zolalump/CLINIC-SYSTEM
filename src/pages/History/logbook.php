@@ -274,21 +274,21 @@
 
     <script src="logbook.js"></script>
     <script>
-          document.addEventListener("DOMContentLoaded", function () {
-    const accountButton = document.getElementById("accountButton");
-    const accountDropdown = document.getElementById("accountDropdown")
+    document.addEventListener("DOMContentLoaded", function () {
+        const accountButton = document.getElementById("accountButton");
+        const accountDropdown = document.getElementById("accountDropdown")
 
-    if (accountButton) {
-        accountButton.addEventListener("click", (e) => {
-            e.stopPropagation();
-            accountDropdown.classList.toggle("hidden");
-            notificationDropdown.classList.add("hidden");
+        if (accountButton) {
+            accountButton.addEventListener("click", (e) => {
+                e.stopPropagation();
+                accountDropdown.classList.toggle("hidden");
+                notificationDropdown.classList.add("hidden");
+            });
+        }
+
+        document.addEventListener("click", () => {
+            accountDropdown?.classList.add("hidden");
         });
-    }
-
-    document.addEventListener("click", () => {
-        accountDropdown?.classList.add("hidden");
-    });
 
 
     function showNotification(message, type = "success") {
@@ -307,10 +307,10 @@
 
     });
     document.addEventListener("DOMContentLoaded", function () {
-    const notificationButton = document.getElementById("notificationButton");
-    const notificationDropdown = document.getElementById("notificationDropdown");
-    const notificationBadge = document.getElementById("notificationBadge"); 
-    const notificationList = document.getElementById("notificationList"); 
+        const notificationButton = document.getElementById("notificationButton");
+        const notificationDropdown = document.getElementById("notificationDropdown");
+        const notificationBadge = document.getElementById("notificationBadge"); 
+        const notificationList = document.getElementById("notificationList"); 
 
     function fetchNotifications() {
         fetch("/WebDa/CLINIC-SYSTEM-3/src/php/send-msg/get_messages.php")

@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMCTI CLINIC</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SMCTI Clinic</title>
+    <link rel="stylesheet" href="index.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="../../img/logo sa smc.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        #notificationBadge {
+                #notificationBadge {
             position: absolute;
             top: -5px;  
             right: -5px; 
@@ -65,7 +56,10 @@
     </style>
 </head>
 <body>
-<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+    <div class="container">
+
+        <!-- NavBar -->
+       <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../../img/logo.jpg" class="h-12" alt="Logo">
@@ -169,365 +163,265 @@
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <img src="https://via.placeholder.com/120" alt="Profile Picture">
-            <h3 id="profile-name">Student, User</h3>
-            <div class="menu">
-                <a href="#"><i class='bx bx-user'></i> My Profile</a>
-                <a href="#"><i class='bx bx-calendar'></i> Appointments</a>
-                <a href="#"><i class='bx bx-capsule'></i> Medications</a>
-                <a href="#" id="settings-btn"><i class='bx bx-cog'></i> Settings</a>
-            </div>
-        </div>
+        <!-- Navigation -->
+        <nav class="navigation">
+            <button class="nav-btn" data-tab="dashboard">Dashboard</button>
+            <button class="nav-btn active" data-tab="student">Student</button>
+            <button class="nav-btn" data-tab="history">History</button>
+            <button class="nav-btn" data-tab="reports">Reports</button>
+        </nav>
 
-        
-        <main>
-            <div class="section">
-                <div class="tabs">
-                    <button class="tab active" data-target="walk-ins">Walk Ins</button>
-                    <button class="tab" data-target="past">Past Appointments</button>
-                    <button class="tab" data-target="records">Medical Records</button>
-                </div>
-                <div id="walk-ins" class="slider-content active">
-                    <h3>Upcoming Walk-Ins</h3>
-                    <button onclick="showAddWalkInPopup()"><i class='bx bx-plus'></i> Add Walk-In</button>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Patient Name</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Reason</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="walk-ins-body">
-                            <!-- Walk-ins will be added here -->
-                        </tbody>
-                    </table>
-                </div>
-                <div id="past" class="slider-content">
-                    <h3>Past Appointments</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Patient Name</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Reason</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="past-body">
-                            <!-- Past appointments will be added here -->
-                        </tbody>
-                    </table>
-                </div>
-                <div id="records" class="slider-content">
-                    <h3>Medical Records</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Patient Name</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Reason</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="records-body">
-                            <!-- Medical records will be added here -->
-                        </tbody>
-                    </table>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content">
+                <div class="dashboard-content">
+                    <h2>Dashboard</h2>
+                    <p>Dashboard content will be displayed here.</p>
                 </div>
             </div>
 
-            <!-- Top Right: Chief Complaints -->
-            <div class="chief-complaints">
-                <h4>Chief Complaints <button id="edit-complaints"><i class='bx bx-edit'></i> Edit</button></h4>
-                <ul class="complaints-list">
-                    <!-- Chief complaints will be added here -->
-                </ul>
+            <!-- Student Tab -->
+            <div id="student" class="tab-content active">
+                <div class="student-layout">
+                    <!-- Student Profile Sidebar -->
+                    <div class="student-profile" id="studentProfile">
+                        <div class="profile-header">
+                            <div class="profile-image">
+                                <i class="fas fa-user"></i>
+                                <button class="edit-profile-btn" title="Edit Profile">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </div>
+                            <h3>Student, User</h3>
+                            <p>studentuser@gmail.com</p>
+                        </div>
+
+                        <div class="appointments-section">
+                            <h4>Appointments</h4>
+                            <div class="appointment-stats">
+                                <div class="stat">
+                                    <div class="stat-number">5</div>
+                                    <div class="stat-label">Past</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-number">2</div>
+                                    <div class="stat-label">Upcoming</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="student-details">
+                            <div class="detail-row">
+                                <span class="label">Course and Year</span>
+                                <span class="value">xxxxxxxxxxxx</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">ID number</span>
+                                <span class="value">xxxxxxxxxxxx</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Gender</span>
+                                <span class="value">Female</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Birthdate</span>
+                                <span class="value">Oct 25, 1992</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Phone number</span>
+                                <span class="value">xxxxxxxxxxxx</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Address</span>
+                                <span class="value">xxxxxxxxxxxx</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">BP</span>
+                                <span class="value">xxxxxxxxxxxx</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Weight</span>
+                                <span class="value">xxxxxxxxxxxx</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Temp</span>
+                                <span class="value">xxxxxxxxxxxx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Student Content -->
+                    <div class="student-main">
+                        <!-- Tab Navigation + Edit Records Button -->
+                        <div class="student-tabs-and-edit">
+                            <div class="student-tabs">
+                                <button class="student-tab active" data-student-tab="records">Records</button>
+                                <button class="student-tab" data-student-tab="medical-records">Medical Records</button>
+                            </div>
+                            <!-- EDIT BUTTON moved here -->
+                            <button class="edit-btn" data-edit="records" id="editRecordsBtn">
+                                <i class="fas fa-pen"></i> Edit Records
+                            </button>
+                        </div>
+
+                        <!-- Records Content -->
+                        <div id="records" class="student-tab-content active">
+                            <div class="records-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Assigned Nurse</th>
+                                            <th>Date</th>
+                                            <th>Disease</th>
+                                            <th>Status</th>
+                                            <!-- Removed inline edit/delete buttons from table -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Records loaded dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Medications Section -->
+                            <div class="medications-section">
+                                <div class="section-header">
+                                    <h3><i class="fas fa-pills"></i> Medications</h3>
+                                    <button class="edit-btn" data-edit="medications">
+                                        <i class="fas fa-pen"></i> Edit
+                                    </button>
+                                </div>
+                                <div class="medications-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Start Date</th>
+                                                <th>Assigned by</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Loaded dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Medical Records Content -->
+                        <div id="medical-records" class="student-tab-content">
+                            <p>Medical records content will be displayed here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <div class="right-sidebar">
+                        <!-- Chief Complaints -->
+                        <div class="chief-complaints">
+                            <div class="section-header">
+                                <h3>Chief Complaints</h3>
+                                <button class="edit-btn" data-edit="complaints">
+                                    <i class="fas fa-pen"></i> Edit
+                                </button>
+                            </div>
+                            <div class="complaints-list" id="complaintsList">
+                                <!-- Complaints loaded dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Notes Section -->
+                        <div class="notes-section">
+                            <div class="section-header">
+                                <h3>Notes</h3>
+                                <button class="add-notes-btn" data-edit="notes">
+                                    <i class="fas fa-plus"></i> Add Notes
+                                </button>
+                            </div>
+                            <div class="notes-content">
+                                <p class="notes-subtitle">Add notes for other info</p>
+                                <textarea class="notes-textarea" placeholder="Add text..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Bottom Left: Medications -->
-            <div class="section">
-                <h4>Medications <button id="edit-medications"><i class='bx bx-edit'></i> Edit</button></h4>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Start Date</th>
-                            <th>Assigned by</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="medications-body">
-                        <!-- Medications will be added here -->
-                    </tbody>
-                </table>
+            <!-- History Tab -->
+            <div id="history" class="tab-content">
+                <div class="history-content">
+                    <h2>History</h2>
+                    <p>History content will be displayed here.</p>
+                </div>
             </div>
 
-            <!-- Bottom Right: Notes -->
-            <div class="section">
-                <h4>Notes</h4>
-                <input type="text" id="title-input" placeholder="Title" style=" margin-top: 5px;"/>
-                <textarea id="note-input" rows="4" placeholder="Type your note here..." style="width: 370px;"></textarea>
-                <button id="add-note"><i class='bx bx-plus'></i> Add Note</button>
-                <button id="view-notes"><i class='bx bx-note'></i> View Notes</button>
+            <!-- Reports Tab -->
+            <div id="reports" class="tab-content">
+                <div class="reports-content">
+                    <h2>Reports</h2>
+                    <p>Reports content will be displayed here.</p>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- Popup for Adding Walk-Ins -->
-    <div id="add-walkin-popup" class="overlay">
-        <div class="popup-form">
-            <span id="close-add-walkin" onclick="closeAddWalkInPopup()">&times;</span>
-            <h4>Add Walk-In</h4>
-            <form id="add-walkin-form">
-                <input type="text" id="patient-name" placeholder="Patient Name" required>
-                <input type="date" id="walkin-date" required>
-                <input type="time" id="walkin-time" required>
-                <select id="walkin-reason" required>
-                    <option value="">Select Reason</option>
-                    <option value="Other">Other (Specify)</option>
-                </select>
-                <input type="text" id="other-reason" placeholder="Specify Reason" style="display: none;">
-                <select id="walkin-status" required>
-                    <option value="Scheduled">Scheduled</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Completed">Completed</option>
-                </select>
-                <button type="submit"><i class='bx bx-save'></i> Save</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Popup for Editing Medications -->
-    <div id="medication-popup-overlay" class="overlay">
-        <div class="popup-form">
-            <span id="close-medication-popup">&times;</span>
-            <h4>Edit Medication</h4>
-            <div id="medication-form-content">
-                <label for="med-name">Name:</label>
-                <input type="text" id="med-name" placeholder="Medication Name" required>
-                <label for="med-date">Start Date:</label>
-                <input type="date" id="med-date" required>
-                <label for="med-status">Status:</label>
-                <select id="med-status" required>
-                    <option value="Process">Process</option>
-                    <option value="Complete">Complete</option>
-                </select>
+    <!-- Modal for editing -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Edit</h3>
+                <span class="close">&times;</span>
             </div>
-            <button id="submit-medication">Submit</button>
-        </div>
-    </div>
-
-    <!-- Popup for Editing Complaints -->
-    <div id="complaint-popup-overlay" class="overlay">
-        <div class="popup-form">
-            <span id="close-complaint-popup">&times;</span>
-            <h4>Edit Complaint</h4>
-            <div id="complaint-form-content">
-                <label for="complaint-name">Name:</label>
-                <input type="text" id="complaint-name" placeholder="Complaint Name" required>
-                <label for="complaint-severity">Severity:</label>
-                <select id="complaint-severity" required>
-                    <option value="Mild">Mild</option>
-                    <option value="Moderate">Moderate</option>
-                    <option value="Severe">Severe</option>
-                </select>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content will be inserted here -->
             </div>
-            <button id="submit-complaint">Submit</button>
-        </div>
-    </div>
-
-    <!-- Popup for Notes -->
-    <div id="notes-popup" class="overlay">
-        <div class="popup-form notes-popup">
-            <span id="close-notes-popup">&times;</span>
-            <h4>Notes</h4>
-            <div id="notes-list"></div>
-            <div class="note-content" id="note-content">Select a note to view details</div>
-            <div class="bottom-buttons">
-                <button id="prev-note"><i class='bx bx-chevron-left'></i> Previous</button>
-                <button id="next-note">Next <i class='bx bx-chevron-right'></i></button>
-                <button id="delete-note"><i class='bx bx-trash'></i> Delete</button>
-                <button id="restore-note"><i class='bx bx-undo'></i> Restore</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Popup for Settings -->
-    <div id="settings-popup" class="overlay">
-        <div class="popup-form">
-            <span id="close-settings-popup">&times;</span>
-            <h4>Settings</h4>
-            <div class="settings-content">
-                <label for="dark-mode-toggle">Dark Mode:</label>
-                <label class="switch">
-                    <input type="checkbox" id="dark-mode-toggle">
-                    <span class="slider round"></span>
-                </label>
-                <label for="profile-name-input">Change Name:</label>
-                <input type="text" id="profile-name-input" placeholder="Enter new name">
-                <button id="save-profile-name"><i class='bx bx-save'></i> Save</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Popup for Walk-In Details -->
-    <div id="detail-popup" class="overlay">
-        <div class="popup-form">
-            <span id="close-detail-popup">&times;</span>
-            <h4>Walk-In Details</h4>
-            <div class="detail-content">
-                <p><strong>Patient Name:</strong> <span id="detail-patient-name"></span></p>
-                <p><strong>Date:</strong> <span id="detail-date"></span></p>
-                <p><strong>Time:</strong> <span id="detail-time"></span></p>
-                <p><strong>Reason:</strong> <span id="detail-reason"></span></p>
-                <p><strong>Status:</strong> <span id="detail-status"></span></p>
-                <h5>Chief Complaints</h5>
-                <ul id="detail-complaints"></ul>
-                <h5>Medications</h5>
-                <ul id="detail-medications"></ul>
-                <h5>Notes</h5>
-                <div id="detail-notes"></div>
+            <div class="modal-footer">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save">Save</button>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
     <script>
-          document.addEventListener("DOMContentLoaded", function () {
-    const accountButton = document.getElementById("accountButton");
-    const accountDropdown = document.getElementById("accountDropdown")
+    document.addEventListener("DOMContentLoaded", function () {
+        const accountButton = document.getElementById("accountButton");
+        const accountDropdown = document.getElementById("accountDropdown")
 
-    if (accountButton) {
-        accountButton.addEventListener("click", (e) => {
-            e.stopPropagation();
-            accountDropdown.classList.toggle("hidden");
-            notificationDropdown.classList.add("hidden");
+        if (accountButton) {
+            accountButton.addEventListener("click", (e) => {
+                e.stopPropagation();
+                accountDropdown.classList.toggle("hidden");
+                notificationDropdown.classList.add("hidden");
+            });
+        }
+
+        document.addEventListener("click", () => {
+            accountDropdown?.classList.add("hidden");
         });
+
+
+    function showNotification(message, type = "success") {
+        const notification = document.createElement("div");
+        notification.className = `custom-notification ${type}`;
+        notification.innerText = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.add("fade-out");
+            setTimeout(() => notification.remove(), 500);
+        }, 3000);
     }
-
-    document.addEventListener("click", () => {
-        accountDropdown?.classList.add("hidden");
-    });
-
-        const tabs = document.querySelectorAll(".option-tab");
-        const selects = {
-        academic: document.getElementById("academic-select"),
-        sports: document.getElementById("sports-select"),
-        events: document.getElementById("events-select"),
-    };
-
-    let activeTab = "academic";
-
-tabs.forEach((tab) => {
-    tab.addEventListener("click", function () {
-        tabs.forEach((t) => t.classList.remove("active"));
-        this.classList.add("active");
-
-        Object.values(selects).forEach((select) => (select.style.display = "none"));
-
-        activeTab = this.textContent.toLowerCase();
-        if (selects[activeTab]) {
-            selects[activeTab].style.display = "block";
-        }
-    });
-});
-
-function showNotification(message, type = "success") {
-    const notification = document.createElement("div");
-    notification.className = `custom-notification ${type}`;
-    notification.innerText = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add("fade-out");
-        setTimeout(() => notification.remove(), 500);
-    }, 3000);
-}
-
-const bookButton = document.querySelector(".book-now-btn");
-
-if (bookButton) {
-    bookButton.addEventListener("click", function () {
-        let activeTab = document.querySelector(".option-tab.font-semibold")?.innerText.toLowerCase() || "academic";
-
-        const facilityDropdown = document.querySelector(`select#${activeTab}-select`);
-        const dateInput = document.getElementById("date-select");
-        const timeSlotInput = document.getElementById("time-slot");
-        const purposeInput = document.getElementById("purpose");
-        const attendeesInput = document.getElementById("attendees");
-
-        if (!facilityDropdown || !dateInput.value || !timeSlotInput.value || !purposeInput.value || isNaN(parseInt(attendeesInput.value))) {
-            showNotification("Fill in all fields before CLINIC-SYSTEM-3.", "error");
-            return;
-        }
-
-        const requestData = {
-            facility: facilityDropdown.value,
-            date: dateInput.value,
-            timeSlot: timeSlotInput.options[timeSlotInput.selectedIndex].text.trim()
-        };
-
-        console.log("Checking availability...", requestData);
-
-        fetch("/WebDa/CLINIC-SYSTEM-3/src/php/check_availability.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(requestData).toString()
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Availability Response:", data);
-            if (data.status === "error") {
-                showNotification(data.message, "error");
-                return Promise.reject("Facility already booked.");
-            } else {
-                return fetch("/WebDa/CLINIC-SYSTEM-3/src/php/book.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        facility: requestData.facility,
-                        date: requestData.date,
-                        timeSlot: requestData.timeSlot,
-                        purpose: purposeInput.value.trim(),
-                        attendees: parseInt(attendeesInput.value, 10),
-                    })
-                });
-            }
-        })
-        .then(response => response ? response.json() : null)
-        .then(data => {
-            if (data && data.success) {
-                showNotification("CLINIC-SYSTEM-3 successful!", "success");
-            } else if (data) {
-                showNotification(data.error || "Error occurred!", "error");
-            }
-        })
-        .catch(error => {
-            console.error("Fetch Error:", error);
-        });
-    });
-}
 
 
     });
     document.addEventListener("DOMContentLoaded", function () {
-    const notificationButton = document.getElementById("notificationButton");
-    const notificationDropdown = document.getElementById("notificationDropdown");
-    const notificationBadge = document.getElementById("notificationBadge"); 
-    const notificationList = document.getElementById("notificationList"); 
+        const notificationButton = document.getElementById("notificationButton");
+        const notificationDropdown = document.getElementById("notificationDropdown");
+        const notificationBadge = document.getElementById("notificationBadge"); 
+        const notificationList = document.getElementById("notificationList"); 
 
     function fetchNotifications() {
         fetch("/WebDa/CLINIC-SYSTEM-3/src/php/send-msg/get_messages.php")
@@ -592,7 +486,6 @@ if (bookButton) {
                 })
                 .catch(error => console.error("Error:", error));
         });
-
         document.addEventListener("DOMContentLoaded", function () {
             fetch("/WebDa/CLINIC-SYSTEM-3/src/php/Settings/fetch_user.php")
                 .then(response => response.json())
@@ -605,7 +498,7 @@ if (bookButton) {
                 })
                 .catch(error => console.error("Error fetching user data:", error));
         });
+
     </script>
-    
 </body>
 </html>
