@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
             { value: "community", label: "Community Involvement Program" },
             { value: "maintenance", label: "Maintenance Personnel" },
             { value: "janitorial", label: "Outsourced Janitorial Services" }
-        ]
-    };
+        ] 
+    }
 
     // Mock student/personnel database - in a real application, this would come from a server
     const database = [
@@ -428,69 +428,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td class="py-3 px-4">${entry.date} ${entry.time}</td>
                 <td class="py-3 px-4">${truncateText(entry.complaints, 30)}</td>
                 <td class="py-3 px-4">${truncateText(entry.intervention, 30)}</td>
-                <td class="py-3 px-4 relative">
-                    <button class="delete-button bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md text-sm" 
-                            data-entry-id="${entry.id}">
-                        <i class="fas fa-trash-alt"></i> Delete
-                    </button>
-                    <div class="delete-options hidden absolute right-0 bg-white border border-gray-200 rounded-md shadow-lg mt-1 z-10 w-48">
-                        <p class="px-4 py-2 text-sm font-medium border-b border-gray-200">Reason for deletion:</p>
-                        <button class="delete-reason w-full text-left px-4 py-2 text-sm hover:bg-gray-100" 
-                                data-reason="Duplicate Entry" data-entry-id="${entry.id}">
-                            Duplicate Entry
-                        </button>
-                        <button class="delete-reason w-full text-left px-4 py-2 text-sm hover:bg-gray-100" 
-                                data-reason="Incorrect Information" data-entry-id="${entry.id}">
-                            Incorrect Information
-                        </button>
-                        <button class="delete-reason w-full text-left px-4 py-2 text-sm hover:bg-gray-100" 
-                                data-reason="Entry Resolved" data-entry-id="${entry.id}">
-                            Entry Resolved
-                        </button>
-                        <button class="delete-reason w-full text-left px-4 py-2 text-sm hover:bg-gray-100" 
-                                data-reason="Other" data-entry-id="${entry.id}">
-                            Other
-                        </button>
-                    </div>
-                </td>
             `;
             
             recentEntriesTable.appendChild(row);
         });
         
-        // Add event listeners for delete buttons
-        document.querySelectorAll('.delete-button').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.stopPropagation();
-                
-                // Close all other dropdowns first
-                closeAllDeleteDropdowns();
-                
-                // Show this dropdown
-                const dropdown = this.nextElementSibling;
-                dropdown.classList.toggle('hidden');
-            });
-        });
-        
-        // Add event listeners for delete reason buttons
-        document.querySelectorAll('.delete-reason').forEach(button => {
-            button.addEventListener('click', function() {
-                const entryId = Number(this.dataset.entryId);
-                const reason = this.dataset.reason;
-                
-                if (reason === 'Other') {
-                    const customReason = prompt('Please specify the reason for deletion:');
-                    if (customReason) {
-                        deleteEntry(entryId, customReason);
-                    }
-                } else {
-                    deleteEntry(entryId, reason);
-                }
-                
-                // Hide the dropdown
-                this.closest('.delete-options').classList.add('hidden');
-            });
-        });
     }
 
     // Helper function to format department name for display

@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMCTI Clinic</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-                #notificationBadge {
+        .complaints-list {
+            max-height: 300px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        
+        .container2 {
+            background: white;
+            width: 95vw;
+            height: 100vh;
+            border-radius: 10px;
+            transform: scale(0.90);
+            transform-origin: top center;
+            position: relative;
+        }
+
+        
+        body {
+            font-family: 'Suisse', sans-serif;
+            font-weight: 400 !important;
+        }
+
+        #notificationBadge {
             position: absolute;
             top: -5px;  
             right: -5px; 
@@ -53,13 +81,16 @@
         .fade-out {
             opacity: 0;
         }
+
+        .search-section {
+            left: -30px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
 
-        <!-- NavBar -->
-       <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
+<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../../img/logo.jpg" class="h-12" alt="Logo">
@@ -162,110 +193,57 @@
             </div>
         </div>
     </nav>
+            
+        <main class="main-content mt-24">
+            <div class="search-section mb-5">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search students..." id="searchInput">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-results" id="searchResults" style="display: none;"></div>
+            </div>
 
-        <!-- Navigation -->
-        <nav class="navigation">
-            <button class="nav-btn" data-tab="dashboard">Dashboard</button>
-            <button class="nav-btn active" data-tab="student">Student</button>
-            <button class="nav-btn" data-tab="history">History</button>
-            <button class="nav-btn" data-tab="reports">Reports</button>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard Tab -->
             <div id="dashboard" class="tab-content">
                 <div class="dashboard-content">
                     <h2>Dashboard</h2>
                     <p>Dashboard content will be displayed here.</p>
                 </div>
             </div>
-
-            <!-- Student Tab -->
             <div id="student" class="tab-content active">
                 <div class="student-layout">
-                    <!-- Student Profile Sidebar -->
                     <div class="student-profile" id="studentProfile">
                         <div class="profile-header">
                             <div class="profile-image">
                                 <i class="fas fa-user"></i>
-                                <button class="edit-profile-btn" title="Edit Profile">
+                                <button class="edit-profile-btn" title="Edit Profile" data-edit="profile">
                                     <i class="fas fa-pen"></i>
                                 </button>
                             </div>
-                            <h3>Student, User</h3>
-                            <p>studentuser@gmail.com</p>
+                            <h3 id="student-name">Student, User</h3>
+                            <p id="student-email">studentuser@gmail.com</p>
                         </div>
-
-                        <div class="appointments-section">
-                            <h4>Appointments</h4>
-                            <div class="appointment-stats">
-                                <div class="stat">
-                                    <div class="stat-number">5</div>
-                                    <div class="stat-label">Past</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-number">2</div>
-                                    <div class="stat-label">Upcoming</div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="student-details">
-                            <div class="detail-row">
-                                <span class="label">Course and Year</span>
-                                <span class="value">xxxxxxxxxxxx</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">ID number</span>
-                                <span class="value">xxxxxxxxxxxx</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">Gender</span>
-                                <span class="value">Female</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">Birthdate</span>
-                                <span class="value">Oct 25, 1992</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">Phone number</span>
-                                <span class="value">xxxxxxxxxxxx</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">Address</span>
-                                <span class="value">xxxxxxxxxxxx</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">BP</span>
-                                <span class="value">xxxxxxxxxxxx</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">Weight</span>
-                                <span class="value">xxxxxxxxxxxx</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="label">Temp</span>
-                                <span class="value">xxxxxxxxxxxx</span>
-                            </div>
+                            <div class="detail-row"><span class="label">Course and Year</span><span class="value" id="student-course">Computer Science - 4th Year</span></div>
+                            <div class="detail-row"><span class="label">ID number</span><span class="value" id="student-id">2020-12345</span></div>
+                            <div class="detail-row"><span class="label">Gender</span><span class="value" id="student-gender">Female</span></div>
+                            <div class="detail-row"><span class="label">Birthdate</span><span class="value" id="student-birthdate">Oct 25, 1992</span></div>
+                            <div class="detail-row"><span class="label">Phone number</span><span class="value" id="student-phone">0912-345-6789</span></div>
+                            <div class="detail-row"><span class="label">Address</span><span class="value" id="student-address">123 Main St., City</span></div>
+                            <div class="detail-row"><span class="label">BP</span><span class="value" id="student-bp">120/80 mmHg</span></div>
+                            <div class="detail-row"><span class="label">Weight</span><span class="value" id="student-weight">65 kg</span></div>
+                            <div class="detail-row"><span class="label">Temp</span><span class="value" id="student-temp">36.5°C</span></div>
                         </div>
                     </div>
-
-                    <!-- Main Student Content -->
                     <div class="student-main">
-                        <!-- Tab Navigation + Edit Records Button -->
                         <div class="student-tabs-and-edit">
                             <div class="student-tabs">
                                 <button class="student-tab active" data-student-tab="records">Records</button>
                                 <button class="student-tab" data-student-tab="medical-records">Medical Records</button>
                             </div>
-                            <!-- EDIT BUTTON moved here -->
-                            <button class="edit-btn" data-edit="records" id="editRecordsBtn">
+                            <button class="edit-btn" id="editRecordsBtn" data-edit="records">
                                 <i class="fas fa-pen"></i> Edit Records
                             </button>
                         </div>
-
-                        <!-- Records Content -->
                         <div id="records" class="student-tab-content active">
                             <div class="records-table">
                                 <table>
@@ -274,133 +252,125 @@
                                             <th>Assigned Nurse</th>
                                             <th>Date</th>
                                             <th>Disease</th>
-                                            <th>Status</th>
-                                            <!-- Removed inline edit/delete buttons from table -->
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <!-- Records loaded dynamically -->
+                                    <tbody id="recordsTableBody">
+                                        <tr><td colspan="4" style="text-align:center; color:#aaa; font-style:italic;">No records yet</td></tr>
                                     </tbody>
                                 </table>
                             </div>
-
-                            <!-- Medications Section -->
                             <div class="medications-section">
                                 <div class="section-header">
                                     <h3><i class="fas fa-pills"></i> Medications</h3>
-                                    <button class="edit-btn" data-edit="medications">
-                                        <i class="fas fa-pen"></i> Edit
-                                    </button>
                                 </div>
                                 <div class="medications-table">
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Start Date</th>
-                                                <th>Assigned by</th>
-                                                <th>Status</th>
+                                                <th>Medicine Name</th>
+                                                <th>Dosage</th>
+                                                <th>Date</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <!-- Loaded dynamically -->
+                                        <tbody id="medicationsTableBody">
+                                            <tr><td colspan="3" style="text-align:center; color:#aaa; font-style:italic;">No medications yet</td></tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Medical Records Content -->
                         <div id="medical-records" class="student-tab-content">
                             <p>Medical records content will be displayed here.</p>
                         </div>
                     </div>
-
-                    <!-- Right Sidebar -->
                     <div class="right-sidebar">
-                        <!-- Chief Complaints -->
                         <div class="chief-complaints">
                             <div class="section-header">
-                                <h3>Chief Complaints</h3>
+                                <h3><i class="fas fa-stethoscope"></i> Chief Complaints</h3>
                                 <button class="edit-btn" data-edit="complaints">
                                     <i class="fas fa-pen"></i> Edit
                                 </button>
                             </div>
                             <div class="complaints-list" id="complaintsList">
-                                <!-- Complaints loaded dynamically -->
+                                <div class="complaints-empty" id="complaintsEmpty">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <div>No complaints yet</div>
+                                </div>
+                                <div class="complaints-content" id="complaintsContent" style="display: none;">
+                                    <!-- Dynamic complaints will be added here -->
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Notes Section -->
                         <div class="notes-section">
                             <div class="section-header">
-                                <h3>Notes</h3>
+                                <h3><i class="fas fa-sticky-note"></i> Notes</h3>
                                 <button class="add-notes-btn" data-edit="notes">
                                     <i class="fas fa-plus"></i> Add Notes
                                 </button>
                             </div>
                             <div class="notes-content">
                                 <p class="notes-subtitle">Add notes for other info</p>
-                                <textarea class="notes-textarea" placeholder="Add text..."></textarea>
+                                <textarea class="notes-textarea" id="notesTextarea" placeholder="No notes yet." readonly></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- History Tab -->
-            <div id="history" class="tab-content">
-                <div class="history-content">
-                    <h2>History</h2>
-                    <p>History content will be displayed here.</p>
+            <!-- Enhanced Modal Structure -->
+            <div id="editModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Edit</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-cancel" id="cancelBtn">Cancel</button>
+                        <button class="btn-save" id="saveBtn">Save Changes</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Reports Tab -->
-            <div id="reports" class="tab-content">
-                <div class="reports-content">
-                    <h2>Reports</h2>
-                    <p>Reports content will be displayed here.</p>
+            <!-- Success/Error Notification -->
+            <div id="notification" class="notification">
+                <div class="notification-content">
+                    <i class="notification-icon"></i>
+                    <span class="notification-message"></span>
                 </div>
             </div>
+
         </main>
     </div>
-
-    <!-- Modal for editing -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Edit</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Dynamic content will be inserted here -->
-            </div>
-            <div class="modal-footer">
-                <button class="btn-cancel">Cancel</button>
-                <button class="btn-save">Save</button>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const accountButton = document.getElementById("accountButton");
-        const accountDropdown = document.getElementById("accountDropdown")
+                  document.addEventListener("DOMContentLoaded", function () {
+    const accountButton = document.getElementById("accountButton");
+    const accountDropdown = document.getElementById("accountDropdown")
 
-        if (accountButton) {
-            accountButton.addEventListener("click", (e) => {
-                e.stopPropagation();
-                accountDropdown.classList.toggle("hidden");
-                notificationDropdown.classList.add("hidden");
-            });
-        }
-
-        document.addEventListener("click", () => {
-            accountDropdown?.classList.add("hidden");
+    if (accountButton) {
+        accountButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            accountDropdown.classList.toggle("hidden");
+            notificationDropdown.classList.add("hidden");
         });
+    }
 
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+            tabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+
+            Object.values(selects).forEach((select) => (select.style.display = "none"));
+
+            activeTab = this.textContent.toLowerCase();
+            if (selects[activeTab]) {
+                selects[activeTab].style.display = "block";
+            }
+        });
+    });
 
     function showNotification(message, type = "success") {
         const notification = document.createElement("div");
@@ -415,13 +385,13 @@
         }, 3000);
     }
 
-
+       
     });
     document.addEventListener("DOMContentLoaded", function () {
-        const notificationButton = document.getElementById("notificationButton");
-        const notificationDropdown = document.getElementById("notificationDropdown");
-        const notificationBadge = document.getElementById("notificationBadge"); 
-        const notificationList = document.getElementById("notificationList"); 
+    const notificationButton = document.getElementById("notificationButton");
+    const notificationDropdown = document.getElementById("notificationDropdown");
+    const notificationBadge = document.getElementById("notificationBadge"); 
+    const notificationList = document.getElementById("notificationList"); 
 
     function fetchNotifications() {
         fetch("/WebDa/CLINIC-SYSTEM-3/src/php/send-msg/get_messages.php")
@@ -486,6 +456,7 @@
                 })
                 .catch(error => console.error("Error:", error));
         });
+
         document.addEventListener("DOMContentLoaded", function () {
             fetch("/WebDa/CLINIC-SYSTEM-3/src/php/Settings/fetch_user.php")
                 .then(response => response.json())
@@ -498,7 +469,6 @@
                 })
                 .catch(error => console.error("Error fetching user data:", error));
         });
-
     </script>
 </body>
 </html>

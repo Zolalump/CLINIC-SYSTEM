@@ -1,3 +1,29 @@
+<?php
+session_start();
+include 'db.php';
+
+// Total Patients
+$totalPatients = $conn->query("SELECT COUNT(*) AS total FROM log_entries")->fetch_assoc()['total'];
+
+// Today's Walk-ins
+$todayWalkins = $conn->query("SELECT COUNT(*) AS today FROM log_entries WHERE DATE(timestamp) = CURDATE()")->fetch_assoc()['today'];
+
+// Daily Average
+$daysCountQuery = $conn->query("SELECT COUNT(DISTINCT DATE(timestamp)) AS days FROM log_entries");
+$days = $daysCountQuery->fetch_assoc()['days'] ?: 1; // Avoid division by zero
+$dailyAverage = round($totalPatients / $days, 1);
+
+// Monthly Visits
+$monthlyVisits = $conn->query("SELECT COUNT(*) AS month FROM log_entries WHERE MONTH(timestamp) = MONTH(CURDATE()) AND YEAR(timestamp) = YEAR(CURDATE())")->fetch_assoc()['month'];
+
+// Fetch 10 most recent entries
+$recentEntries = $conn->query("SELECT name, department, classification, timestamp, complaints, intervention 
+                               FROM log_entries 
+                               ORDER BY timestamp DESC 
+                               LIMIT 10");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,135 +237,109 @@
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <!-- Metric Card 1 -->
                 <div class="bg-white rounded-lg shadow-lg">
-                  <div
-                    class="flex flex-row items-center justify-between p-4 pb-2"
-                  >
-                    <p class="text-sm font-medium text-gray-500">
-                      Total Patients
-                    </p>
-                    <div
-                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
-                    >
-                      <i class="fas fa-users"></i>
+                    <div class="flex flex-row items-center justify-between p-4 pb-2">
+                      <p class="text-sm font-medium text-gray-500">Total Patients</p>
+                      <div class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                      <div class="text-2xl font-bold"><?= $totalPatients ?></div>
+                      <div class="flex items-center mt-1">
+                        <span class="text-xs text-blue-800">↑</span>
+                        <span class="text-xs text-gray-500 ml-1">All registered patients</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="p-4 pt-0">
-                    <div class="text-2xl font-bold">1,248</div>
-                    <div class="flex items-center mt-1">
-                      <span class="text-xs text-blue-800">↑ 12%</span>
-                      <span class="text-xs text-gray-500 ml-1"
-                        >All registered patients</span
-                      >
-                    </div>
-                  </div>
-                </div>
 
                 <!-- Metric Card 2 -->
-                <div class="bg-white rounded-lg shadow-lg">
-                  <div
-                    class="flex flex-row items-center justify-between p-4 pb-2"
-                  >
-                    <p class="text-sm font-medium text-gray-500">
-                      Today's Walk-ins
-                    </p>
-                    <div
-                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
-                    >
+                  <div class="bg-white rounded-lg shadow-lg">
+                  <div class="flex flex-row items-center justify-between p-4 pb-2">
+                    <p class="text-sm font-medium text-gray-500">Today's Walk-ins</p>
+                    <div class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center">
                       <i class="fas fa-user-plus"></i>
                     </div>
                   </div>
                   <div class="p-4 pt-0">
-                    <div class="text-2xl font-bold">42</div>
+                    <div class="text-2xl font-bold"><?= $todayWalkins ?></div>
                     <div class="flex items-center mt-1">
-                      <span class="text-xs text-blue-800">↑ 8%</span>
-                      <span class="text-xs text-gray-500 ml-1"
-                        >Unscheduled visits today</span
-                      >
+                      <span class="text-xs text-blue-800">↑</span>
+                      <span class="text-xs text-gray-500 ml-1">Unscheduled visits today</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- Metric Card 3 -->
-                <div class="bg-white rounded-lg shadow-lg">
-                  <div
-                    class="flex flex-row items-center justify-between p-4 pb-2"
-                  >
-                    <p class="text-sm font-medium text-gray-500">
-                      Daily Average
-                    </p>
-                    <div
-                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
-                    >
+                 <div class="bg-white rounded-lg shadow-lg">
+                  <div class="flex flex-row items-center justify-between p-4 pb-2">
+                    <p class="text-sm font-medium text-gray-500">Daily Average</p>
+                    <div class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center">
                       <i class="fas fa-chart-line"></i>
                     </div>
                   </div>
                   <div class="p-4 pt-0">
-                    <div class="text-2xl font-bold">18.3</div>
+                    <div class="text-2xl font-bold"><?= $dailyAverage ?></div>
                     <div class="flex items-center mt-1">
-                      <span class="text-xs text-red-500">↓ 3%</span>
-                      <span class="text-xs text-gray-500 ml-1"
-                        >Patients per day</span
-                      >
+                      <span class="text-xs text-red-500">↓</span>
+                      <span class="text-xs text-gray-500 ml-1">Patients per day</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- Metric Card 4 -->
-                <div class="bg-white rounded-lg shadow-lg">
-                  <div
-                    class="flex flex-row items-center justify-between p-4 pb-2"
-                  >
-                    <p class="text-sm font-medium text-gray-500">
-                      Monthly Visits
-                    </p>
-                    <div
-                      class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center"
-                    >
+                  <div class="bg-white rounded-lg shadow-lg">
+                  <div class="flex flex-row items-center justify-between p-4 pb-2">
+                    <p class="text-sm font-medium text-gray-500">Monthly Visits</p>
+                    <div class="h-8 w-8 rounded-full bg-blue-100 p-1.5 text-blue-600 flex items-center justify-center">
                       <i class="fas fa-calendar"></i>
                     </div>
                   </div>
                   <div class="p-4 pt-0">
-                    <div class="text-2xl font-bold">356</div>
+                    <div class="text-2xl font-bold"><?= $monthlyVisits ?></div>
                     <div class="flex items-center mt-1">
-                      <span class="text-xs text-blue-800">↑ 15%</span>
-                      <span class="text-xs text-gray-500 ml-1"
-                        >Total visits this month</span
-                      >
+                      <span class="text-xs text-blue-800">↑</span>
+                      <span class="text-xs text-gray-500 ml-1">Total visits this month</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-          
-
-              <!-- Upcoming Appointments -->
-              <div
-                class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm mt-10"
-              >
-                <!-- Recent Entries Section -->
-                <div class="mt-8">
-                  <h2 class="text-xl font-semibold text-blue-900 mb-4">Recent Entries</h2>
-                  <div class="overflow-x-auto">
-                      <table class="min-w-full bg-white rounded-lg overflow-hidden">
-                          <thead class="bg-blue-900 text-white">
-                              <tr>
-                                  <th class="py-3 px-4 text-left">Name</th>
-                                  <th class="py-3 px-4 text-left">Department</th>
-                                  <th class="py-3 px-4 text-left">Classification</th>
-                                  <th class="py-3 px-4 text-left">Date & Time</th>
-                                  <th class="py-3 px-4 text-left">Complaints</th>
-                                  <th class="py-3 px-4 text-left">Intervention</th>
-                              </tr>
-                          </thead>
-                          <tbody id="recentEntries">
-                              <!-- Entries will be populated by JavaScript -->
-                              <tr class="border-b">
-                                  <td colspan="6" class="py-4 px-4 text-center text-gray-500">No recent entries</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
+                  <!-- Recent Entries Section -->
+                  <div class="mt-8">
+                    <h2 class="text-xl font-semibold text-blue-900 mb-4">Recent Entries</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white rounded-lg overflow-hidden border-gray-300">
+                            <thead class="bg-blue-900 text-white">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">Name</th>
+                                    <th class="py-3 px-4 text-left">Department</th>
+                                    <th class="py-3 px-4 text-left">Classification</th>
+                                    <th class="py-3 px-4 text-left">Date & Time</th>
+                                    <th class="py-3 px-4 text-left">Complaints</th>
+                                    <th class="py-3 px-4 text-left">Intervention</th>
+                                </tr>
+                            </thead>
+                              <tbody id="recentEntries">
+                                <?php if ($recentEntries->num_rows > 0): ?>
+                                  <?php while ($row = $recentEntries->fetch_assoc()): ?>
+                                    <tr class="border-b hover:bg-gray-50 transition">
+                                      <td class="py-3 px-4 border border-gray-300"><?= htmlspecialchars($row['name']) ?></td>
+                                      <td class="py-3 px-4 border border-gray-300"><?= htmlspecialchars($row['department']) ?></td>
+                                      <td class="py-3 px-4 border border-gray-300"><?= htmlspecialchars($row['classification']) ?></td>
+                                      <td class="py-3 px-4 border border-gray-300"><?= date("M d, Y h:i A", strtotime($row['timestamp'])) ?></td>
+                                      <td class="py-3 px-4 border border-gray-300"><?= htmlspecialchars($row['complaints']) ?></td>
+                                      <td class="py-3 px-4 border border-gray-300"><?= htmlspecialchars($row['intervention']) ?></td>
+                                    </tr>
+                                  <?php endwhile; ?>
+                                <?php else: ?>
+                                  <tr class="border-b">
+                                    <td colspan="6" class="py-4 px-4 text-center text-gray-500">No recent entries</td>
+                                  </tr>
+                                <?php endif; ?>
+                              </tbody>
+                        </table>
+                    </div>
               </div>
             </div>
           </div>

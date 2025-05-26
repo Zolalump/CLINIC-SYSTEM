@@ -1,127 +1,127 @@
+<?php
+session_start();
+include '../db.php';
+
+// Adjust these department names to match your actual DB values
+$students = $conn->query("SELECT * FROM log_entries WHERE department = 'basic-education'");
+$faculty = $conn->query("SELECT * FROM log_entries WHERE department = 'tertiary'");
+$personnels = $conn->query("SELECT * FROM log_entries WHERE department = 'personnel'");
+
+function renderUserTable($title, $resultSet) {
+  echo "<section>";
+  echo "<h2 class='text-2xl font-semibold text-blue-800 mb-4'>$title</h2>";
+
+  if ($resultSet->num_rows > 0) {
+    echo "<div class='overflow-x-auto rounded-lg shadow bg-white max-h-[300px] overflow-y-auto'>";
+    echo "<table class='min-w-full divide-y divide-gray-200'>";
+    echo "<thead class='bg-blue-100 sticky top-0 z-10'>";
+    echo "<tr>";
+    echo "<th scope='col' class='px-6 py-3 text-left text-xs font-medium text-blue-900 uppercase tracking-wider'>Name</th>";
+    echo "<th scope='col' class='px-6 py-3 text-left text-xs font-medium text-blue-900 uppercase tracking-wider'>Classification</th>";
+    echo "<th scope='col' class='px-6 py-3 w-28 text-center text-xs font-medium text-blue-900 uppercase tracking-wider'>Actions</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody class='divide-y divide-gray-100'>";
+    
+    while ($row = $resultSet->fetch_assoc()) {
+      $id = $row['id'];
+      $name = htmlspecialchars($row['name']);
+      $classification = htmlspecialchars($row['classification']);
+      echo "
+        <tr class='hover:bg-blue-50 transition'>
+          <td class='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>$name</td>
+          <td class='px-6 py-4 whitespace-nowrap text-sm text-gray-700'>$classification</td>
+          <td class='px-6 py-4 whitespace-nowrap text-center'>
+            <button type='button' 
+                    data-id='$id' 
+                    data-name=\"$name\" 
+                    class='open-delete-modal bg-red-600 text-white px-3 py-1 rounded-md text-sm font-semibold hover:bg-red-800 transition-colors duration-300'>
+              Delete
+            </button>
+          </td>
+        </tr>
+      ";
+    }
+
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>";
+  } else {
+    echo "<p class='text-gray-500 italic'>No log found.</p>";
+  }
+
+  echo "</section>";
+}
+?>
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SMCTI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="../../img/logo sa smc.png">
-    <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css">
-    <style>
-
-        @keyframes fadeOut {
-            0% { opacity: 1; }
-            100% { opacity: 0; visibility: hidden; }
-        }
-        
-        body {
-            font-family: 'Suisse', sans-serif;
-            font-weight: 400 !important;
-        }
-
-        @media (max-width: 480px) {
-            .no-reservations
-            .no-pending
-            .no-history {
-                font-size: 16px; 
-                padding: 10px;
-            }
-        }
-
-    </style>
-  </head>
-  <body class=" bg-gray-50" style="margin: 30px;">
-  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMCTI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="../../img/logo sa smc.png" />
+  <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css" />
+  <style>
+    body {
+      font-family: 'Suisse', sans-serif;
+      font-weight: 400 !important;
+    }
+  </style>
+</head>
+<body class="bg-gray-50" style="margin: 30px;">
   <main>
-    <div class="min-h-screen p-4 md:p-8">
-      <div class="max-w-7xl mx-auto">
+    <div class="min-h-screen p-4 md:p-8 max-w-7xl mx-auto">
       <div class="flex items-center justify-between mb-6">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-900">
-                    Dashboard
-                    <div class="text-lg font-light text-gray-600">Registered Users below</div>
-                </h1>
-            </div>
-            
-
-            <a href="../dashboard.php" 
-            class="ml-auto bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-500 transition-all duration-300 ease-in-out flex items-center">
-                ← Go Back
-            </a>
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">
+            Dashboard
+            <div class="text-lg font-light text-gray-600">Logbook Dashboard below</div>
+          </h1>
         </div>
 
+        <div class="flex gap-3">
+          <a href="archive_users.php" 
+            class="bg-gray-300 hover:bg-gray-400 text-gray-900 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out flex items-center">
+            📦 Archived Logbook
+          </a>
 
-          <div style="width: 100%;">
-            <div class="w-full bg-blue-800 p-4 rounded-lg shadow-sm">
-              <h2 class="text-2xl font-semibold mb-4" style="color: white;">Users</h2>
+          <a href="../dashboard.php"
+            class="bg-gradient-to-r from-blue-600 to-blue-400 text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-500 transition-all duration-300 ease-in-out flex items-center">
+            ← Go Back
+          </a>
+        </div>
+      </div>
 
-              <div class="mb-4" style="width: 100%;">
-                <div class="flex w-full rounded-md border border-input p-1">
-                  <button
-                    class="tab-button flex-1 justify-center rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-background text-foreground shadow-sm"
-                    data-tab="active"
-                  style="color: white;">
-                    Students
-                  </button>
-                  <button
-                    class="tab-button flex-1 justify-center rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                    data-tab="pending"
-                    style="color: white;">
-                    Faculty Members
-                  </button>
-                  <button
-                    class="tab-button flex-1 justify-center rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                    data-tab="history"
-                    style="color: white;">
-                    Personels
-                  </button>
-                </div>
-              </div>
+      <div class="space-y-10">
+        <?php
+          renderUserTable("Basic Education Program", $students);
+          renderUserTable("Tertiary Education Program", $faculty);
+          renderUserTable("Personnels", $personnels);
+        ?>
+      </div>
+    </div>
+  </main>
 
-              <section>
-                <!-- Active Bookings Table -->
-                <div class="tab-content w-full block" id="active-tab">
-                  <div class="w-full bg-white rounded-md shadow-sm">
-                    <div class="rounded-md border"> 
-                      <div class="w-full overflow-y-auto" style="height: 53vh;">
-                        <table class="w-full caption-bottom text-sm">
-                          <tbody class="[&_tr:last-child]:border-0" id="active-booking-list">                              
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Pending Bookings Table -->
-                <div class="tab-content w-full hidden" id="pending-tab">
-                  <div class="w-full bg-white rounded-md shadow-sm">
-                    <div class="rounded-md border"> 
-                      <div class="w-full overflow-y-auto" style="height: 53vh;">
-                        <table class="w-full caption-bottom text-sm">
-                          <tbody class="[&_tr:last-child]:border-0" id="pending-booking-list">                            
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- History Bookings Table -->
-                <div class="tab-content w-full hidden" id="history-tab">
-                  <div class="w-full bg-white rounded-md shadow-sm">
-                    <div class="rounded-md border">
-                      <div class="w-full overflow-auto" style="height: 53vh;">
-                        <table class="w-full caption-bottom text-sm">
-                          <tbody id="booking-history-list">
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-    </main>
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteModal" class="fixed inset-0 z-50 hidden bg-black/40 backdrop-blur-sm flex items-center justify-center transition-all">
+    <div class="bg-white p-6 rounded-xl shadow-xl w-[95%] max-w-sm animate-fadeIn">
+      <h3 class="text-xl font-semibold text-red-600 flex items-center gap-2 mb-2">
+        <i data-lucide="alert-triangle" class="w-5 h-5"></i> Confirm Deletion
+      </h3>
+      <p class="text-gray-600 text-sm mb-4">
+        Are you sure you want to delete <span id="deleteUserName" class="font-medium text-red-500"></span>?
+      </p>
+      <form id="deleteForm" method="POST" action="delete_user.php">
+        <input type="hidden" name="id" id="deleteUserId" />
+        <div class="flex justify-end gap-3">
+          <button type="button" class="cancel-btn px-4 py-2 text-gray-600 hover:text-gray-900">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">Yes, Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -148,152 +148,85 @@
         
     }
 
-    // Active booking Table
     document.addEventListener("DOMContentLoaded", function () {
-        fetch("/WebDa/booking/src/php/fetch_active_reservations.php")
-            .then(response => response.json())
-            .then(data => {
-                let bookingList = document.getElementById("active-booking-list");
-                bookingList.innerHTML = ""; 
+            const buttons = document.querySelectorAll(".tab-button");
+            const panes = document.querySelectorAll(".tab-pane");
 
-                if (data.length === 0) {
-                    bookingList.innerHTML = "<div class='no-reservations'>No active reservations.</div>";
-                } else {
-                    data.forEach(reservation => {
-                        let reservationDiv = document.createElement("div");
-                        reservationDiv.classList.add("p-4", "border-b", "border-gray-200");
+            // Initialize: show first tab and set active button
+            buttons.forEach((btn, i) => {
+              if (i === 0) {
+                btn.classList.remove("bg-blue-700");
+                btn.classList.add("bg-blue-900");
+              } else {
+                btn.classList.remove("bg-blue-900");
+                btn.classList.add("bg-blue-700");
+              }
+            });
+            panes.forEach((pane, i) => {
+              if (i === 0) pane.classList.remove("hidden");
+              else pane.classList.add("hidden");
+            });
 
-                        reservationDiv.innerHTML = `
-                            <p><strong>Reservation ID:</strong> ${reservation.id}</p>
-                            <p><strong>User:</strong> ${reservation.firstname} ${reservation.lastname}</p>
-                            <p><strong>Facility:</strong> ${reservation.facility}</p>
-                            <p><strong>Date:</strong> ${reservation.date}</p>
-                            <p><strong>Time:</strong> ${reservation.time_slot}</p>
-                        `;
+            buttons.forEach((button) => {
+              button.addEventListener("click", () => {
+                const target = button.getAttribute("data-tab");
 
-                        bookingList.appendChild(reservationDiv);
-                    });
-                }
-            })
-            .catch(() => showToast("Error loading active reservations.", "error"));
-    });
+                // Toggle active button style
+                buttons.forEach((btn) => {
+                  btn.classList.remove("bg-blue-900");
+                  btn.classList.add("bg-blue-700");
+                });
+                button.classList.remove("bg-blue-700");
+                button.classList.add("bg-blue-900");
 
+                // Show the correct tab content
+                panes.forEach((pane) => {
+                  pane.classList.add("hidden");
+                  if (pane.getAttribute("data-tab") === target) {
+                    pane.classList.remove("hidden");
+                  }
+                });
+              });
+            });
+          });
 
-    // Pending lists
     document.addEventListener("DOMContentLoaded", function () {
-        fetch("/WebDa/booking/src/php/fetch_pending_reservations.php")
-            .then(response => response.json())
-            .then(data => {
-                let bookingList = document.getElementById("pending-booking-list");
-                bookingList.innerHTML = ""; 
+          lucide.createIcons();
 
-                if (data.bookings.length === 0) {
-                    bookingList.innerHTML = "<div class='no-pending'>No pending reservations.</div>";
-                } else {
-                    data.bookings.forEach(reservation => {
-                        let reservationDiv = document.createElement("div");
-                        reservationDiv.classList.add(
-                            "p-4", "border-b", "border-gray-200", 
-                            "flex", "justify-between", "items-center", "gap-4"
-                        );
+          const modal = document.getElementById("deleteModal");
+          const deleteUserId = document.getElementById("deleteUserId");
+          const deleteUserName = document.getElementById("deleteUserName");
 
-                        reservationDiv.innerHTML = `
-                            <div class="flex-1">
-                                <p><strong>Reservation ID:</strong> ${reservation.id}</p>
-                                <p><strong>Facility:</strong> ${reservation.facility}</p>
-                                <p><strong>Date:</strong> ${reservation.date}</p>
-                                <p><strong>Time:</strong> ${reservation.time_slot}</p>
-                                <p><strong>Purpose:</strong> ${reservation.purpose}</p>
-                                <p><strong>Attendees:</strong> ${reservation.attendees}</p>
-                            </div>
-                            <div class="ml-auto">
-                                <button class="cancel-btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700" data-id="${reservation.id}">
-                                    Cancel
-                                </button>
-                            </div>
-                        `;
+          document.querySelectorAll(".open-delete-modal").forEach(btn => {
+            btn.addEventListener("click", () => {
+              deleteUserId.value = btn.dataset.id;
+              deleteUserName.textContent = btn.dataset.name;
+              modal.classList.remove("hidden");
+            });
+          });
 
-                        bookingList.appendChild(reservationDiv);
-                    });
+          document.querySelector(".cancel-btn").addEventListener("click", () => {
+            modal.classList.add("hidden");
+            deleteUserId.value = "";
+            deleteUserName.textContent = "";
+          });
 
-                    document.querySelectorAll(".cancel-btn").forEach(button => {
-                        button.addEventListener("click", function () {
-                          event.preventDefault(); 
-
-                            let reservationId = this.getAttribute("data-id");
-
-                            if (confirm("Are you sure you want to cancel this reservation?")) {
-                                fetch(`/WebDa/booking/src/php/cancel.php?id=${reservationId}`)
-                                .then(response => response.text()) 
-                                .then(text => {
-                                    console.log("Raw response:", text);
-                                    return JSON.parse(text);
-                                })
-                                    .then(data => {
-                                        if (data.success) {
-                                          showToast("Reservation canceled successfully!", "success");
-                                           
-                                          setTimeout(() => {
-                                              location.reload();
-                                          }, 4000);
-
-                                        } else {
-                                          showToast("Error canceling reservation.", "error");
-                                        }
-                                    })
-                                    .catch(() => showToast("Error canceling reservation.", "error"));
-                            }
-                        });
-                    });
-                }
-            })
-            .catch(() => showToast("Error loading pending reservations.", "error"));
-            
-    });
-
-    // Booking history table
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch("/WebDa/booking/src/php/fetch_booking_history.php")
-            .then(response => response.json())
-            .then(data => { 
-                let historyList = document.getElementById("booking-history-list");
-                historyList.innerHTML = "";
-
-                if (!data.success || data.bookings.length === 0) {
-                    historyList.innerHTML = "<div class='no-history'>No booking History.</div>";
-                } else {
-                    data.bookings.forEach(reservation => {
-                        let reservationDiv = document.createElement("div");
-                        reservationDiv.classList.add("p-4", "border-b", "border-gray-200");
-
-                        let statusBadge = "";
-                        if (reservation.status === "approved") {
-                            statusBadge = `<span class="status-badge approved">Approved</span>`;
-                        } else if (reservation.status === "disapproved") {
-                            statusBadge = `<span class="status-badge disapproved">Disapproved</span>`;
-                        } else if (reservation.status === "canceled") {
-                            statusBadge = `<span class="status-badge canceled">Canceled</span>`;
-                        } else {
-                            statusBadge = `<span class="status-badge pending">Pending</span>`;
-                        }
-
-
-                        reservationDiv.innerHTML = `
-                            <p><strong>Facility:</strong> ${reservation.facility}</p>
-                            <p><strong>Date:</strong> ${reservation.date}</p>
-                            <p><strong>Time:</strong> ${reservation.time_slot}</p>
-                            <p><strong>Status:</strong> ${statusBadge}</p>
-                            <p><strong>Created At:</strong> ${reservation.created_at}</p>
-                        `;
-
-                        historyList.appendChild(reservationDiv);
-                    });
-                }
-            })
-            .catch(() => showToast("Error loading booking history.", "error"));
-    });
-
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) modal.classList.add("hidden");
+          });
+        });
       </script>
-    </div>
+
+      <style>
+        @keyframes fadeIn {
+          from { transform: translateY(20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+      </style>
+      </script>
+      <script src="https://unpkg.com/lucide@latest"></script>
   </body>
 </html>
