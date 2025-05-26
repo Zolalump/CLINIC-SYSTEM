@@ -141,7 +141,7 @@
                 </div>
                     <div class="py-2">
                             <a href="/WebDa/CLINIC-SYSTEM-3/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
-                                <i class="fa-solid fa-chart-line mr-3"></i> Users
+                                <i class="fa-solid fa-chart-line mr-3"></i> Logbook Dashboard
                             </a>
                             <a href=" /WebDa/CLINIC-SYSTEM-3/src/php/Settings/Profile.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-gear mr-3"></i> Settings
