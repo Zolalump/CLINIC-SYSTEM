@@ -13,7 +13,11 @@ if (isset($_POST['signUp'])) {
     $confirmPassword = $_POST['confirm_password'] ?? '';
 
     function validateEmail($email) {
+<<<<<<< HEAD
         return preg_match('/^[a-zA-Z0-9._%+-]+@(gmail\.com|email\.com)$/', $email);
+=======
+        return preg_match('/^[\w.%+-]+@(gmail\.com|email\.com)$/', $email);
+>>>>>>> 00146c7 (Updated and added new features)
     }
 
     if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirmPassword)) {
@@ -44,6 +48,7 @@ if (isset($_POST['signUp'])) {
 
     $user = $result->fetch_assoc();
 
+<<<<<<< HEAD
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['email'] = $email;
         header("Location: dashboard.php");
@@ -51,6 +56,9 @@ if (isset($_POST['signUp'])) {
     } else {
         echo "Invalid email or password.";
     }
+=======
+   
+>>>>>>> 00146c7 (Updated and added new features)
    
 
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -141,6 +149,10 @@ if (isset($_POST['signIn'])) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id']; 
                 $_SESSION['email'] = $email;
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 00146c7 (Updated and added new features)
                 header("Location:/WebDa/CLINIC-SYSTEM-3/src/php/dashboard.php ");
                 exit;
             } else {
