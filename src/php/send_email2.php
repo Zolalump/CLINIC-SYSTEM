@@ -1,7 +1,11 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+<<<<<<< HEAD
 require '/xampp/htdocs/WebDa/booking/vendor/autoload.php'; 
+=======
+require '/xampp/htdocs/WebDa/CLINIC-SYSTEM-3/vendor/autoload.php'; 
+>>>>>>> 00146c7 (Updated and added new features)
 require_once 'db.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

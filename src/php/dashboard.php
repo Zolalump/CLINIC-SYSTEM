@@ -2,6 +2,14 @@
 session_start();
 include 'db.php';
 
+<<<<<<< HEAD
+=======
+if (!isset($_SESSION['user_id'])) {
+    header("Location: register.php");
+    exit();
+}
+
+>>>>>>> 00146c7 (Updated and added new features)
 // Total Patients
 $totalPatients = $conn->query("SELECT COUNT(*) AS total FROM log_entries")->fetch_assoc()['total'];
 
@@ -166,18 +174,31 @@ $recentEntries = $conn->query("SELECT name, department, classification, timestam
                 </div>
                     <div class="py-2">
                             <a href="/WebDa/CLINIC-SYSTEM-3/src/php/Settings/dashboard.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
+<<<<<<< HEAD
                                 <i class="fa-solid fa-chart-line mr-3"></i> Logbook Dashboard
+=======
+                                <i class="fa-solid fa-chart-line mr-3"></i> Users
+>>>>>>> 00146c7 (Updated and added new features)
                             </a>
                             <a href=" Settings/Profile.php" class="block px-4 py-2 text-sm hover:bg-gray-100">
                                 <i class="fa-solid fa-gear mr-3"></i> Settings
                             </a>
                             <div class="border-t mt-2">
+<<<<<<< HEAD
                                 <a
                                     href="/WebDa/CLINIC-SYSTEM-3/index.php"
+=======
+                             <a
+                                    href="/WebDa/CLINIC-SYSTEM-3/src/php/logout.php"
+>>>>>>> 00146c7 (Updated and added new features)
                                     class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                                 >
                                     <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
                                 </a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 00146c7 (Updated and added new features)
                             </div>
                         </div>
                     </div>
