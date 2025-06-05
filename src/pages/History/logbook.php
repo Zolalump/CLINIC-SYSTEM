@@ -75,6 +75,7 @@
                 <div class="relative">
                 <button id="notificationButton" class="flex items-center justify-center w-10 h-10 bg-white rounded-full app-shadow">
                         <i class="fa-regular fa-bell app-color-black"></i>
+                        <span id="notificationBadge" class="hidden bg-red-500 text-white text-xs opacity-75 animate-ping rounded-full px-2 py-1 ml-1"></span>
                         <span id="notificationBadge" class="hidden bg-red-500 text-white text-xs rounded-full px-2 py-1 ml-1"></span>
                     </button>
                     <div id="notificationDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg z-50">
