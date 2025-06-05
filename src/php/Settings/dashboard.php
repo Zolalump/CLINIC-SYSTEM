@@ -2,7 +2,6 @@
 session_start();
 include '../db.php';
 
-// Adjust these department names to match your actual DB values
 $students = $conn->query("SELECT * FROM log_entries WHERE department = 'basic-education'");
 $faculty = $conn->query("SELECT * FROM log_entries WHERE department = 'tertiary'");
 $personnels = $conn->query("SELECT * FROM log_entries WHERE department = 'personnel'");
@@ -62,7 +61,7 @@ function renderUserTable($title, $resultSet) {
   <title>SMCTI</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="../../img/logo sa smc.png" />
-  <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css" />
+  <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/font/Suisse/stylesheet.css" />
   <style>
     body {
       font-family: 'Suisse', sans-serif;

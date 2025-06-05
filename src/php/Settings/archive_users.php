@@ -61,7 +61,7 @@ function renderUserTable($title, $resultSet) {
   <title>Archived Logs - SMCTI</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="../../img/logo sa smc.png" />
-  <link rel="stylesheet" href="/WebDa/booking/font/Suisse/stylesheet.css" />
+  <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/font/Suisse/stylesheet.css" />
   <style>
     body { font-family: 'Suisse', sans-serif; font-weight: 400 !important; }
     @keyframes fadeInDown {

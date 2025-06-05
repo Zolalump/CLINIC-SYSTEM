@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="logbook.css">
+    <link rel="stylesheet" href="/WebDa/CLINIC-SYSTEM-3/font/Suisse/stylesheet.css" />
     <style>
                 #notificationBadge {
             position: absolute;
@@ -243,32 +244,6 @@
                     </button>
                 </div>
             </form>
-
-            <!-- Recent Entries Section -->
-                <div class="mt-10">
-                <h2 class="text-2xl font-bold text-blue-800 mb-6">Recent Entries</h2>
-                <div class="overflow-x-auto bg-white shadow-md rounded-xl">
-                    <table class="min-w-full text-sm text-left text-gray-700">
-                    <thead class="bg-blue-900 text-white">
-                        <tr>
-                        <th class="py-4 px-6 rounded-tl-xl">Name</th>
-                        <th class="py-4 px-6">Department</th>
-                        <th class="py-4 px-6">Classification</th>
-                        <th class="py-4 px-6">Date & Time</th>
-                        <th class="py-4 px-6">Complaints</th>
-                        <th class="py-4 px-6">Intervention</th>
-                        <th class="py-4 px-6"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="recentEntries" class="divide-y divide-gray-200">
-                        <!-- Sample Empty Row -->
-                        <tr class="bg-gray-50 hover:bg-gray-100 transition">
-                        <td colspan="6" class="py-5 px-6 text-center text-gray-500">No recent entries</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
-                </div>
         </div>
     </main>
 

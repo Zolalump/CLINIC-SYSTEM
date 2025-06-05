@@ -1,0 +1,33 @@
+Array
+(
+    [0] => Array
+        (
+            [date] => 2025-06-06
+            [nurse] => ASD
+            [disease] => ASD
+            [severity] => severe
+            [medication] => ASD
+            [dosage] => ASD
+        )
+
+    [1] => Array
+        (
+            [date] => 2025-06-20
+            [nurse] => ASD
+            [disease] => ASD
+            [severity] => mild
+            [medication] => ASD
+            [dosage] => ASD
+        )
+
+    [2] => Array
+        (
+            [date] => 2025-06-27
+            [nurse] => ASD
+            [disease] => ASD
+            [severity] => mild
+            [medication] => ASD
+            [dosage] => ASD
+        )
+
+)

@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const complaintsInput = document.getElementById('complaints');
     const interventionInput = document.getElementById('intervention');
     const clearButton = document.getElementById('clearButton');
-    const recentEntriesTable = document.getElementById('recentEntries');
 
     // Department classifications
     const departmentOptions = {
@@ -330,7 +329,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
                 logEntries.unshift(logEntry);
                 saveLogEntries();
-                updateRecentEntries();
                 clearForm();
                 showToast('Log entry added successfully!', 'success');
             } else {
@@ -380,7 +378,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Remove from active entries
             logEntries.splice(entryIndex, 1);
             saveLogEntries();
-            updateRecentEntries();
             
             showToast('Entry deleted successfully', 'success');
         }
@@ -401,39 +398,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Update recent entries table
-    function updateRecentEntries() {
-        if (logEntries.length === 0) {
-            recentEntriesTable.innerHTML = `
-                <tr class="border-b">
-                    <td colspan="7" class="py-4 px-4 text-center text-gray-500">No recent entries</td>
-                </tr>
-            `;
-            return;
-        }
-        
-        recentEntriesTable.innerHTML = '';
-        
-        // Display the 5 most recent entries
-        const entriesToShow = logEntries.slice(0, 5);
-        
-        entriesToShow.forEach(entry => {
-            const row = document.createElement('tr');
-            row.classList.add('border-b');
-            
-            row.innerHTML = `
-                <td class="py-3 px-4">${entry.name}</td>
-                <td class="py-3 px-4">${entry.departmentLabel || formatDepartment(entry.department)}</td>
-                <td class="py-3 px-4">${entry.classificationLabel || formatClassification(entry.classification)}</td>
-                <td class="py-3 px-4">${entry.date} ${entry.time}</td>
-                <td class="py-3 px-4">${truncateText(entry.complaints, 30)}</td>
-                <td class="py-3 px-4">${truncateText(entry.intervention, 30)}</td>
-            `;
-            
-            recentEntriesTable.appendChild(row);
-        });
-        
-    }
 
     // Helper function to format department name for display
     function formatDepartment(department) {
@@ -500,6 +464,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Initialize recent entries
-    updateRecentEntries();
 });
