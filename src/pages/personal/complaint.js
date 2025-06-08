@@ -1,3 +1,56 @@
+function showMessage(message, onOk) {
+  const container = document.getElementById('messageContainer');
+  const text = document.getElementById('messageText');
+  const okBtn = document.getElementById('messageOkBtn');
+  const cancelBtn = document.getElementById('messageCancelBtn');
+
+  cancelBtn.classList.add('hidden'); // hide cancel for simple messages
+  text.textContent = message;
+  container.classList.remove('hidden');
+
+  function cleanup() {
+    container.classList.add('hidden');
+    okBtn.removeEventListener('click', okHandler);
+  }
+
+  function okHandler() {
+    cleanup();
+    if (onOk) onOk();
+  }
+
+  okBtn.addEventListener('click', okHandler);
+}
+
+function showConfirm(message, onConfirm, onCancel) {
+  const container = document.getElementById('messageContainer');
+  const text = document.getElementById('messageText');
+  const okBtn = document.getElementById('messageOkBtn');
+  const cancelBtn = document.getElementById('messageCancelBtn');
+
+  cancelBtn.classList.remove('hidden'); // show cancel for confirm
+  text.textContent = message;
+  container.classList.remove('hidden');
+
+  function cleanup() {
+    container.classList.add('hidden');
+    okBtn.removeEventListener('click', okHandler);
+    cancelBtn.removeEventListener('click', cancelHandler);
+  }
+
+  function okHandler() {
+    cleanup();
+    if (onConfirm) onConfirm();
+  }
+  function cancelHandler() {
+    cleanup();
+    if (onCancel) onCancel();
+  }
+
+  okBtn.addEventListener('click', okHandler);
+  cancelBtn.addEventListener('click', cancelHandler);
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const editComplaintBtn = document.querySelector('.edit-btn[data-edit="complaints"]');
   const complaintModalOverlay = document.getElementById('complaintModalOverlay');
@@ -10,20 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const complaintsContent = document.getElementById('complaintsContent');
   const complaintsEmpty = document.getElementById('complaintsEmpty');
-  const complaintsContainer = document.getElementById('complaints-container');
-
-  const deleteModal = document.getElementById('deleteModal');
-  const deleteCancelBtn = document.getElementById('deleteCancelBtn');
-  const deleteConfirmBtn = document.getElementById('deleteConfirmBtn');
-
-  const loggedInUserId = window.loggedInUserId || 0;
 
   let complaintsToAdd = [];
   let allComplaints = [];
-  let complaintIndexToDelete = null;
-  let currentIdNumber = null; // ✅ stores the selected user's ID number
+  let complaintIdToDelete = null;
+  let currentIdNumber = null;
 
-  // Open modal
   editComplaintBtn.addEventListener('click', () => {
     complaintModalOverlay.classList.remove('hidden');
     complaintForm.reset();
@@ -31,12 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
     renderComplaintList();
   });
 
-  // Cancel modal
   complaintModalOverlay.querySelector('.cancel-btn').addEventListener('click', () => {
     complaintModalOverlay.classList.add('hidden');
   });
 
-  // Add complaint in modal
   addComplaintBtn.addEventListener('click', () => {
     const nurse = document.getElementById('nurse').value.trim();
     const date = document.getElementById('complaint-date').value;
@@ -46,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dosage = document.getElementById('dosage').value.trim();
 
     if (!nurse || !date || !disease || !severity || !medicineName || !dosage) {
-      alert('Please fill in all complaint and medication fields before adding.');
+      showMessage('Please fill in all complaint and medication fields before adding.');
       return;
     }
 
@@ -66,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     complaintsToAdd.forEach((comp) => {
       const li = document.createElement('li');
-
       const textSpan = document.createElement('span');
       textSpan.textContent = `${comp.date} - Nurse: ${comp.nurse} - Disease: ${comp.disease} - Medication: ${comp.medicineName} (${comp.dosage})`;
 
@@ -80,17 +122,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Save complaints
   complaintForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (!currentIdNumber) {
-      alert("No student selected. Please load a user first.");
+      showMessage('No student selected. Please load a user first.');
       return;
     }
 
     if (complaintsToAdd.length === 0) {
-      alert('No complaints to save.');
+      showMessage('No complaints to save.');
       return;
     }
 
@@ -100,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
-            id_number: currentIdNumber, // ✅ use dynamic ID
+            id_number: currentIdNumber,
             disease: comp.disease,
             severity: comp.severity,
             medication: comp.medicineName,
@@ -110,105 +151,120 @@ document.addEventListener("DOMContentLoaded", () => {
           })
         });
 
-        const text = await response.text();
-        console.log("Raw response text:", text);
-
-        let data;
-        try {
-          data = JSON.parse(text);
-        } catch (err) {
-          console.error('Invalid JSON from server:', text);
-          alert('Unexpected server response. Check console for details.');
-          return;
-        }
+        const data = await response.json();
+        if (!data.success) throw new Error('Save failed');
       }
 
-      allComplaints = allComplaints.concat(complaintsToAdd);
+      await window.loadComplaints(currentIdNumber);
+
       complaintsToAdd = [];
       complaintList.innerHTML = '';
-      complaintModalOverlay.classList.add('hidden');
       complaintForm.reset();
-      renderAllComplaints();
+      complaintModalOverlay.classList.add('hidden');
 
-      alert('All complaints saved successfully!');
+      showMessage('All complaints saved successfully!');
     } catch (err) {
-      console.error('Error saving complaints:', err);
-      alert('An error occurred while saving complaints.');
+      console.error('Save error:', err);
+      showMessage('Failed to save complaints.');
     }
   });
 
   function renderAllComplaints() {
+    complaintsContent.innerHTML = '';
+    recordsTableBody.innerHTML = '';
+    medicationsTableBody.innerHTML = '';
+
     if (allComplaints.length === 0) {
       complaintsEmpty.style.display = 'block';
       complaintsContent.style.display = 'none';
-      recordsTableBody.innerHTML = '';
-      medicationsTableBody.innerHTML = '';
-      complaintsContent.innerHTML = '';
       return;
     }
 
     complaintsEmpty.style.display = 'none';
     complaintsContent.style.display = 'block';
-    complaintsContent.innerHTML = '';
-    recordsTableBody.innerHTML = '';
-    medicationsTableBody.innerHTML = '';
 
     allComplaints.forEach((comp, index) => {
       const div = document.createElement('div');
       div.className = `complaint-item-display ${comp.severity}`;
       div.innerHTML = `
-        <div class="complaint-display-details">
-          <div><strong>Date:</strong> ${comp.date}</div>
-          <div><strong>Nurse:</strong> ${comp.nurse}</div>
-          <div><strong>Disease:</strong> ${comp.disease}</div>
-          <div><strong>Medication:</strong> ${comp.medicineName} (${comp.dosage})</div>
-          <div><strong>Severity:</strong> <span class="severity-badge">${comp.severity}</span></div>
-          <button class="complaint-remove-btn" title="Remove complaint" data-index="${index}">Remove</button>
+        <div class="complaint-card" data-index="${index}">
+          <p>Date: ${comp.date}</p>
+          <p>Nurse: ${comp.nurse}</p>
+          <p>Disease: ${comp.disease}</p>
+          <p>Severity: ${comp.severity}</p>
+          <p>Medication: ${comp.medication}</p>
+          <p>Dosage: ${comp.dosage}</p>
+          <button class="complaint-remove-btn" data-id="${comp.id}" data-index="${index}">Remove</button>
         </div>
       `;
-
       complaintsContent.appendChild(div);
 
       div.querySelector('.complaint-remove-btn').addEventListener('click', (e) => {
-        complaintIndexToDelete = Number(e.target.dataset.index);
+        complaintIdToDelete = e.target.dataset.id;
         deleteModal.classList.remove('hidden');
       });
 
       const recordRow = document.createElement('tr');
-      recordRow.innerHTML = `
-        <td>${comp.nurse}</td>
-        <td>${comp.date}</td>
-        <td>${comp.disease}</td>
-      `;
+      recordRow.innerHTML = `<td>${comp.nurse}</td><td>${comp.date}</td><td>${comp.disease}</td>`;
       recordsTableBody.appendChild(recordRow);
 
       const medRow = document.createElement('tr');
-      medRow.innerHTML = `
-        <td>${comp.medicineName}</td>
-        <td>${comp.dosage}</td>
-        <td>${comp.date}</td>
-      `;
+      medRow.innerHTML = `<td>${comp.medication}</td><td>${comp.dosage}</td><td>${comp.date}</td>`;
       medicationsTableBody.appendChild(medRow);
     });
   }
 
-  deleteCancelBtn.addEventListener('click', () => {
-    complaintIndexToDelete = null;
-    deleteModal.classList.add('hidden');
-  });
+document.addEventListener('click', async function (e) {
+  if (e.target && e.target.classList.contains('complaint-remove-btn')) {
+    const complaintIdToDelete = e.target.getAttribute('data-id');
+    console.log('Deleting complaint ID:', complaintIdToDelete);
+    console.log('For ID number:', currentIdNumber);
 
-  deleteConfirmBtn.addEventListener('click', () => {
-    if (complaintIndexToDelete !== null) {
-      allComplaints.splice(complaintIndexToDelete, 1);
-      complaintIndexToDelete = null;
-      deleteModal.classList.add('hidden');
-      renderAllComplaints();
+    if (!complaintIdToDelete || !currentIdNumber) {
+      showMessage('Complaint ID or ID number is missing.');
+      return;
     }
-  });
 
-  renderAllComplaints();
+    showConfirm('Are you sure you want to delete this complaint?', async () => {
+      try {
+        const response = await fetch('delete_complaint.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            id_number: currentIdNumber,
+            complaint_id: complaintIdToDelete
+          })
+        });
 
-  // ✅ expose loadComplaints globally so it can be triggered from search
+        const text = await response.text();
+
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (jsonErr) {
+          console.error('Failed to parse JSON:', jsonErr);
+          console.log('Raw response from server:', text);
+          showMessage('An error occurred: Invalid response from server.');
+          return;
+        }
+
+        if (data.success) {
+          showMessage(data.message, () => {
+            loadComplaints(currentIdNumber);
+          });
+        } else {
+          showMessage('Error: ' + data.error);
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        showMessage('An error occurred while deleting complaint.');
+      }
+    });
+  }
+});
+
+
+
   window.loadComplaints = async function (id_number) {
     currentIdNumber = id_number;
 
@@ -220,30 +276,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await response.json();
-      console.log("Fetched profile + complaints data:", data);
 
-      if (!data.success) {
-        complaintsEmpty.style.display = 'block';
-        complaintsContent.style.display = 'none';
-        complaintsContainer.innerHTML = '';
-        allComplaints = [];
-        renderAllComplaints();
-        return;
-      }
-
-      allComplaints = data.complaints || [];
+      allComplaints = data.success ? (data.complaints || []) : [];
       renderAllComplaints();
-
-      complaintsEmpty.style.display = allComplaints.length === 0 ? 'block' : 'none';
-      complaintsContent.style.display = allComplaints.length === 0 ? 'none' : 'block';
-      complaintsContainer.innerHTML = '';
     } catch (err) {
       console.error("Error loading complaints:", err);
-      complaintsEmpty.style.display = 'block';
-      complaintsContent.style.display = 'none';
-      complaintsContainer.innerHTML = '';
       allComplaints = [];
       renderAllComplaints();
     }
   };
+
+  renderAllComplaints();
 });
+
+
+

@@ -9,7 +9,7 @@
 }
 
 body {
-    height: 125vh;
+    height: 100vh;
     background-color: rgb(238, 237, 237);
 }
 
@@ -135,5 +135,43 @@ tbody tr:hover {
     .delete-options {
         right: auto;
         left: 0;
+    }
+}
+
+/* Logbook Container Layout */
+.logbook-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for landscape layout */
+    grid-gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Full-width row for textarea or notes */
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Label and input pair styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Landscape orientation for desktop */
+@media (max-width: 1024px) {
+    .logbook-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .logbook-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
     }
 }

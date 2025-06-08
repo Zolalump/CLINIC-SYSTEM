@@ -147,7 +147,7 @@
                    </a>
                </li>
                <li>
-                   <a href="../../pages/personal/index.php" 
+                   <a href="../../pages/personal/index2.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Student Info
                    </a>

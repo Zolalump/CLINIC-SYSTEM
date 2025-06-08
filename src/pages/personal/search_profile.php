@@ -27,6 +27,7 @@ if ($result->num_rows === 1) {
     $complaints = [];
     while ($complaint = $complaintsResult->fetch_assoc()) {
         $complaints[] = [
+            'id' => $complaint['id'],       // include complaint ID
             'date' => $complaint['date'],
             'nurse' => $complaint['nurse'],
             'disease' => $complaint['disease'],
@@ -57,7 +58,6 @@ if ($result->num_rows === 1) {
 
     $stmt2->close();
 } else {
-    file_put_contents('debug_log.txt', print_r($complaints, true));
     echo json_encode(['success' => false, 'error' => 'Student not found']);
 }
 

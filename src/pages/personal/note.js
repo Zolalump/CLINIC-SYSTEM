@@ -14,60 +14,125 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveBtn = document.getElementById('saveNotesBtn');
   const notesList = document.getElementById('notesList');
 
-  // Delete modal elements
   const deleteModal = document.getElementById('deleteModal');
   const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
   const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
 
+  // Dynamically get the id_number from a global variable or wherever it's set
+  const idNumber = window.idNumber || ''; 
   let notes = [];
   let noteToDeleteId = null;
 
-  openBtn.addEventListener('click', () => {
-    notesModal.classList.remove('hidden');
-    showAdd();
-  });
+  if (openBtn) {
+    openBtn.addEventListener('click', () => {
+      if (!idNumber) {
+        alert('User ID not found.');
+        return;
+      }
+      if (notesModal) notesModal.classList.remove('hidden');
+      showAdd();
+      loadNotesFromServer();
+    });
+  }
 
-  cancelBtn.addEventListener('click', () => {
-    notesModal.classList.add('hidden');
-    notesInput.value = '';
-  });
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', () => {
+      if (notesModal) notesModal.classList.add('hidden');
+      if (notesInput) notesInput.value = '';
+    });
+  }
 
-  closeBtn.addEventListener('click', () => {
-    notesModal.classList.add('hidden');
-  });
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      if (notesModal) notesModal.classList.add('hidden');
+    });
+  }
 
-  tabAdd.addEventListener('click', showAdd);
-  tabView.addEventListener('click', showView);
+  if (tabAdd) tabAdd.addEventListener('click', showAdd);
+  if (tabView) tabView.addEventListener('click', showView);
 
   function showAdd() {
-    addSection.classList.remove('hidden');
-    viewSection.classList.add('hidden');
+    if (addSection) addSection.classList.remove('hidden');
+    if (viewSection) viewSection.classList.add('hidden');
   }
 
   function showView() {
-    addSection.classList.add('hidden');
-    viewSection.classList.remove('hidden');
+    if (addSection) addSection.classList.add('hidden');
+    if (viewSection) viewSection.classList.remove('hidden');
     renderNotes();
   }
 
-  saveBtn.addEventListener('click', () => {
-    const content = notesInput.value.trim();
-    if (!content) return;
+  async function loadNotesFromServer() {
+    try {
+      const response = await fetch(`notes_api.php?action=load&id_number=${encodeURIComponent(idNumber)}`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      notes = data || [];
+      renderNotes();
+    } catch (error) {
+      console.error('Error loading notes:', error);
+      alert('Failed to load notes.');
+    }
+  }
 
-    notes.unshift({
-      id: Date.now(),
-      content,
-      time: new Date().toLocaleString()
+  async function saveNoteToServer(content) {
+    try {
+      const response = await fetch('notes_api.php?action=save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_number: idNumber, content })
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      await response.json();
+      loadNotesFromServer();
+    } catch (error) {
+      console.error('Error saving note:', error);
+      alert('Failed to save note.');
+    }
+  }
+
+async function deleteNoteFromServer(noteId) {
+  try {
+    const response = await fetch('notes_api.php?action=delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: noteId,
+        id_number: idNumber // include id_number in the request
+      })
     });
 
-    notesInput.value = '';
-    showView();
-  });
+    if (!response.ok) throw new Error('Failed to delete note');
+
+    const result = await response.json();
+    if (result.success) {
+      loadNotesFromServer(); // Refresh the notes display
+    } else {
+      alert(result.error || 'Failed to delete note.');
+    }
+  } catch (error) {
+    console.error('Error deleting note:', error);
+    alert('Error deleting note.');
+  }
+}
+
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      const content = notesInput?.value.trim();
+      if (!content) return;
+
+      if (notesInput) notesInput.value = '';
+      saveNoteToServer(content);
+      showView();
+    });
+  }
 
   function renderNotes() {
+    if (!notesList) return;
+
     notesList.innerHTML = '';
 
-    if (notes.length === 0) {
+    if (!notes.length) {
       notesList.innerHTML = '<li class="text-gray-400 italic">No notes saved yet.</li>';
       return;
     }
@@ -79,14 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const noteContent = document.createElement('div');
       noteContent.innerHTML = `
         <p class="text-sm text-gray-800 whitespace-pre-wrap">${note.content}</p>
-        <small class="text-gray-400 text-xs">${note.time}</small>
+        <small class="text-gray-400 text-xs">${note.created_at}</small>
       `;
 
       const delBtn = document.createElement('button');
       delBtn.innerHTML = '<i class="fas fa-trash text-red-500 hover:text-red-700"></i>';
       delBtn.addEventListener('click', () => {
         noteToDeleteId = note.id;
-        deleteModal.classList.remove('hidden');
+        if (deleteModal) deleteModal.classList.remove('hidden');
       });
 
       li.appendChild(noteContent);
@@ -95,17 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  confirmDeleteBtn.addEventListener('click', () => {
-    if (noteToDeleteId !== null) {
-      notes = notes.filter(n => n.id !== noteToDeleteId);
-      noteToDeleteId = null;
-      renderNotes();
-      deleteModal.classList.add('hidden');
-    }
-  });
+  if (confirmDeleteBtn) {
+    confirmDeleteBtn.addEventListener('click', () => {
+      if (noteToDeleteId !== null) {
+        deleteNoteFromServer(noteToDeleteId);
+        noteToDeleteId = null;
+        if (deleteModal) deleteModal.classList.add('hidden');
+      }
+    });
+  }
 
-  cancelDeleteBtn.addEventListener('click', () => {
-    noteToDeleteId = null;
-    deleteModal.classList.add('hidden');
-  });
+  if (cancelDeleteBtn) {
+    cancelDeleteBtn.addEventListener('click', () => {
+      noteToDeleteId = null;
+      if (deleteModal) deleteModal.classList.add('hidden');
+    });
+  }
 });

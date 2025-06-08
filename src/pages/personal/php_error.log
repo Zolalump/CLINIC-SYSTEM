@@ -1,0 +1,10 @@
+[06-Jun-2025 13:11:56 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\WebDa\CLINIC-SYSTEM-3\src\pages\personal\delete_complaint.php on line 28
+[06-Jun-2025 13:11:56 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\xampp\htdocs\WebDa\CLINIC-SYSTEM-3\src\pages\personal\delete_complaint.php:28
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\WebDa\CLINIC-SYSTEM-3\src\pages\personal\delete_complaint.php on line 28
+[06-Jun-2025 13:14:25 Europe/Berlin] PHP Warning:  Undefined variable $conn in C:\xampp\htdocs\WebDa\CLINIC-SYSTEM-3\src\pages\personal\delete_complaint.php on line 28
+[06-Jun-2025 13:14:25 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in C:\xampp\htdocs\WebDa\CLINIC-SYSTEM-3\src\pages\personal\delete_complaint.php:28
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\WebDa\CLINIC-SYSTEM-3\src\pages\personal\delete_complaint.php on line 28

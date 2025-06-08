@@ -143,7 +143,7 @@
                    </a>
                </li>
                <li>
-                   <a href="../../pages/personal/index.php" 
+                   <a href="../../pages/personal/index2.php" 
                       class="block py-2 px-4 text-white rounded-lg transition-all duration-300 hover:bg-white hover:text-blue-600 hover:shadow-md hover:scale-105">
                       Student Info
                    </a>
@@ -181,70 +181,72 @@
             </div>
 
             <!-- Log Entry Form -->
-            <form id="logEntryForm" class="bg-gray-50 p-6 rounded-lg">
-                <div class="mb-4">
-                    <!-- Student Search Field -->
-                    <div class="w-full">
-                        <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1">Student/Personnel Name</label>
-                        <div class="relative">
-                            <input type="text" id="studentName" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-900 focus:border-blue-900" placeholder="Search by name...">
-                            <div id="studentResults" class="hidden absolute z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-48 overflow-y-auto"></div>
-                        </div>
-                    </div>
-                </div>
+<!-- Log Entry Form -->
+<form id="logEntryForm" class="bg-gray-50 p-6 rounded-lg max-w-screen-xl mx-auto">
+    <!-- Row 1: Student Name Search -->
+    <div class="mb-6">
+        <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1">Student/Personnel Name</label>
+        <div class="relative">
+            <input type="text" id="studentName" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-900 focus:border-blue-900" placeholder="Search by name...">
+            <div id="studentResults" class="hidden absolute z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-48 overflow-y-auto"></div>
+        </div>
+    </div>
 
-                <div class="mb-4 flex gap-4 flex-wrap md:flex-nowrap">
-                    <!-- Auto-filled Department Info -->
-                    <div class="w-full md:w-1/2">
-                        <label for="department" class="block text-sm font-medium text-gray-700 mb-1">Department</label>
-                        <div class="p-3 bg-gray-100 border border-gray-200 rounded-lg">
-                            <select id="department" class="w-full bg-gray-100 border-none focus:outline-none cursor-default" disabled>
-                                <option value="">Department not selected</option>
-                                <option value="basic-education">Basic Education Department</option>
-                                <option value="tertiary">Tertiary Education Program</option>
-                                <option value="personnel">Personnel</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <!-- Auto-filled Classification Info -->
-                    <div class="w-full md:w-1/2">
-                        <label for="classification" class="block text-sm font-medium text-gray-700 mb-1">Classification</label>
-                        <div class="p-3 bg-gray-100 border border-gray-200 rounded-lg">
-                            <select id="classification" class="w-full bg-gray-100 border-none focus:outline-none cursor-default" disabled>
-                                <option value="">Classification not selected</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+    <!-- Row 2: Department & Classification -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+            <label for="department" class="block text-sm font-medium text-gray-700 mb-1">Department</label>
+            <div class="p-3 bg-gray-100 border border-gray-200 rounded-lg">
+                <select id="department" class="w-full bg-gray-100 border-none focus:outline-none cursor-default" disabled>
+                    <option value="">Department not selected</option>
+                    <option value="basic-education">Basic Education Department</option>
+                    <option value="tertiary">Tertiary Education Program</option>
+                    <option value="personnel">Personnel</option>
+                </select>
+            </div>
+        </div>
 
-                <!-- Auto-filled Student Info -->
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Additional Info</label>
-                    <div class="p-3 bg-gray-100 border border-gray-200 rounded-lg">
-                        <p id="studentInfo">No student/personnel selected</p>
-                    </div>
-                </div>
+        <div>
+            <label for="classification" class="block text-sm font-medium text-gray-700 mb-1">Classification</label>
+            <div class="p-3 bg-gray-100 border border-gray-200 rounded-lg">
+                <select id="classification" class="w-full bg-gray-100 border-none focus:outline-none cursor-default" disabled>
+                    <option value="">Classification not selected</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
-                <div class="mb-4">
-                    <label for="complaints" class="block text-sm font-medium text-gray-700 mb-1">Complaints</label>
-                    <textarea id="complaints" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-900 focus:border-blue-900"></textarea>
-                </div>
+    <!-- Row 3: Additional Info -->
+    <div class="mb-6">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Additional Info</label>
+        <div class="p-3 bg-gray-100 border border-gray-200 rounded-lg">
+            <p id="studentInfo">No student/personnel selected</p>
+        </div>
+    </div>
 
-                <div class="mb-6">
-                    <label for="intervention" class="block text-sm font-medium text-gray-700 mb-1">Intervention</label>
-                    <textarea id="intervention" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-900 focus:border-blue-900"></textarea>
-                </div>
+    <!-- Row 4: Complaints & Intervention (Side-by-side on landscape) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+            <label for="complaints" class="block text-sm font-medium text-gray-700 mb-1">Complaints</label>
+            <textarea id="complaints" rows="6" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-900 focus:border-blue-900"></textarea>
+        </div>
+        <div>
+            <label for="intervention" class="block text-sm font-medium text-gray-700 mb-1">Intervention</label>
+            <textarea id="intervention" rows="6" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-900 focus:border-blue-900"></textarea>
+        </div>
+    </div>
 
-                <div class="flex justify-end">
-                    <button type="button" id="clearButton" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-lg mr-3">
-                        Clear
-                    </button>
-                    <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg">
-                        Save Entry
-                    </button>
-                </div>
-            </form>
+    <!-- Row 5: Action Buttons -->
+    <div class="flex justify-end gap-3">
+        <button type="button" id="clearButton" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-lg">
+            Clear
+        </button>
+        <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg">
+            Save Entry
+        </button>
+    </div>
+</form>
+
         </div>
     </main>
 
