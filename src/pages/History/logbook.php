@@ -201,6 +201,8 @@
                     <option value="">Department not selected</option>
                     <option value="basic-education">Basic Education Department</option>
                     <option value="tertiary">Tertiary Education Program</option>
+                    <option value="graduate">Graduate Education Program</option>
+                    <option value="juris-doctor">Juris Doctor Program</option>
                     <option value="personnel">Personnel</option>
                 </select>
             </div>
@@ -211,9 +213,64 @@
             <div class="p-3 bg-gray-100 border border-gray-200 rounded-lg">
                 <select id="classification" class="w-full bg-gray-100 border-none focus:outline-none cursor-default" disabled>
                     <option value="">Classification not selected</option>
+
+                    <!-- BASIC EDUCATION -->
+                    <option value="Grade-school (BED)">Grade-school (BED)</option>
+                    <option value="JHS-7 (BED)">JHS-7 (BED)</option>
+                    <option value="JHS-8 (BED)">JHS-8 (BED)</option>
+                    <option value="JHS-9 (BED)">JHS-9 (BED)</option>
+                    <option value="JHS-10 (BED)">JHS-10 (BED)</option>
+                    <option value="SHS-11-STEM (BED)">SHS-11-STEM (BED)</option>
+                    <option value="SHS-11-GAS (BED)">SHS-11-GAS (BED)</option>
+                    <option value="SHS-11-HUMSS (BED)">SHS-11-HUMSS (BED)</option>
+                    <option value="SHS-12-STEM (BED)">SHS-12-STEM (BED)</option>
+                    <option value="SHS-12-GAS (BED)">SHS-12-GAS (BED)</option>
+                    <option value="SHS-12-HUMSS (BED)">SHS-12-HUMSS (BED)</option>
+
+                    <!-- TERTIARY EDUCATION PROGRAM -->
+                    <option value="ABPsych (TEP)">ABPsych (TEP)</option>
+                    <option value="BSBA (TEP)">BSBA (TEP)</option>
+                    <option value="BEED (TEP)">BEED (TEP)</option>
+                    <option value="BSED (TEP)">BSED (TEP)</option>
+                    <option value="BSCE (TEP)">BSCE (TEP)</option>
+                    <option value="BSN (TEP)">BSN (TEP)</option>
+                    <option value="BSHM (TEP)">BSHM (TEP)</option>
+                    <option value="BSTM (TEP)">BSTM (TEP)</option>
+                    <option value="BSCS (TEP)">BSCS (TEP)</option>
+                    <option value="BSCrim (TEP)">BSCrim (TEP)</option>
+
+                    <!-- ADD THESE: -->
+                    <option value="Graduate Education Program">Graduate Education Program</option>
+                    <option value="Juris Doctor Program">Juris Doctor Program</option>
+
+                    <!-- PERSONNEL -->
+                    <option value="Top Level Administrator">Top Level Administrator</option>
+                    <option value="HED Admin/Faculty">HED Admin/Faculty</option>
+                    <option value="BED Admin/Faculty">BED Admin/Faculty</option>
+                    <option value="GS Faculty">GS Faculty</option>
+                    <option value="JHS Faculty">JHS Faculty</option>
+                    <option value="SHS Faculty">SHS Faculty</option>
+                    <option value="Finance Personnel">Finance Personnel</option>
+                    <option value="Registrar's Office">Registrar's Office</option>
+                    <option value="ICT Personnel">ICT Personnel</option>
+                    <option value="Guidance Office">Guidance Office</option>
+                    <option value="School Clinic">School Clinic</option>
+                    <option value="Administrative Assistants">Administrative Assistants</option>
+                    <option value="Campus Ministers">Campus Ministers</option>
+                    <option value="Canteen Staff">Canteen Staff</option>
+                    <option value="Laboratory Custodian">Laboratory Custodian</option>
+                    <option value="Physical Plant Supervisor">Physical Plant Supervisor</option>
+                    <option value="Property Custodian">Property Custodian</option>
+                    <option value="Printing/Binding Office">Printing/Binding Office</option>
+                    <option value="Library">Library</option>
+                    <option value="Community Involvement Program">Community Involvement Program</option>
+                    <option value="Maintenance Personnel">Maintenance Personnel</option>
+                    <option value="Outsourced Janitorial Services">Outsourced Janitorial Services</option>
                 </select>
             </div>
         </div>
+
+
     </div>
 
     <!-- Row 3: Additional Info -->

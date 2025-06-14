@@ -66,18 +66,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mock student/personnel database - in a real application, this would come from a server
     const database = [
-        { id: 1, name: "John Smith", department: "basic-education", classification: "SHS-11-STEM (BED)", section: "Section A", age: 16, year: "3rd Year", position: "Student" },
-        { id: 2, name: "Maria Santos", department: "basic-education", classification: "SHS-11-GAS (BED)", section: "Section B", age: 17 },
-        { id: 3, name: "Alex Johnson", department: "basic-education", classification: "JHS-7 (BED)", section: "Grade 9-A", age: 15 },
-        { id: 4, name: "Sofia Reyes", department: "basic-education", classification: "SHS-12-STEM (BED)", section: "Section C", age: 18 },
-        { id: 5, name: "David Kim", department: "tertiary", classification: "BSCS (TEP)", year: "2nd Year", age: 20 },
-        { id: 6, name: "Emma Wilson", department: "basic-education", classification: "Grade-school (BED)", section: "Grade 6-B", age: 12 },
-        { id: 7, name: "James Rodriguez", department: "tertiary", classification: "BSBA (TEP)", year: "3rd Year", age: 21 },
-        { id: 8, name: "Olivia Chen", department: "tertiary", classification: "BSN (TEP)", year: "4th Year", age: 22 },
-        { id: 9, name: "Dr. Robert Garcia", department: "personnel", classification: "Clinic", position: "School Physician", age: 45 },
-        { id: 10, name: "Ms. Patricia Lee", department: "personnel", classification: "Guidance", position: "Guidance Counselor", age: 38 },
-        { id: 11, name: "Prof. Michael Brown", department: "personnel", classification: "Hed-admin", position: "Department Chair", age: 50 },
-        { id: 12, name: "Mrs. Jennifer Cruz", department: "personnel", classification: "Gs-faculty", position: "Grade 4 Teacher", age: 32 }
+        // Grade School (2 sections per grade)
+        { id: 1, name: "Alice Rivera", department: "basic-education", classification: "Grade-school (BED)", section: "Grade 1 - A", age: 6 },
+        { id: 2, name: "Brian Cruz", department: "basic-education", classification: "Grade-school (BED)", section: "Grade 1 - B", age: 6 },
+        { id: 3, name: "Carla Lopez", department: "basic-education", classification: "Grade-school (BED)", section: "Grade 2 - A", age: 7 },
+        { id: 4, name: "Daniel Ong", department: "basic-education", classification: "Grade-school (BED)", section: "Grade 2 - B", age: 7 },
+
+        // Junior High School
+        { id: 5, name: "Ella Torres", department: "basic-education", classification: "JHS-7 (BED)", section: "Grade 7 - A", age: 12 },
+        { id: 6, name: "Felix Chan", department: "basic-education", classification: "JHS-7 (BED)", section: "Grade 7 - B", age: 12 },
+        { id: 7, name: "Gina Morales", department: "basic-education", classification: "JHS-7 (BED)", section: "Grade 7 - C", age: 13 },
+
+        // Senior High School
+        { id: 8, name: "Kyla Sy", department: "basic-education", classification: "SHS-11-STEM (BED)", section: "11-STEM A", age: 16 },
+        { id: 9, name: "Leo Fernandez", department: "basic-education", classification: "SHS-11-STEM (BED)", section: "11-STEM B", age: 17 },
+        { id: 10, name: "Mina Rojas", department: "basic-education", classification: "SHS-11-GAS (BED)", section: "11-GAS A", age: 16 },
+        { id: 11, name: "Nathan Uy", department: "basic-education", classification: "SHS-11-HUMSS (BED)", section: "11-HUMSS A", age: 17 },
+
+        // Grade 12 SHS
+        { id: 12, name: "Olivia Tan", department: "basic-education", classification: "SHS-12-STEM (BED)", section: "12-STEM A", age: 17 },
+        { id: 13, name: "Patrick Gomez", department: "basic-education", classification: "SHS-12-STEM (BED)", section: "12-STEM B", age: 18 },
+        { id: 14, name: "Quinn Santos", department: "basic-education", classification: "SHS-12-GAS (BED)", section: "12-GAS A", age: 17 },
+        { id: 15, name: "Rica Navarro", department: "basic-education", classification: "SHS-12-HUMSS (BED)", section: "12-HUMSS A", age: 18 },
+
+        // Tertiary
+        { id: 16, name: "Samuel Dela Cruz", department: "tertiary", classification: "BSCS (TEP)", year: "1st Year", age: 18 },
+        { id: 17, name: "Tina Mendoza", department: "tertiary", classification: "BSBA (TEP)", year: "2nd Year", age: 19 },
+        { id: 18, name: "Ulysses Tan", department: "tertiary", classification: "BSN (TEP)", year: "3rd Year", age: 20 },
+        { id: 19, name: "Vanessa Chua", department: "tertiary", classification: "BSED (TEP)", year: "4th Year", age: 21 },
+
+        // Graduate Education Program 
+        { id: 20, name: "Wesley Ramos", department: "graduate", classification: "Graduate Education Program", course: "Master of Education", year: "1st Year", age: 27 },
+        { id: 21, name: "Xena David", department: "graduate", classification: "Graduate Education Program", course: "Master of Business Administration", year: "2nd Year", age: 29 },
+
+        // Juris Doctor Program
+        { id: 22, name: "Yohan Garcia", department: "juris-doctor", classification: "Juris Doctor Program", year: "3rd Year", age: 30 },
+        { id: 23, name: "Zara Lim", department: "juris-doctor", classification: "Juris Doctor Program", year: "4th Year", age: 31 },
+
+        // Personnel
+        { id: 24, name: "Dr. William Torres", department: "personnel", classification: "clinic", position: "Physician", age: 48 },
+        { id: 25, name: "Ms. Yvette Ramos", department: "personnel", classification: "guidance", position: "Counselor", age: 37 },
+        { id: 26, name: "Mr. Zachary Cruz", department: "personnel", classification: "top-level", position: "School President", age: 52 },
+        { id: 27, name: "Ms. Amanda Lee", department: "personnel", classification: "hed-admin", position: "Dean of Tertiary", age: 45 },
+        { id: 28, name: "Mr. Benjie Reyes", department: "personnel", classification: "bed-admin", position: "BED Principal", age: 43 },
+        { id: 29, name: "Ms. Cora Jimenez", department: "personnel", classification: "gs-faculty", position: "Grade 2 Teacher", age: 30 },
+        { id: 30, name: "Mr. Daryl Yap", department: "personnel", classification: "JHS-faculty", position: "JHS Science Teacher", age: 35 },
+        { id: 31, name: "Ms. Elaine Santos", department: "personnel", classification: "SHS-faculty", position: "SHS English Teacher", age: 32 },
+        { id: 32, name: "Mr. Felix Ramos", department: "personnel", classification: "finance", position: "Accountant", age: 41 },
+        { id: 33, name: "Ms. Gemma Co", department: "personnel", classification: "registrar", position: "Registrar Officer", age: 40 },
+        { id: 34, name: "Mr. Hugo Lim", department: "personnel", classification: "ict", position: "IT Administrator", age: 33 },
+        { id: 35, name: "Ms. Ingrid Dela Cruz", department: "personnel", classification: "admin-asst", position: "Executive Assistant", age: 29 },
+        { id: 36, name: "Mr. Jonas Aguilar", department: "personnel", classification: "campus-min", position: "Campus Minister", age: 39 },
+        { id: 37, name: "Ms. Karen Sy", department: "personnel", classification: "canteen", position: "Head Cook", age: 50 },
+        { id: 38, name: "Mr. Leo Sison", department: "personnel", classification: "lab-custodian", position: "Lab Custodian", age: 36 },
+        { id: 39, name: "Mr. Marco De Leon", department: "personnel", classification: "plant-supervisor", position: "Plant Supervisor", age: 46 },
+        { id: 40, name: "Ms. Nicole Uy", department: "personnel", classification: "property", position: "Property Custodian", age: 38 },
+        { id: 41, name: "Ms. Olivia Gatchalian", department: "personnel", classification: "printing", position: "Printing Assistant", age: 34 },
+        { id: 42, name: "Mr. Paul Ramirez", department: "personnel", classification: "library", position: "Librarian", age: 42 },
+        { id: 43, name: "Ms. Queenie Robles", department: "personnel", classification: "community", position: "Community Coordinator", age: 31 },
+        { id: 44, name: "Mr. Roland Tan", department: "personnel", classification: "maintenance", position: "Head of Maintenance", age: 47 },
+        { id: 45, name: "Ms. Sophia Ventura", department: "personnel", classification: "janitorial", position: "Janitorial Supervisor", age: 44 }
     ];
 
     // Log entries array
@@ -220,7 +268,13 @@ document.addEventListener('DOMContentLoaded', function() {
             logEntryForm.dataset.position = person.position || ''; // Ensure position is set
             logEntryForm.dataset.year = '';  // Clear year for personnel
             logEntryForm.dataset.section = '';  // Clear section for personnel
+        } else if (person.department === 'graduate' || person.department === 'juris-doctor') {
+            infoText = `${person.year} | Age: ${person.age}`;
+            logEntryForm.dataset.year = person.year || '';
+            logEntryForm.dataset.section = '';
+            logEntryForm.dataset.position = '';
         }
+
         
         studentInfoEl.textContent = infoText;
         
@@ -404,6 +458,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const departmentMap = {
             'basic-education': 'Basic Education Department',
             'tertiary': 'Tertiary Education Program',
+            'graduate': 'Graduate Education Program',         
+            'juris-doctor': 'Juris Doctor Program',           
             'personnel': 'Personnel'
         };
         return departmentMap[department] || department;
